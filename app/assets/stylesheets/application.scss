@@ -12,3 +12,24 @@
  *
  */
  @import"bootstrap";
+
+ body {
+    background-color: #977445;
+  };
+
+ .title{
+  width: 50%;
+  margin: 0 auto;
+ };
+
+ .title-text{
+  font-size: 60px;
+  color: rgb(209, 187, 172);
+  margin: 100px 0;
+ };
+
+
+ .line{
+    margin-left: auto;
+    margin-right: auto;
+ };
