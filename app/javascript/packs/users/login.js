@@ -1,17 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-  debugger
+  debugger;
       liff.init({
       liffId: "1656693818-N2kw6Bvk"
     })
     .then(() => {
-//      if (!liff.isLoggedIn()) {
-//           // 開発時、外部ブラウザからアクセスために利用
-//           liff.login();
-//         }
+      debugger;
+      if (!liff.isLoggedIn()) {
+           // 開発時、外部ブラウザからアクセスために利用
+          liff.login();
+        }
     })  
     .then(() => {
+      debugger;
       const idToken = liff.getIDToken();
       const body = `idToken=${idToken}`
       const request = new Request('/users', {
@@ -23,10 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
           body: body
         });
           // lineのユーザーIDトークンをcontrollerに送る
-      fetch(request)
-    })
+    fetch(request)
     .then(() => {
         // controllerからレスポンスがきたら、user登録画面にページ遷移
-      window.location = '/users/new'
+        debugger
+      window.location = '/groups/new'
     })
   })
+})

@@ -22,10 +22,8 @@ class UsersController < ApplicationController
         group = Group.create!
         user = User.create!(line_id: line_user_id, group: group)
         session[:user_id] = user.id
-#        redirect_to group_path
     elsif user
-#        session[:user_id] = user.id
-#        redirect_to first_names_path(user.group)
+        session[:user_id] = user.id
     end
   end
 
