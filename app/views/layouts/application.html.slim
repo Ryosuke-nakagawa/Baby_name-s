@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title
+      | BabyNames
+    script charset="utf-8" src="https://static.line-scdn.net/liff/edge/2/sdk.js"
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body
+    = yield
