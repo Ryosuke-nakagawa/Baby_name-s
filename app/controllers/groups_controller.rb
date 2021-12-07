@@ -7,8 +7,6 @@ class GroupsController < ApplicationController
   def update
     @user = User.find(session[:user_id])
     @group = Group.find(params[:id])
-    binding.pry
-    #hogehoge
     if @group.update(group_params) && @user.update(user_params)
       redirect_to root_path
     else
