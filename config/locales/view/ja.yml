@@ -1,0 +1,7 @@
+ja:
+  defaults:
+    register: 'この名前に決めた！'
+  groups:
+    new:
+      for_usersetting_title: '名前を決める上での優先順位'
+      
