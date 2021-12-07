@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_053318) do
 
   create_table "first_names", force: :cascade do |t|
     t.bigint "group_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.string "reading"
     t.string "fotune_telling_url"
     t.integer "fotune_telling_rate"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2021_12_04_053318) do
   end
 
   create_table "groups", force: :cascade do |t|
-    t.string "last_name", null: false
+    t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

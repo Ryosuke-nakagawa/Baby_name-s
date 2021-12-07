@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'groups/new'
   root 'static_pages#top'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get 'login', to: 'users#login'
+
+  resources :users, only: [:new, :create]
+  resources :groups, only: [:new, :update]
 end

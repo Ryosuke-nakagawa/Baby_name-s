@@ -35,6 +35,7 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -53,3 +54,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim'
 gem 'bootstrap','~> 5.1.3'
 gem 'jquery-rails'
+gem 'dotenv-rails'
