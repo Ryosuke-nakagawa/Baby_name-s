@@ -1,6 +1,20 @@
 
-= form_with model: @group, local: true do |f|
-  = f.text_field :last_name, placeholder: "姓"
-  = f.submit "この名前に決めた！", class:"btn"
-
-h1 ここで名前と優先順位を登録！
+.container-fluid
+  .col-lg-8.p-5
+    = form_with model: @group, local: true do |f|
+      .form-group
+        = f.label :last_name, class: "form-label col-sm-2 fs-2"
+        = f.text_field :last_name, placeholder: "姓", class: "form-control-lg"
+      h1.pt-5 名前を決める上での優先順位
+      = f.fields_for @user do |u|
+        .form-group.mt-5
+          = u.label :sound_rate_setting, class: "form-label fs-2"
+          = u.range_field :sound_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
+        .form-group.mt-5
+          = u.label :character_rate_setting, class: "form-label fs-2"
+          = u.range_field :character_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
+        .form-group.mt-5.mb-5
+          = u.label :fotune_telling_rate_setting, class:"form-label fs-2"
+          = u.range_field :fotune_telling_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
+      .col.text-center
+        = f.submit "この名前に決めた！", class: "btn btn-light"

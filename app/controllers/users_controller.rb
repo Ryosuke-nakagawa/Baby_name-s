@@ -14,15 +14,13 @@ class UsersController < ApplicationController
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})
     line_user_id = JSON.parse(res.body)["sub"]
     user = User.find_by(line_id: line_user_id)
-    binding.pry
-    if user.nil? && !line_user_id.nil?
+    if user.nil?
         #もしパラメーターがあるならば、そのパラメーター持つのuserの所属するgroupに入れる
         #無ければ↓
-        binding.pry
         group = Group.create!
         user = User.create!(line_id: line_user_id, group: group)
         session[:user_id] = user.id
-    elsif user
+    else
         session[:user_id] = user.id
     end
   end
