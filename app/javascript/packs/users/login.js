@@ -2,14 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   liff.init({
-    liffId: "1656693818-N2kw6Bvk"
+    liffId: gon.liff_id
   })
   .then(() => {
     if (!liff.isLoggedIn()) {
       // 開発時、外部ブラウザからアクセスために利用
       liff.login();
     }
-  })  
+  })
   .then(() => {
     const idToken = liff.getIDToken();
     const body = `idToken=${idToken}`
