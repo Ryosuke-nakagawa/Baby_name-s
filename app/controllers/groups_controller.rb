@@ -8,6 +8,17 @@ class GroupsController < ApplicationController
     @user = User.find(session[:user_id])
     @group = Group.find(params[:id])
     if @group.update(group_params) && @user.update(user_params)
+      uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
+      http = Net::HTTP.new(uri.host, uri.port)
+
+      http.use_ssl = true #なかったらエラー発生
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #なくてもエラーは出なかった
+
+      req = Net::HTTP::Post.new(uri.request_uri)
+      req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
+      res = http.request(req)
+
+      binding.pry
       redirect_to root_path
     else
       render :new
