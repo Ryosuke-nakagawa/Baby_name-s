@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :set_liff_id
+
   require 'net/http'
   require 'uri'
   
