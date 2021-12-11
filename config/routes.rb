@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :groups, only: [:new, :update]
+  resources :share_target_pickers, only: [:new]
 end

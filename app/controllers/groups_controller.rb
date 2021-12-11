@@ -18,7 +18,6 @@ class GroupsController < ApplicationController
       req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
       res = http.request(req)
 
-      binding.pry
       redirect_to root_path
     else
       render :new
