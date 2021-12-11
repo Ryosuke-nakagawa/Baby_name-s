@@ -18,8 +18,9 @@ class UsersController < ApplicationController
     user = User.find_by(line_id: line_user_id)
 
     if params[:uuid]
-      link_user = user.find_by(uuid: params[:uuid])
-      user = User.create!(line_id: line_user_id, group: link_user.group_id)
+      link_user = User.find_by(uuid: params[:uuid])
+      user = User.create!(line_id: line_user_id, group: link_user.group)
+      session[:user_id] = user.id
       return
     end
 
@@ -29,7 +30,7 @@ class UsersController < ApplicationController
         session[:user_id] = user.id
     else
         session[:user_id] = user.id
-        uuid = { id: user.line_id }
+        uuid = { id: user.uuid }
         render json: uuid
     end
   end
