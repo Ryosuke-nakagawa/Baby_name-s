@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }else{
       var body = `idToken=${idToken}&uuid=${param}`
     }
-    debugger;
     const request = new Request('/users', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
