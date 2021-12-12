@@ -7,7 +7,7 @@ class LineBotController < ApplicationController
     unless client.validate_signature(body, signature) #署名検証を行う https://developers.line.biz/ja/docs/messaging-api/receiving-messages/#verifying-signatures
       return head :bad_request
     end
-    events = client.parse_events_from(body)
+    events = client.parse_events_from(body) #リクエストのbodyを抜き取る
     events.each do |event|
       case event
       when Line::Bot::Event::Message
@@ -17,7 +17,7 @@ class LineBotController < ApplicationController
             type: 'text',
             text: event.message['text']
             }
-          client.reply_message(event['replyToken'], message)
+          client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
         end
       end
     end
