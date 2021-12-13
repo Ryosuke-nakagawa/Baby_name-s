@@ -13,11 +13,51 @@ class LineBotController < ApplicationController
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          message = {
-            type: 'text',
-            text: event.message['text']
-            }
-          client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+          @user = User.find_by(line_id: event['source']['userId'])
+          replied_message = event.message['text']
+          if @user.nil?
+            message = {
+              type: 'text',
+              text: 'メニューバーの始めるからユーザー登録を行なってね'
+              }
+            client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+          end
+
+          case @user.status
+          when 'normal'
+            if replied_message == '名前を新規登録'
+              message = {
+                type: 'text',
+                text: '名前をメッセージで送ってください(漢字)'
+                }
+              client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+              @user.name_registration!
+            else
+              message = {
+                type: 'text',
+                text: 'メニューバーから「新規登録」で名前候補を登録できるよ/登録された名前を漢字で送ると、姓名判断の結果を返すよ'
+                }
+              client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+            end
+          when 'name_registration'
+            new_name = FirstName.create(name: replied_message, group: @user.group)
+            @user.update(editing_name: new_name)
+            message = {
+              type: 'text',
+              text: '名前の読みをメッセージで送ってください(ひらがな)'
+              }
+            client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+            @user.reading_registration!
+          when 'reading_registration'
+            @user.editing_name.update!(reading: replied_message)
+            @user.update(editing_name_id: nil)
+            message = {
+              type: 'text',
+              text: '名前が登録されました！評価ページはこちら'
+              }
+            client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+            @user.normal!
+          end
         end
       end
     end

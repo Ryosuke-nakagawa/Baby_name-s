@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   belongs_to :group
-  belongs_to :editing_name, class_name:'FirstName'
+  belongs_to :editing_name, class_name:'FirstName', optional: true
   validates :line_id, presence: true, uniqueness: true
   validates :sound_rate_setting, numericality: { in: 1..5  }, allow_nil: true
   validates :character_rate_setting, numericality: { in: 1..5  }, allow_nil: true
