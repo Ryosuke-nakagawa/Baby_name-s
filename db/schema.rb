@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_04_053318) do
+ActiveRecord::Schema.define(version: 2021_12_12_211822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,11 +53,15 @@ ActiveRecord::Schema.define(version: 2021_12_04_053318) do
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status", default: 0, null: false
+    t.bigint "editing_name_id"
+    t.index ["editing_name_id"], name: "index_users_on_editing_name_id"
     t.index ["group_id"], name: "index_users_on_group_id"
   end
 
   add_foreign_key "first_names", "groups"
   add_foreign_key "rates", "first_names"
   add_foreign_key "rates", "users"
+  add_foreign_key "users", "first_names", column: "editing_name_id"
   add_foreign_key "users", "groups"
 end
