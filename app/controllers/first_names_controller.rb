@@ -1,12 +1,13 @@
 class FirstNamesController < ApplicationController
-  before_action :set_first_names_liffid, only: [:login]
+  before_action :set_first_names_liffid, only: [:new]
 
   require 'net/http'
   require 'uri'
 
-  def login
-    return unless params[:idToken]
+  def new
+  end
 
+  def login
     idToken = params[:idToken]
     channelId = ENV['LIFF_CHANNEL_ID']
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})

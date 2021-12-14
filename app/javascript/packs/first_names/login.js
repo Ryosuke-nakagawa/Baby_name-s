@@ -26,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json().then(response_group_id => {
         // JSONパースされたオブジェクトが渡される
         const group_id = response_group_id ;
-        debugger;
         window.location = `/groups/${group_id.id}/first_names`
       })
     })

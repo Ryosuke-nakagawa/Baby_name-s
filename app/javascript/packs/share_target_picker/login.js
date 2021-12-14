@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   .then(() => {
     const idToken = liff.getIDToken();
     const body = `idToken=${idToken}`
-    const request = new Request('/users', {
+    const request = new Request('/share_target_pickers/login', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'X-CSRF-Token': token
@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json().then(response_uuid => {
         // JSONパースされたオブジェクトが渡される
         var uuid = response_uuid ;
-        debugger;
         if (liff.isApiAvailable('shareTargetPicker')) {
           const url = `https://liff.line.me/1656693818-N2kw6Bvk?q=${uuid.id}`
           liff.shareTargetPicker([{
