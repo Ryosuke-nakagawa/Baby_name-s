@@ -5,17 +5,17 @@ class FirstNamesController < ApplicationController
   require 'uri'
 
   def login
-    if params[:idToken]
-      idToken = params[:idToken]
-      channelId = ENV['LIFF_CHANNEL_ID']
-      res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})
-      line_user_id = JSON.parse(res.body)["sub"]
-      user = User.find_by(line_id: line_user_id)
+    return unless params[:idToken]
 
-      session[:user_id] = user.id
-      group_id = { id: user.group_id }
-      render json: group_id
-    end
+    idToken = params[:idToken]
+    channelId = ENV['LIFF_CHANNEL_ID']
+    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})
+    line_user_id = JSON.parse(res.body)["sub"]
+    user = User.find_by(line_id: line_user_id)
+
+    session[:user_id] = user.id
+    group_id = { id: user.group_id }
+    render json: group_id
   end
 
   def index
@@ -23,10 +23,10 @@ class FirstNamesController < ApplicationController
     @first_names = @user.group.first_names
   end
 
-  def update
-  end
-
   def destroy
+    @first_name = FirstName.find(params[:id])
+    @first_name.destroy
+    redirect_to  group_first_names_path(@first_name.group)
   end
 
   def show
