@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_login_liff_id, only: [:login]
+  before_action :set_login_liffid, only: [:login]
 
   require 'net/http'
   require 'uri'
@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})
     line_user_id = JSON.parse(res.body)["sub"]
     user = User.find_by(line_id: line_user_id)
-
+    binding.pry
     if params[:uuid]
       link_user = User.find_by(uuid: params[:uuid])
       user = User.create!(line_id: line_user_id, group: link_user.group)
