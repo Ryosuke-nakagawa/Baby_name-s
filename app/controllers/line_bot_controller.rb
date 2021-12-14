@@ -1,6 +1,9 @@
 class LineBotController < ApplicationController
   protect_from_forgery except: [:callback]
 
+  require 'net/http'
+  require 'uri'
+
   def callback
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE'] #リクエストのヘッダーの署名情報を取得
@@ -41,6 +44,11 @@ class LineBotController < ApplicationController
           when 'name_registration'
             new_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_name)
+            #姓名判断結果を取得する
+
+            uri = URI.parse("https://enamae.net/m/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94#result")
+            response = Net::HTTP.get_response(uri)
+
             message = {
               type: 'text',
               text: '名前の読みをメッセージで送ってください(ひらがな)'

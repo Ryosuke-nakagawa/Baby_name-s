@@ -274,6 +274,7 @@ DEPENDENCIES
   jquery-rails
   line-bot-api
   listen (~> 3.3)
+  nokogiri
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
