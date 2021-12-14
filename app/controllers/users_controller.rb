@@ -8,12 +8,6 @@ class UsersController < ApplicationController
   end
   
   def create
-    @authenticait.new(params[:idToken],ENV['LIFF_CHANNEL_ID'])
-    if @authenticait.result_user
-      #いた場合
-    else
-      #いなかった場合
-    end
     idToken = params[:idToken]
     channelId = ENV['LIFF_CHANNEL_ID']
     res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})

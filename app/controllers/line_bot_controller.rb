@@ -22,7 +22,6 @@ class LineBotController < ApplicationController
               }
             client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
           end
-
           case @user.status
           when 'normal'
             if replied_message == '名前を新規登録'
