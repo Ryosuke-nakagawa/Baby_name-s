@@ -1,8 +1,7 @@
 class LineBotController < ApplicationController
   protect_from_forgery except: [:callback]
 
-  require 'net/http'
-  require 'uri'
+  require 'open-uri'
 
   def callback
     body = request.body.read
@@ -42,12 +41,31 @@ class LineBotController < ApplicationController
               client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
             end
           when 'name_registration'
-            new_name = FirstName.create(name: replied_message, group: @user.group)
-            @user.update(editing_name: new_name)
-            #姓名判断結果を取得する
+            new_first_name = FirstName.create(name: replied_message, group: @user.group)
+            @user.update(editing_name: new_first_name)
 
-            uri = URI.parse("https://enamae.net/m/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94#result")
-            response = Net::HTTP.get_response(uri)
+            full_name = "#{@user.group.last_name}__#{new_first_name.name}"
+            search_param = URI.encode_www_form_component(full_name)
+            #姓名判断結果(html)を取得
+            new_first_name.update(fotune_telling_url: "https://enamae.net/m/#{search_param}#result")
+            html = URI.open("https://enamae.net/m/#{search_param}#result").read
+            doc = Nokogiri::HTML.parse(html)
+            #結果を元に(評価)を判断
+            daikiti = doc.css(".daikiti").count
+            kiti =doc.css(".kiti").count
+            kikkyou= doc.css(".kikkyou").count
+            kyou= doc.css(".kyou").count
+            tokusyu= doc.css(".tokusyu").count
+            fotune_telling_result = ( daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 2 ) / 6
+            new_first_name.update(fotune_telling_rate: fotune_telling_result)
+
+            #姓名判断の結果(画像)を取得
+            image_url = "https://enamae.net/result2/#{search_param}.jpg"
+            file = "public/fotune_telling_images/#{new_first_name.id}.jpg"
+            new_first_name.update(fotune_telling_image: "#{new_first_name.id}.jpg")
+            File.open(file, 'wb') do |img|
+              img.write(URI.open(image_url).read)
+            end
 
             message = {
               type: 'text',
@@ -57,12 +75,13 @@ class LineBotController < ApplicationController
             @user.reading_registration!
           when 'reading_registration'
             @user.editing_name.update!(reading: replied_message)
-            @user.update(editing_name_id: nil)
+
             message = {
               type: 'text',
-              text: '名前が登録されました！評価ページはこちら'
+              text: "名前が登録されました！評価ページはこちら"
               }
             client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+            @user.update(editing_name_id: nil)
             @user.normal!
           end
         end
