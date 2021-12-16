@@ -78,10 +78,113 @@ class LineBotController < ApplicationController
 
             message = {
               type: 'text',
-              text: "名前が登録されました！評価ページはこちら"
+              text: "名前が登録されました！この名前の「音の響き」に評価をつけるなら5段階でどれですか?",
+              quickReply: {
+                items: [
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '1',
+                      text: '1'
+                      }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '2',
+                      text: '2'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '3',
+                      text: '3'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '4',
+                      text: '4'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '5',
+                      text: '5'
+                    }
+                  }
+                ]
               }
+            }
             client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
             @user.update(editing_name_id: nil)
+            @user.sound_rate_registration!
+          when 'sound_rate_registration'
+            message = {
+              type: 'text',
+              text: "この名前の「漢字」に評価をつけるなら5段階でどれですか?",
+              quickReply: {
+                items: [
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '1',
+                      text: '1'
+                      }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '2',
+                      text: '2'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '3',
+                      text: '3'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '4',
+                      text: '4'
+                    }
+                  },
+                  {
+                    type: 'action',
+                    action: {
+                      type: 'message',
+                      label: '5',
+                      text: '5'
+                    }
+                  }
+                ]
+              }
+            }
+            client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+            @user.character_rate_registration!
+          when 'character_rate_registration'
+            message = {
+              type: 'text',
+              text: "名前の登録が完了しました！"
+              }
+            client.reply_message(event['replyToken'], message) #返信用のデータ作成して送る
+
             @user.normal!
           end
         end
