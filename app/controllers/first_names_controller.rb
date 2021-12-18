@@ -34,4 +34,12 @@ class FirstNamesController < ApplicationController
     @first_name = FirstName.find(params[:id])
     @group = Group.find(params[:group_id])
   end
+
+  def edit
+    @user = User.find(session[:user_id])
+    @first_name = FirstName.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @rate = Rate.find_by(user: @user,first_name: @first_name)
+  end
+
 end

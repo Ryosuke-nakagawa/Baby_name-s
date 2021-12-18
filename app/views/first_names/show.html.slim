@@ -6,6 +6,6 @@
 .container
   = link_to '名前一覧',group_first_names_path(@group)
 .container
-  = link_to '評価を変更する',"#"
+  = link_to '評価を変更する',edit_group_first_name_path(@group,@first_name)
 .container
   = link_to '削除する※共有しているユーザーのアカウントからも名前が消えます※',group_first_name_path(@group,@first_name),method: :delete
