@@ -9,5 +9,6 @@
         = f.text_field :sound_rate, class: "form-control-lg"
         = f.label :character_rate, class: "form-label col-sm-2 fs-2"
         = f.text_field :character_rate, class: "form-control-lg"
+        = f.hidden_field :first_name_id, value: @first_name.id
       .col.text-center
-        = f.submit "変更", class: "btn btn-light"
+        = f.submit "確定", class: "btn btn-light"
