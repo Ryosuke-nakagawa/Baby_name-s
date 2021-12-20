@@ -1,7 +1,6 @@
 class RatesController < ApplicationController
 
   def create
-    @user = User.find(session[:user_id])
     @rate = Rate.create(rate_params)
     redirect_to group_first_name_path(@rate.user.group, @rate.first_name)
   end
@@ -15,7 +14,7 @@ class RatesController < ApplicationController
   private
 
   def rate_params
-    params.require(:rate).permit(:sound_rate,:character_rate, :first_name_id).merge(user_id: @user.id)
+    params.require(:rate).permit(:sound_rate,:character_rate, :first_name_id).merge(user_id: current_user)
   end
 
   def update_rate_params

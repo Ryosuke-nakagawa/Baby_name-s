@@ -1,13 +1,14 @@
 class GroupsController < ApplicationController
   def new
-    @user = User.find(session[:user_id])
+    @user = current_user
     @group = @user.group
   end
 
   def update
-    @user = User.find(session[:user_id])
+    @user = current_user
     @group = Group.find(params[:id])
     if @group.update(group_params) && @user.update(user_params)
+      # LINERICHメニューの切り替え
       uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
       http = Net::HTTP.new(uri.host, uri.port)
 
@@ -18,7 +19,7 @@ class GroupsController < ApplicationController
       req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
       res = http.request(req)
 
-      redirect_to root_path
+      redirect_to group_first_names_path(@group)
     else
       render :new
     end
