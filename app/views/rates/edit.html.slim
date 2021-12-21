@@ -2,9 +2,9 @@
   .col-lg-8.p-5
     = form_with model: [@first_name,@rate], local: true do |f|
       .form-group
-        = f.label :sound_rate, class: "form-label col-sm-2 fs-2"
-        = f.text_field :sound_rate, class: "form-control-lg"
-        = f.label :character_rate, class: "form-label col-sm-2 fs-2"
-        = f.text_field :character_rate, class: "form-control-lg"
+        = f.label :sound_rate, class: "form-label"
+        = f.text_field :sound_rate, class: "form-control"
+        = f.label :character_rate, class: "form-label"
+        = f.text_field :character_rate, class: "form-control"
       .col.text-center
         = f.submit "確定", class: "btn btn-light"

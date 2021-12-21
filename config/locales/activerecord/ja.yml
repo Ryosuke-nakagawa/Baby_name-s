@@ -3,6 +3,7 @@ ja:
     models:
       user: 'ユーザー'
       group: 'グループ'
+      rate: '評価'
     attributes:
       user:
         sound_rate_setting: '音の響き'
@@ -10,3 +11,6 @@ ja:
         fotune_telling_rate_setting: '姓名判断'
       group:
         last_name: '姓'
+      rate:
+        sound_rate: '音の響き'
+        character_rate: '漢字'
