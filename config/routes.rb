@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :groups, only: [:new, :update] do
-    resources :first_names, only: [:index, :show, :update, :destroy, :edit]
+    resources :first_names, only: [:index, :show, :update, :destroy]
+    resources :rates, only: [:edit]
   end
-  resources :rates, only: [:create, :update]
+  resources :rates, only: [:create, :update, :edit]
   resources :first_names, only: [:new]
   resources :share_target_pickers, only: [:new]
 end

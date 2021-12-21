@@ -4,7 +4,10 @@
     .col.px-5
       h1.display-6.text-center = @first_name.reading
       h1.display-1.text-center = @first_name.name
-      = link_to '評価を変更',edit_group_first_name_path(@group,@first_name),class: "btn btn-light btn-lg float-end"
+      - if @rate.nil?
+        = link_to '評価をする',new_rate_path,class: "btn btn-light btn-lg float-end"
+      - else
+        = link_to '評価を変更',edit_rate_path(@rate),class: "btn btn-light btn-lg float-end"
       = link_to group_first_names_path(@group),class: "float-start"
         i.fas.fa-angle-left.back-button
   .row.py-5

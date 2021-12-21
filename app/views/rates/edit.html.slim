@@ -1,7 +1,4 @@
-.container
-  編集するよ
-
-.container-fluid
+.container-md
   .col-lg-8.p-5
     = form_with model: @rate, local: true do |f|
       .form-group
@@ -9,6 +6,5 @@
         = f.text_field :sound_rate, class: "form-control-lg"
         = f.label :character_rate, class: "form-label col-sm-2 fs-2"
         = f.text_field :character_rate, class: "form-control-lg"
-        = f.hidden_field :first_name_id, value: @first_name.id
       .col.text-center
         = f.submit "確定", class: "btn btn-light"

@@ -11,6 +11,10 @@ class RatesController < ApplicationController
     redirect_to group_first_name_path(@rate.user.group, @rate.first_name)
   end
 
+  def edit
+    @rate = Rate.find(params[:id])
+  end
+
   private
 
   def rate_params
