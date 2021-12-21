@@ -1,6 +1,6 @@
 .container-md
   .col-lg-8.p-5
-    = form_with model: @rate, local: true do |f|
+    = form_with model: [@first_name,@rate], local: true do |f|
       .form-group
         = f.label :sound_rate, class: "form-label col-sm-2 fs-2"
         = f.text_field :sound_rate, class: "form-control-lg"
