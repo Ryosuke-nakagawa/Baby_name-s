@@ -33,6 +33,7 @@ class FirstNamesController < ApplicationController
   def show
     @first_name = FirstName.find(params[:id])
     @group = Group.find(params[:group_id])
+    @rates = Rate.add_rate_for_group_member(@first_name,@group)
   end
 
   def edit
