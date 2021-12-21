@@ -41,9 +41,7 @@ class Linebot
           when 'name_registration'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
-            binding.pry
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-            binding.pry
             new_first_name.update(fotune_telling_url: fotune_telling.search_url)
             new_first_name.update(fotune_telling_rate: fotune_telling.rate)
             fotune_telling.image_save("public/fotune_telling_images/#{new_first_name.id}.jpg")

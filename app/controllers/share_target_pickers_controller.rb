@@ -1,5 +1,6 @@
 class ShareTargetPickersController < ApplicationController
   before_action :set_share_target_picker_liffid, only: [:new]
+  skip_before_action :login_required, only: [:new, :login]
 
   def new
   end

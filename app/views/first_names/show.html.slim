@@ -1,11 +1,32 @@
-詳細ページです
-.container-fruid
-  = @first_name.reading
-  = @first_name.name
+.container-sm.pt-5
+  .row
+    .col.px-5
+      h1.display-6.text-center = @first_name.reading
+      h1.display-1.text-center = @first_name.name
+      - if @rate.nil?
+        = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-light btn-lg float-end"
+      - else
+        = link_to '評価を変更する',edit_first_name_rate_path(@rate),class: "btn btn-light btn-lg float-end"
+      = link_to group_first_names_path(@group),class: "float-start"
+        i.fas.fa-angle-left.back-button
+  .row.py-5
+    .col.text-center
+      h1. 音の響き
+    .col.text-left
+      span.heart data-rate = sound_average(@rates)
+  .row.py-5
+    .col.text-center
+      h1. 漢字
+    .col.text-left
+      span.heart data-rate = character_average(@rates)
+  .row.py-5
+    .col.text-center
+      h1. 姓名判断
+    .col.text-left
+      span.heart data-rate = @first_name.fotune_telling_rate.to_f
+  .container-fluid
+    img src= "/fotune_telling_images/#{@first_name.fotune_telling_image}"
 
-.container
-  = link_to '名前一覧',group_first_names_path(@group)
-.container
-  = link_to '評価を変更する',"#"
-.container
-  = link_to '削除する※共有しているユーザーのアカウントからも名前が消えます※',group_first_name_path(@group,@first_name),method: :delete
+  .container.text-center.pt-5
+    = link_to '名前を削除する',first_name_path(@first_name),method: :delete,class: "btn btn-light btn-lg"
+    p ※共有しているユーザーのアカウントからも名前が消えます※

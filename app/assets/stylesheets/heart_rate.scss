@@ -1,0 +1,39 @@
+// Place all the styles related to the rates controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.heart{
+    font-family: "Font Awesome 5 Free";
+    font-size: 36px;
+    color: #fcff4f;
+  }
+  .heart:before{
+    font-weight: 900;
+  }
+  .heart:after{
+    font-weight: 400;
+  }
+
+  .heart[data-rate="0.0"]:before{ content: ""; }
+  .heart[data-rate="0.5"]:before{ content: "\f5c0"; }
+  .heart[data-rate="1.0"]:before{ content: "\f005"; }
+  .heart[data-rate="1.5"]:before{ content: "\f005\f5c0"; }
+  .heart[data-rate="2.0"]:before{ content: "\f005\f005"; }
+  .heart[data-rate="2.5"]:before{ content: "\f005\f005\f5c0"; }
+  .heart[data-rate="3.0"]:before{ content: "\f005\f005\f005"; }
+  .heart[data-rate="3.5"]:before{ content: "\f005\f005\f005\f5c0"; }
+  .heart[data-rate="4.0"]:before{ content: "\f005\f005\f005\f005"; }
+  .heart[data-rate="4.5"]:before{ content: "\f005\f005\f005\f005\f5c0"; }
+  .heart[data-rate="5.0"]:before{ content: "\f005\f005\f005\f005\f005"; }
+   
+  .heart[data-rate="0.0"]:after{ content: "\f005\f005\f005\f005\f005"; }
+  .heart[data-rate="0.5"]:after{ content: "\f005\f005\f005\f005"; }
+  .heart[data-rate="1.0"]:after{ content: "\f005\f005\f005\f005"; }
+  .heart[data-rate="1.5"]:after{ content: "\f005\f005\f005"; }
+  .heart[data-rate="2.0"]:after{ content: "\f005\f005\f005"; }
+  .heart[data-rate="2.5"]:after{ content: "\f005\f005"; }
+  .heart[data-rate="3.0"]:after{ content: "\f005\f005"; }
+  .heart[data-rate="3.5"]:after{ content: "\f005"; }
+  .heart[data-rate="4.0"]:after{ content: "\f005"; }
+  .heart[data-rate="4.5"]:after{ content: ""; }
+  .heart[data-rate="5.0"]:after{ content: ""; }

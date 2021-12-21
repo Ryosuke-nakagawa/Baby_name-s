@@ -1,5 +1,6 @@
 class FirstNamesController < ApplicationController
   before_action :set_first_names_liffid, only: [:new]
+  skip_before_action :login_required, only: [:new, :login]
 
   require 'net/http'
   require 'uri'
@@ -20,8 +21,7 @@ class FirstNamesController < ApplicationController
   end
 
   def index
-    @user = User.find(session[:user_id])
-    @first_names = @user.group.first_names
+    @first_names = current_user.group.first_names
   end
 
   def destroy
@@ -32,6 +32,8 @@ class FirstNamesController < ApplicationController
 
   def show
     @first_name = FirstName.find(params[:id])
-    @group = Group.find(params[:group_id])
+    @group = Group.find(@first_name.group_id)
+    @rate = Rate.find_by(user: current_user, first_name: @first_name)
+    @rates = Rate.add_rate_for_group_member(@first_name,@group)
   end
 end
