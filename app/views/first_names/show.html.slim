@@ -13,17 +13,17 @@
     .col.text-center
       h1. 音の響き
     .col.text-left
-      span.heart data-rate = sound_average(@rates)
+      span.star-show data-rate = sound_average(@rates)
   .row.py-5
     .col.text-center
       h1. 漢字
     .col.text-left
-      span.heart data-rate = character_average(@rates)
+      span.star-show data-rate = character_average(@rates)
   .row.py-5
     .col.text-center
       h1. 姓名判断
     .col.text-left
-      span.heart data-rate = @first_name.fotune_telling_rate.to_f
+      span.star-show data-rate = @first_name.fotune_telling_rate.to_f
   .container-fluid
     img src= "/fotune_telling_images/#{@first_name.fotune_telling_image}"
 
