@@ -34,6 +34,6 @@ class FirstNamesController < ApplicationController
     @first_name = FirstName.find(params[:id])
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
-    @rates = Rate.add_rate_for_group_member(@first_name,@group)
+    @rates = Rate.ratings_within_group(@first_name,@group)
   end
 end

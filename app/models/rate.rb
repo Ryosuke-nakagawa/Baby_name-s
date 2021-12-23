@@ -2,7 +2,7 @@ class Rate < ApplicationRecord
   belongs_to :user
   belongs_to :first_name
 
-  def self.add_rate_for_group_member(first_name,group)
+  def self.ratings_within_group(first_name,group)
     member = group.users
     rates = []
 

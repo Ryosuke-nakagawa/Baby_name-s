@@ -1,7 +1,17 @@
-インデックスなう
-
-- @first_names.each do |first_name|
-  .container
-    = first_name.reading
-  .container
-    = link_to first_name.name,first_name_path(first_name)
+.container-sm
+  .row.pt-5.under-line
+    h3.col-3.index-item 名前
+    h3.col.index-item 音の響き
+    h3.col.index-item 漢字
+    h3.col.index-item 姓名判断
+    button.col.sort-button ▼ ソート
+  - @first_names.each do |first_name|
+    .row.text-center.pt-3
+      h3.col-3 = first_name.reading
+    .row.text-center.under-line-dot
+      h1.col-3 = first_name.name
+      span.star-index.col.text-center data-rate = sound_average(Rate.ratings_within_group(first_name,first_name.group))
+      span.star-index.col.text-center data-rate = character_average(Rate.ratings_within_group(first_name,first_name.group))
+      span.star-index.col.text-center data-rate = first_name.fotune_telling_rate.to_f
+      .col = link_to first_name_path(first_name)
+        i.fas.fa-edit
