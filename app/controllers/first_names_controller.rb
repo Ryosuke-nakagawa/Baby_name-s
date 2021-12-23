@@ -21,7 +21,7 @@ class FirstNamesController < ApplicationController
   end
 
   def index
-    @first_names = current_user.group.first_names
+    @first_names = FirstName.order_by_rate(current_user.group.first_names,current_user.group.users)
   end
 
   def destroy
