@@ -1,8 +1,8 @@
 class FirstName < ApplicationRecord
   belongs_to :group
-  has_one :User
+  has_many :rates
 
-  def self.order_by_rate(first_names,group_users)
+  def self.sort_by_overall_rating(first_names,group_users)
     score = {}
 
     first_names.each do |first_name|

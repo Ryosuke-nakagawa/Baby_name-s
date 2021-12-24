@@ -4,7 +4,12 @@
     h3.col.index-item 音の響き
     h3.col.index-item 漢字
     h3.col.index-item 姓名判断
-    button.col.sort-button ▼ ソート
+    select.col.sort-button id="sort_js"
+      option.selected ソート
+      option value=group_first_names_path(@group) 総評価順(デフォルト)
+      option value=group_first_names_path(@group,sort: 'sound') 音の響き
+      option value=group_first_names_path(@group,sort: 'character') 漢字
+      option value=group_first_names_path(@group,sort: 'fotune_telling') 姓名判断
   - @first_names.each do |first_name|
     .row.text-center.pt-3
       h3.col-3 = first_name.reading
@@ -15,3 +20,5 @@
       span.star-index.col.text-center data-rate = first_name.fotune_telling_rate.to_f
       .col = link_to first_name_path(first_name)
         i.fas.fa-edit
+
+= javascript_pack_tag 'first_names/sort'
