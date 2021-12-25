@@ -5,11 +5,15 @@
     h3.col.index-item 漢字
     h3.col.index-item 姓名判断
     select.col.sort-button id="sort_js"
-      option.selected ソート
-      option value=group_first_names_path(@group) 総評価順(デフォルト)
-      option value=group_first_names_path(@group,sort: 'sound') 音の響き
-      option value=group_first_names_path(@group,sort: 'character') 漢字
-      option value=group_first_names_path(@group,sort: 'fotune_telling') 姓名判断
+      option.selected = @sort
+      - if @sort != "総評価"
+        option value=group_first_names_path(@group) 総評価
+      - if @sort != "音の響き"
+        option value=group_first_names_path(@group,sort: 'sound') 音の響き
+      - if @sort != "漢字"
+        option value=group_first_names_path(@group,sort: 'character') 漢字
+      - if @sort != "姓名判断"
+        option value=group_first_names_path(@group,sort: 'fotune_telling') 姓名判断
   - @first_names.each do |first_name|
     .row.text-center.pt-3
       h3.col-3 = first_name.reading
