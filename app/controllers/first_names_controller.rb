@@ -21,7 +21,26 @@ class FirstNamesController < ApplicationController
   end
 
   def index
-    @first_names = FirstName.order_by_rate(current_user.group.first_names,current_user.group.users)
+    @group = Group.find(params[:group_id])
+
+    case params[:sort]
+    when 'sound'
+      @first_names = []
+      result = FirstName.order_by_sound(@group.id)
+      result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
+      @sort = "音の響き"
+    when 'character'
+      @first_names = []
+      result = FirstName.order_by_character(@group.id)
+      result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
+      @sort = "漢字"
+    when 'fotune_telling'
+      @first_names = FirstName.order_by_fotune_telling(@group.id)
+      @sort = "姓名判断"
+    else
+      @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
+      @sort = "総評価"
+    end
   end
 
   def destroy

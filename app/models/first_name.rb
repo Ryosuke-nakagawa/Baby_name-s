@@ -1,8 +1,12 @@
 class FirstName < ApplicationRecord
   belongs_to :group
-  has_one :User
+  has_many :rates
 
-  def self.order_by_rate(first_names,group_users)
+  scope :order_by_sound, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_sound_rate DESC').average("rates.sound_rate") }
+  scope :order_by_character, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_character_rate DESC').average("rates.character_rate") }
+  scope :order_by_fotune_telling, ->(group_id) { where(group_id: group_id).order(fotune_telling_rate: :DESC) }
+
+  def self.sort_by_overall_rating(first_names,group_users)
     score = {}
 
     first_names.each do |first_name|
