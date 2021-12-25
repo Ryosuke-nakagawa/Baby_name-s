@@ -26,16 +26,16 @@ class FirstNamesController < ApplicationController
     case params[:sort]
     when 'sound'
       @first_names = []
-      result = FirstName.where(group_id: @group.id).joins(:rates).group(:id).order('average_rates_sound_rate DESC').average("rates.sound_rate")
+      result = FirstName.order_by_sound(@group.id)
       result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
       @sort = "音の響き"
     when 'character'
       @first_names = []
-      result = FirstName.where(group_id: @group.id).joins(:rates).group(:id).order('average_rates_character_rate DESC').average("rates.character_rate")
+      result = FirstName.order_by_character(@group.id)
       result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
       @sort = "漢字"
     when 'fotune_telling'
-      @first_names = FirstName.where(group_id: @group.id).order(fotune_telling_rate: :DESC)
+      @first_names = FirstName.order_by_fotune_telling(@group.id)
       @sort = "姓名判断"
     else
       @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
