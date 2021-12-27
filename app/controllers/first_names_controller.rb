@@ -40,6 +40,7 @@ class FirstNamesController < ApplicationController
     else
       @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
       @sort = "総評価"
+      binding.pry
     end
   end
 

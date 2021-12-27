@@ -35,7 +35,12 @@ class Linebot
               client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
               @user.name_registration!
             else
-              @message.how_to_use
+              search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
+              if search_name.nil?
+                @message.how_to_use
+              else
+                @message.fotune_telling(search_name)
+              end
               client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
             end
           when 'name_registration'

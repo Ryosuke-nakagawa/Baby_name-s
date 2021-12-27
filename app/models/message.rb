@@ -135,8 +135,26 @@ class Message
   def registration_is_complete
     @object = {
       type: 'text',
-      text: "名前の登録が完了しました！"
+      text: "名前の登録が完了しました!"
       }
   end
-                      
+
+  def fotune_telling(first_name)
+    @object = {
+      "type": "image",
+      "originalContentUrl": "https://enamae.net/result/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg",
+      "previewImageUrl": "https://enamae.net/result/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg"
+      }
+#    {
+#      "type": "image",
+#      "url": "https://6cfe-2001-f77-9e0-800-b199-4775-42fa-f688.ngrok.io/public/fotune_telling_images/#{first_name.fotune_telling_image}",
+#      "size": "full",
+#      "aspectRatio": "10:9",
+#      "action": {
+#        "type": "uri",
+#        "label": "良い名前ネット",
+#        "uri": first_name.fotune_telling_url
+#      }
+#    }
+  end
 end
