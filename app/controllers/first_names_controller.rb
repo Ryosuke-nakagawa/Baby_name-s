@@ -40,7 +40,6 @@ class FirstNamesController < ApplicationController
     else
       @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
       @sort = "総評価"
-      binding.pry
     end
   end
 
@@ -52,6 +51,20 @@ class FirstNamesController < ApplicationController
 
   def show
     @first_name = FirstName.find(params[:id])
+
+    # S3用メソッド
+    s3 = Aws::S3::Resource.new(
+      region: ENV["AWS_REGION"], # 1. 利用しているリージョン
+      credentials: Aws::Credentials.new(
+        ENV["AWS_ACCESS_KEY_ID"], # 2. プログラムからアクセスできるユーザのアクセスキー
+        ENV["AWS_SECRET_ACCESS_KEY"] # 3. プログラムからアクセスできるユーザのシークレットキー
+      )
+    )
+    signer = Aws::S3::Presigner.new(client: s3.client)
+    @fotune_telling_image_url = signer.presigned_url(:get_object,
+        bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+    # ここまで
+
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = Rate.ratings_within_group(@first_name,@group)
