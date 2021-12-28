@@ -47,11 +47,11 @@ class Linebot
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-            new_first_name.update(fotune_telling_url: fotune_telling.search_url)
-            new_first_name.update(fotune_telling_rate: fotune_telling.rate)
-            fotune_telling.image_save("public/fotune_telling_images/#{new_first_name.id}.jpg")
-            new_first_name.update(fotune_telling_image: "#{new_first_name.id}.jpg")
-
+            
+            image_name = "img_#{Random.uuid}.jpg"
+            fotune_telling.image_save(image_name)
+            
+            new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading              
             client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
             @user.reading_registration!
