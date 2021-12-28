@@ -49,7 +49,7 @@ class Linebot
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
             
             image_name = "img_#{Random.uuid}.jpg"
-            fotune_telling.image_save(image_name)
+            fotune_telling.save_image_to_s3(image_name)
             
             new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading              

@@ -52,18 +52,9 @@ class FirstNamesController < ApplicationController
   def show
     @first_name = FirstName.find(params[:id])
 
-    # S3用メソッド
-    s3 = Aws::S3::Resource.new(
-      region: ENV["AWS_REGION"], # 1. 利用しているリージョン
-      credentials: Aws::Credentials.new(
-        ENV["AWS_ACCESS_KEY_ID"], # 2. プログラムからアクセスできるユーザのアクセスキー
-        ENV["AWS_SECRET_ACCESS_KEY"] # 3. プログラムからアクセスできるユーザのシークレットキー
-      )
-    )
+    s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
-    @fotune_telling_image_url = signer.presigned_url(:get_object,
-        bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
-    # ここまで
+    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
