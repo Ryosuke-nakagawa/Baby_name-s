@@ -35,18 +35,23 @@ class Linebot
               client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
               @user.name_registration!
             else
-              @message.how_to_use
+              search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
+              if search_name.nil?
+                @message.how_to_use
+              else
+                @message.fotune_telling(search_name)
+              end
               client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
             end
           when 'name_registration'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-            new_first_name.update(fotune_telling_url: fotune_telling.search_url)
-            new_first_name.update(fotune_telling_rate: fotune_telling.rate)
-            fotune_telling.image_save("public/fotune_telling_images/#{new_first_name.id}.jpg")
-            new_first_name.update(fotune_telling_image: "#{new_first_name.id}.jpg")
-
+            
+            image_name = "img_#{Random.uuid}.jpg"
+            fotune_telling.save_image_to_s3(image_name)
+            
+            new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading              
             client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
             @user.reading_registration!

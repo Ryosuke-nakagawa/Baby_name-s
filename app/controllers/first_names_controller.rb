@@ -51,6 +51,11 @@ class FirstNamesController < ApplicationController
 
   def show
     @first_name = FirstName.find(params[:id])
+
+    s3 = Aws::S3::Resource.new
+    signer = Aws::S3::Presigner.new(client: s3.client)
+    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = Rate.ratings_within_group(@first_name,@group)

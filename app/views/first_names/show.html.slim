@@ -25,7 +25,7 @@
     .col.text-left
       span.star-show data-rate = @first_name.fotune_telling_rate.to_f
   .container-fluid
-    img src= "/fotune_telling_images/#{@first_name.fotune_telling_image}"
+    img src = @fotune_telling_image_url
 
   .container.text-center.pt-5
     = link_to '名前を削除する',first_name_path(@first_name),method: :delete,class: "btn btn-light btn-lg"

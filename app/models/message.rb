@@ -33,7 +33,7 @@ class Message
   def send_rate_for_sound
     @object = {
       type: 'text',
-      text: "名前が登録されました！この名前の「音の響き」に評価をつけるなら5段階でどれですか?",
+      text: "名前が登録されました!この名前の「音の響き」に評価をつけるなら5段階でどれですか?",
       quickReply: {
         items: [
           {
@@ -135,8 +135,51 @@ class Message
   def registration_is_complete
     @object = {
       type: 'text',
-      text: "名前の登録が完了しました！"
+      text: "名前の登録が完了しました!"
       }
   end
-                      
+
+  def fotune_telling(first_name)
+
+    s3 = Aws::S3::Resource.new
+    signer = Aws::S3::Presigner.new(client: s3.client)
+    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+
+    @object = {
+      "type": "flex",
+      "altText": "姓名判断の結果です。",
+      "contents": {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "url": fotune_telling_image_url,
+          "size": "full",
+          "aspectRatio": "10:9",
+          "aspectMode": "cover"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "uri",
+                "label": "詳しく見る",
+                "uri": first_name.fotune_telling_url
+              }
+            },
+            {
+              "type": "spacer",
+              "size": "sm"
+            }
+          ],
+          "flex": 0
+        }
+      }
+    }
+  end
 end
