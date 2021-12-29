@@ -33,7 +33,7 @@ class Message
   def send_rate_for_sound
     @object = {
       type: 'text',
-      text: "名前が登録されました！この名前の「音の響き」に評価をつけるなら5段階でどれですか?",
+      text: "名前が登録されました!この名前の「音の響き」に評価をつけるなら5段階でどれですか?",
       quickReply: {
         items: [
           {
@@ -140,21 +140,46 @@ class Message
   end
 
   def fotune_telling(first_name)
+
+    s3 = Aws::S3::Resource.new
+    signer = Aws::S3::Presigner.new(client: s3.client)
+    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+
     @object = {
-      "type": "image",
-      "originalContentUrl": "https://enamae.net/result/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg",
-      "previewImageUrl": "https://enamae.net/result/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg"
+      "type": "flex",
+      "altText": "姓名判断の結果です。",
+      "contents": {
+        "type": "bubble",
+        "hero": {
+          "type": "image",
+          "url": fotune_telling_image_url,
+          "size": "full",
+          "aspectRatio": "10:9",
+          "aspectMode": "cover"
+        },
+        "footer": {
+          "type": "box",
+          "layout": "vertical",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "uri",
+                "label": "詳しく見る",
+                "uri": first_name.fotune_telling_url
+              }
+            },
+            {
+              "type": "spacer",
+              "size": "sm"
+            }
+          ],
+          "flex": 0
+        }
       }
-#    {
-#      "type": "image",
-#      "url": "https://6cfe-2001-f77-9e0-800-b199-4775-42fa-f688.ngrok.io/public/fotune_telling_images/#{first_name.fotune_telling_image}",
-#      "size": "full",
-#      "aspectRatio": "10:9",
-#      "action": {
-#        "type": "uri",
-#        "label": "良い名前ネット",
-#        "uri": first_name.fotune_telling_url
-#      }
-#    }
+    }
   end
 end
