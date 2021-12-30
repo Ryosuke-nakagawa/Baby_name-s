@@ -15,7 +15,7 @@
  @import"star_rate";
 
  body {
-    padding: 70px 0;
+    padding: 140px 0;
     background-color: rgba(201, 185, 147, 0.4);
     font-family: sans-serif;
     color: #4f342c
@@ -140,3 +140,8 @@
  .navbar-toggler-icon{
   font-size: 36px;
  }
+
+ .header-image {
+  height: auto;
+  width: auto;
+}

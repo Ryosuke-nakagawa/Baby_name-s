@@ -1,5 +1,7 @@
 nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
-  h1.navbar-brand.ps-3.header-title BabyNames
+  .navbar-brand.row
+    = image_tag 'baby_img_face.png', size: '70x70', class: 'col p-1 header-image'
+    .header-title.col.d-flex.align-items-center BabyNames
   button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
     span.navbar-toggler-icon
   .collapse.navbar-collapse id='navbarSupportedContent'
@@ -10,14 +12,15 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
             icon.fas.fa-question.drop-down-icon
           .drop-down-text
             | 使い方
+      - if params[:user_id]
+        li.nav-item
+          = link_to group_first_names_path(current_user.group), class: 'nav-link p-5 d-flex justify-content-end' do
+            .p-2
+              icon.fas.fa-clipboard-list.drop-down-icon
+            .drop-down-text
+              | 名前一覧
       li.nav-item
-        = link_to root_path, class: 'nav-link p-5 d-flex justify-content-end' do
-          .p-2
-            icon.fas.fa-clipboard-list.drop-down-icon
-          .drop-down-text
-            | 名前一覧
-      li.nav-item
-        = link_to root_path, class: 'nav-link p-5 d-flex justify-content-end' do
+        = link_to new_group_path, class: 'nav-link p-5 d-flex justify-content-end' do
           .p-2
             icon.fas.fa-user-cog.drop-down-icon
           .drop-down-text
@@ -28,5 +31,3 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
             icon.far.fa-comment.drop-down-icon
           .drop-down-text
             | フィードバック
-Terms
-Privacy
