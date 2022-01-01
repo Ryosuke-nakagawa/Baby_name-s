@@ -19,8 +19,9 @@ class GroupsController < ApplicationController
       req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
       res = http.request(req)
 
-      redirect_to group_first_names_path(@group)
+      redirect_to group_first_names_path(@group), success: 'ユーザー登録が完了しました!'
     else
+      flash.now[:danger]= '入力に誤りがあります'
       render :new
     end
   end
