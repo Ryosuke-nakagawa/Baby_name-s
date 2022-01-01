@@ -12,7 +12,7 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
             icon.fas.fa-question.drop-down-icon
           .drop-down-text
             | 使い方
-      - if params[:user_id]
+      - if session[:user_id]
         li.nav-item
           = link_to group_first_names_path(current_user.group), class: 'nav-link p-5 d-flex justify-content-end' do
             .p-2
