@@ -8,13 +8,38 @@
       h1.pt-5 = t '.for_usersetting_title'
       = f.fields_for @user do |u|
         .form-group.mt-5
-          = u.label :sound_rate_setting, User.human_attribute_name(:sound_rate_setting), class: "form-label fs-2"
-          = u.range_field :sound_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
+          .form-group.row
+            .col-sm-2
+              = u.label :sound_rate_setting, '音の響き', class: 'form-label'
+            .btn-group aria-label=("Basic radio toggle button group") role="group"
+              = u.radio_button :sound_rate_setting, 1, class: "btn-check", autocomplete: "off"
+              = u.label :sound_rate_setting_1, "低い", class: "btn outline btn-dark"
+              = u.radio_button :sound_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
+              = u.label :sound_rate_setting_2, "普通", class: "btn outline btn-dark"
+              = u.radio_button :sound_rate_setting, 3, class: "btn-check", autocomplete: "off"
+              = u.label :sound_rate_setting_3, "高い", class: "btn outline btn-dark"
         .form-group.mt-5
-          = u.label :character_rate_setting, User.human_attribute_name(:character_rate_setting), class: "form-label fs-2"
-          = u.range_field :character_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
-        .form-group.mt-5.mb-5
-          = u.label :fotune_telling_rate_setting, User.human_attribute_name(:fotune_telling_rate_setting), class:"form-label fs-2"
-          = u.range_field :fotune_telling_rate_setting, class: "form-range",min: "1",max: "5",step: "1"
+          .form-group.row
+            .col-sm-2
+              = u.label :character_rate_setting, '漢字', class: 'form-label'
+            .btn-group aria-label=("Basic radio toggle button group") role="group"
+              = u.radio_button :character_rate_setting, 1, class: "btn-check", autocomplete: "off"
+              = u.label :character_rate_setting_1, "低い", class: "btn outline btn-dark"
+              = u.radio_button :character_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
+              = u.label :character_rate_setting_2, "普通", class: "btn outline btn-dark"
+              = u.radio_button :character_rate_setting, 3, class: "btn-check", autocomplete: "off"
+              = u.label :character_rate_setting_3, "高い", class: "btn outline btn-dark"
+        .form-group.mt-5
+          .form-group.row
+            .col-sm-2
+              = u.label :fotune_telling_rate_setting, '姓名判断', class: 'form-label'
+            .btn-group aria-label=("Basic radio toggle button group") role="group"
+              = u.radio_button :fotune_telling_rate_setting, 1, class: "btn-check", autocomplete: "off"
+              = u.label :fotune_telling_rate_setting_1, "低い", class: "btn outline btn-dark"
+              = u.radio_button :fotune_telling_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
+              = u.label :fotune_telling_rate_setting_2, "普通", class: "btn outline btn-dark"
+              = u.radio_button :fotune_telling_rate_setting, 3, class: "btn-check", autocomplete: "off"
+              = u.label :fotune_telling_rate_setting_3, "高い", class: "btn outline btn-dark"
+
       .col.text-center
         = f.submit (t 'defaults.register'), class: "btn btn-light"

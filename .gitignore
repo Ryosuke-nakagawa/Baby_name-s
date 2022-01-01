@@ -36,3 +36,4 @@ yarn-debug.log*
 .yarn-integrity
 /.env
 /public/fotune_telling_images
+/app/assets/images
