@@ -19,8 +19,9 @@ class GroupsController < ApplicationController
       req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
       res = http.request(req)
 
-      redirect_to group_first_names_path(@group)
+      redirect_to group_first_names_path(@group), success: t('defaults.message.updated', item: User.model_name.human)
     else
+      flash.now[:danger]= t('defaults.message.not_updated', item: User.model_name.human)
       render :new
     end
   end

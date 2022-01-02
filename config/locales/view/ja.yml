@@ -1,6 +1,13 @@
 ja:
   defaults:
     register: '決定'
+    message:
+      registered: '%{item}を登録しました' 
+      not_registered: '%{item}を登録できませんでした'
+      updated: '%{item}を更新しました'
+      not_updated: '%{item}を更新できませんでした'
+      deleted: '%{item}を削除しました'
+      delete_confirm: '削除しますか?'
   groups:
     new:
       for_usersetting_title: '名前を決める上での優先順位'
