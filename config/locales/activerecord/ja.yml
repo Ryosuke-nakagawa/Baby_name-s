@@ -4,6 +4,7 @@ ja:
       user: 'ユーザー'
       group: 'グループ'
       rate: '評価'
+      first_name: 'お名前'
     attributes:
       user:
         sound_rate_setting: '音の響き'

@@ -7,13 +7,13 @@ class RatesController < ApplicationController
 
   def create
     @rate = Rate.create(rate_params)
-    redirect_to first_name_path(@rate.first_name), success: "評価を登録しました"
+    redirect_to first_name_path(@rate.first_name), success: t('defaults.message.registered',item: Rate.model_name.human) 
   end
 
   def update
     @rate = Rate.find(params[:id])
     @rate.update(update_rate_params)
-    redirect_to first_name_path(@rate.first_name), success: '評価を変更しました'
+    redirect_to first_name_path(@rate.first_name),  success: t('defaults.message.updated',item: Rate.model_name.human)
   end
 
   def edit

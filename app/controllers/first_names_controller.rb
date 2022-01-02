@@ -46,7 +46,7 @@ class FirstNamesController < ApplicationController
   def destroy
     @first_name = FirstName.find(params[:id])
     @first_name.destroy
-    redirect_to  group_first_names_path(@first_name.group), success: '名前を削除しました'
+    redirect_to  group_first_names_path(@first_name.group), success: t('defaults.message.deleted',item: FirstName.model_name.human)
   end
 
   def show
