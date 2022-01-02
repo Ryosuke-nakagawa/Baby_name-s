@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   root 'static_pages#top'
+  get 'terms', to: 'static_pages#terms'
+  get 'contact', to: 'static_pages#contact'
+  get 'privacy_policy', to: 'static_pages#privacy_policy'
+  get 'infomation', to: 'static_pages#infomation'
   post 'first_names/login', to: 'first_names#login'
   post 'share_target_pickers/login', to: 'share_target_pickers#login'
   post 'callback', to: 'line_bot#callback'
