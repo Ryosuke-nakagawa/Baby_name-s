@@ -15,7 +15,7 @@ html
   body
     = render 'shared/flash_message'
     - if params[:user_id]
-      = render 'shared/before_login_header'
-    - else
       = render 'shared/header'
+    - else
+      = render 'shared/before_login_header'
     = yield
