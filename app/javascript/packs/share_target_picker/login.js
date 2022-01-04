@@ -5,12 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     liffId: gon.liff_id
   })
   .then(() => {
-    if (!liff.isLoggedIn()) {
-      // 開発時、外部ブラウザからアクセスために利用
-      liff.login();
-    }
-  })
-  .then(() => {
     const idToken = liff.getIDToken();
     const body = `idToken=${idToken}`
     const request = new Request('/share_target_pickers/login', {
