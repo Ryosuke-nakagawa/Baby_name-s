@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
     liffId: gon.liff_id
   })
   .then(() => {
+    if (!liff.isLoggedIn()) {
+      // 開発時、外部ブラウザからアクセスために利用
+      liff.login();
+    }
+  })
+  .then(() => {
     var param = getParam('q')
     const idToken = liff.getIDToken();
     if(!param){
