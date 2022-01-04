@@ -28,7 +28,9 @@ document.addEventListener('DOMContentLoaded', () => {
         body: body
         });
     fetch(request)
-    
+    .then(() => {
+      window.location = '/groups/new'
+    })
   })
 })
 
