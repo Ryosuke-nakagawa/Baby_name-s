@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }else{
       var body = `idToken=${idToken}&uuid=${param}`
     }
-    const request = new Request('/users', {
+    const request = new Request('https://baby-name-s.herokuapp.com/users', {
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
         'X-CSRF-Token': token
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     fetch(request)
     .then(() => {
-      window.location = '/groups/new'
+      window.location = 'https://baby-name-s.herokuapp.com/groups/new'
     })
   })
 })
