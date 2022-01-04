@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+  debugger;
   liff.init({
     liffId: gon.liff_id
   })
