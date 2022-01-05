@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
   .then(() => {
     var param = getParam('q')
     const idToken = liff.getIDToken();
-    debugger;
     if(!param){
       var body = `idToken=${idToken}`
     }else{
