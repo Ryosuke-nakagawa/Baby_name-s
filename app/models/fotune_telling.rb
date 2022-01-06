@@ -23,7 +23,7 @@ class FotuneTelling
 
   def save_image_to_s3(image_name)
 
-    file = Rails.root.join('public', 'fotune_telling_images', image_name)
+    file = "public/fotune_telling_images/#{image_name}"
     image_url = "https://enamae.net/result2/#{search_param}.jpg"
 
     #画像URLにアクセスし、画像ファイルをrailsアプリに保存
