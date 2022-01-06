@@ -13,20 +13,20 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
           .drop-down-text
             | 使い方
       li.nav-item
-        = link_to group_first_names_path(current_user.group), class: 'nav-link p-5 d-flex justify-content-end' do
+        = link_to contact_path, class: 'nav-link p-5 d-flex justify-content-end' do
           .p-2
-            icon.fas.fa-clipboard-list.drop-down-icon
+            icon.fas.fa-comment.drop-down-icon
           .drop-down-text
-            | 名前一覧
+            | お問い合わせ
       li.nav-item
-        = link_to new_group_path, class: 'nav-link p-5 d-flex justify-content-end' do
+        = link_to terms_path, class: 'nav-link p-5 d-flex justify-content-end' do
           .p-2
-            icon.fas.fa-user-cog.drop-down-icon
+            icon.fas.fa-book-open.drop-down-icon
           .drop-down-text
-            | ユーザー設定
+            | 利用規約
       li.nav-item
-        = link_to infomation_path, class: 'nav-link p-5 d-flex justify-content-end' do
+        = link_to privacy_policy_path, class: 'nav-link p-5 d-flex justify-content-end' do
           .p-2
-            icon.far.fa-comment.drop-down-icon
+            icon.far.fa-user-shield.drop-down-icon
           .drop-down-text
-            | サイトについて
+            | プライバシーポリシー
