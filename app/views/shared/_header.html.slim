@@ -1,7 +1,7 @@
 nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
   .navbar-brand.row
     = image_tag 'baby_img_face.png', size: '70x70', class: 'col p-1 header-image'
-    .header-title.col.d-flex.align-items-center BabyNames
+    = link_to "BabyNames", root_path, class: 'header-title col d-flex align-items-center'
   button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
     span.navbar-toggler-icon
   .collapse.navbar-collapse id='navbarSupportedContent'
