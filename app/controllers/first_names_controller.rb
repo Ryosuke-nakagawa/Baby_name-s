@@ -1,6 +1,7 @@
 class FirstNamesController < ApplicationController
-  before_action :set_first_names_liffid, only: [:new]
-  skip_before_action :login_required, only: [:new, :login]
+  before_action :set_first_names_liffid, only: %i[new]
+  skip_before_action :login_required, only: %i[new login]
+  before_action :first_name_set, only: %i[show destroy]
 
   require 'net/http'
   require 'uri'
@@ -49,14 +50,11 @@ class FirstNamesController < ApplicationController
   end
 
   def destroy
-    @first_name = current_user.group.first_names.find(params[:id])
-    @first_name.destroy
+    @first_name.destroy!
     redirect_to  group_first_names_path(@first_name.group), success: t('defaults.message.deleted',item: FirstName.model_name.human)
   end
 
   def show
-    @first_name = current_user.group.first_names.find(params[:id])
-
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
     @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
@@ -64,5 +62,11 @@ class FirstNamesController < ApplicationController
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = Rate.ratings_within_group(@first_name,@group)
+  end
+
+  private
+
+  def first_name_set
+    @first_name = current_user.group.first_names.find(params[:id])
   end
 end
