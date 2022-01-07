@@ -24,7 +24,7 @@ class FirstNamesController < ApplicationController
     if current_user.group.id == params[:group_id].to_i
       @group = current_user.group
     else
-      redirect_to group_first_names_path(current_user.group)
+      redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
       return
     end
   

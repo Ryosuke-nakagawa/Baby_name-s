@@ -12,7 +12,7 @@ class RatesController < ApplicationController
 
   def update
     @rate = current_user.rates.find(params[:id])
-    @rate.update(update_rate_params)
+    @rate.update!(update_rate_params)
     redirect_to first_name_path(@rate.first_name),  success: t('defaults.message.updated',item: Rate.model_name.human)
   end
 
