@@ -6,7 +6,7 @@
       - if @rate.nil?
         = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-dark btn-lg float-end"
       - else
-        = link_to '評価を変更する',edit_first_name_rate_path(@rate),class: "btn btn-dark btn-lg float-end"
+        = link_to '評価を変更する',edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg float-end"
       = link_to group_first_names_path(@group),class: "float-start"
         i.fas.fa-angle-left.back-button
   .row.py-5
