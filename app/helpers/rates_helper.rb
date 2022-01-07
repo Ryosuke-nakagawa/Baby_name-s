@@ -3,7 +3,7 @@ module RatesHelper
     return if rates.blank?
     sum = 0
     rates.each do |rate|
-      sum += rate.sound_rate
+      sum += rate.sound_rate.to_i
     end
     average = sum / rates.length
     # 0.5刻みに評価の数値を丸める
@@ -17,7 +17,7 @@ module RatesHelper
     return if rates.blank?
     sum = 0
     rates.each do |rate|
-      sum = rate.character_rate
+      sum += rate.character_rate.to_i
     end
     average = sum / rates.length.to_f
     # 0.5刻みに評価の数値を丸める
