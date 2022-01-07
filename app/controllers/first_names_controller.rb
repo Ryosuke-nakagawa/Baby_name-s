@@ -21,8 +21,13 @@ class FirstNamesController < ApplicationController
   end
 
   def index
-    @group = Group.find(params[:group_id])
-
+    if current_user.group.id == params[:group_id].to_i
+      @group = current_user.group
+    else
+      redirect_to group_first_names_path(current_user.group)
+      return
+    end
+  
     case params[:sort]
     when 'sound'
       @first_names = []
@@ -44,13 +49,13 @@ class FirstNamesController < ApplicationController
   end
 
   def destroy
-    @first_name = FirstName.find(params[:id])
+    @first_name = current_user.group.first_names.find(params[:id])
     @first_name.destroy
     redirect_to  group_first_names_path(@first_name.group), success: t('defaults.message.deleted',item: FirstName.model_name.human)
   end
 
   def show
-    @first_name = FirstName.find(params[:id])
+    @first_name = current_user.group.first_names.find(params[:id])
 
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
