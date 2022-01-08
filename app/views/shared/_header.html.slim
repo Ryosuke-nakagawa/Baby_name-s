@@ -5,28 +5,28 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top
       | BabyNames
     button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
       span.navbar-toggler-icon
-    .collapse.navbar-collapse id='navbarSupportedContent'
-      ul.navbar-nav
+    .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
+      ul.navbar-nav.me-2
         li.nav-item
-          = link_to root_path, class: 'nav-link p-3 d-flex justify-content-end' do
+          = link_to root_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-question.drop-down-icon
             .drop-down-text
               | 使い方
         li.nav-item
-          = link_to group_first_names_path(current_user.group), class: 'nav-link p-3 d-flex justify-content-end' do
+          = link_to group_first_names_path(current_user.group), class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-clipboard-list.drop-down-icon
             .drop-down-text
               | 名前一覧
         li.nav-item
-          = link_to new_group_path, class: 'nav-link p-3 d-flex justify-content-end' do
+          = link_to new_group_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-user-cog.drop-down-icon
             .drop-down-text
               | ユーザー設定
         li.nav-item
-          = link_to infomation_path, class: 'nav-link p-3 d-flex justify-content-end' do
+          = link_to infomation_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.far.fa-comment.drop-down-icon
             .drop-down-text
