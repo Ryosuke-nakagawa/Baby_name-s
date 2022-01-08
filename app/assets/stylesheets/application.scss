@@ -15,7 +15,7 @@
  @import"star_rate";
 
  body {
-    padding: 140px 0;
+    padding: 62px 0;
     background-color: rgba(201, 185, 147, 0.4);
     font-family: sans-serif;
     color: #4f342c
@@ -79,37 +79,33 @@
   font-size: 36px;
  }
 
- .header{
-  padding: 40px;
+ .navbar-dark{
   background-color: #4f342c;
   opacity: 0.75;
  }
 
  .drop-down-text{
-  font-size: 50px;
+  font-size: 1.5rem;
  }
 
  .drop-down-icon{
-  font-size: 50px;
+  font-size: 1.5rem;
   vertical-align: center;
  }
 
  .header-title{
-  font-size: 50px;
   color: rgb(241, 224, 212);
-  text-decoration: none;
+  font-size: 1.5rem;
+ }
+
+ .header-icon{
+  width: 2rem;
+  height: 2rem;
  }
 
  .navbar-toggler-icon{
-  font-size: 36px;
+  font-size: 1.5rem;
  }
-
- .header-image {
-  height: auto;
-  width: auto;
-}
-
-
 
 .btn-dark {
   background: whitesmoke; //ボタンの背景色
