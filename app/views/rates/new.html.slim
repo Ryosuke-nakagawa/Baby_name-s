@@ -1,5 +1,5 @@
-.container-md
-  h1.title.text-center.fw-bold.p-5.mt-5 名前の評価
+.container
+  h1.title.text-center.fw-bold.mt-5 名前の評価
   .col-lg-8
     = form_with model: [@first_name,@rate], local: true do |f|
       .form-group.row
@@ -31,5 +31,5 @@
               = f.radio_button :character_rate, 5, class: "btn-check", autocomplete: "off"
               = f.label :character_rate_5, "5", class: "btn outline btn-dark mx-2 fs-2"
 
-      .col.text-center.pt-5
+      .col.text-center
         = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
