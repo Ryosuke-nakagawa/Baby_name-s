@@ -1,32 +1,32 @@
-.container-sm.pt-5
+.container.pt-5
   .row
-    .col.px-5
-      h1.display-6.text-center = @first_name.reading
-      h1.display-1.text-center = @first_name.name
-      - if @rate.nil?
-        = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-dark btn-lg float-end"
-      - else
-        = link_to '評価を変更する',edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg float-end"
+    .col
+      h4.text-center = @first_name.reading
+      .display-2.text-center = @first_name.name
       = link_to group_first_names_path(@group),class: "float-start"
         i.fas.fa-angle-left.back-button
-  .row.py-5
-    .col.text-center
+  .row.py-2
+    .col-6.text-center
       h1. 音の響き
-    .col.text-left
+    .col-6.text-left
       span.star-show data-rate = sound_average(@rates)
-  .row.py-5
-    .col.text-center
+    .col-6.text-center.py-2
       h1. 漢字
-    .col.text-left
+    .col-6.text-left.py-2
       span.star-show data-rate = character_average(@rates)
-  .row.py-5
-    .col.text-center
+    .col-6.text-center.py-2
       h1. 姓名判断
-    .col.text-left
+    .col-6.text-left.py-2
       span.star-show data-rate = @first_name.fotune_telling_rate.to_f
-  .container-fluid.py-3
-    img src = @fotune_telling_image_url
+    .d-flex.flex-row-reverse
+      - if @rate.nil?
+          = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
+      - else
+        = link_to '変更',edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg py-2"
+  .container.py-3
+    img src = @fotune_telling_image_url  width="320" height="300"
+    = link_to  "いい名前ネット サイトURL", @first_name.fotune_telling_url
 
-  .container.text-center.pt-5
+  .container.text-center.pt-3
     = link_to '名前を削除する',first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
     p ※共有しているユーザーのアカウントからも名前が消えます※
