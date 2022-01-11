@@ -23,7 +23,10 @@
         .col-3.index-reading-text = first_name.reading
       .row.text-center.under-line-dot
         .col-1.d-flex.align-items-center.justify-content-center
-
+          - if current_user.like?(first_name)
+            = render 'unlike', first_name: first_name
+          - else
+            = render 'like', first_name: first_name
         .col-3.d-flex.align-items-center.justify-content-center
           h4. = first_name.name
         .col-2.d-inline-flex
