@@ -15,7 +15,11 @@ Rails.application.routes.draw do
 
   resources :first_names, only: %i[new show destroy] do
     resources :rates, only: %i[new create update edit]
+    collection do
+      get :likes
+    end
   end
 
   resources :share_target_pickers, only: %i[new]
+  resources :likes, only: %i[create destroy]
 end

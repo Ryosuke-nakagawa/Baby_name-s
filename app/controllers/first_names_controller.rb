@@ -49,6 +49,11 @@ class FirstNamesController < ApplicationController
     end
   end
 
+  def likes
+    @group = current_user.group
+    @like_first_names = current_user.like_first_names.order(created_at: :DESC)
+  end
+
   def destroy
     @first_name.destroy!
     redirect_to  group_first_names_path(@first_name.group), success: t('defaults.message.deleted',item: FirstName.model_name.human)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_12_211822) do
+ActiveRecord::Schema.define(version: 2022_01_11_064812) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2021_12_12_211822) do
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "likes", force: :cascade do |t|
+    t.bigint "first_name_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["first_name_id", "user_id"], name: "index_likes_on_first_name_id_and_user_id", unique: true
+    t.index ["first_name_id"], name: "index_likes_on_first_name_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
   create_table "rates", force: :cascade do |t|
@@ -60,6 +70,8 @@ ActiveRecord::Schema.define(version: 2021_12_12_211822) do
   end
 
   add_foreign_key "first_names", "groups"
+  add_foreign_key "likes", "first_names"
+  add_foreign_key "likes", "users"
   add_foreign_key "rates", "first_names"
   add_foreign_key "rates", "users"
   add_foreign_key "users", "first_names", column: "editing_name_id"

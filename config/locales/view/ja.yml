@@ -12,3 +12,8 @@ ja:
   groups:
     new:
       for_usersetting_title: '名前を決める上での優先順位'
+  likes:
+    create:
+      success: 'ハートしました'
+    destroy:
+      success: 'ハートを外しました'
