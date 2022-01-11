@@ -9,7 +9,11 @@ ja:
       deleted: '%{item}を削除しました'
       delete_confirm: '削除しますか?'
       no_authorization: '権限がありません'
-      success: '成功しました'
   groups:
     new:
       for_usersetting_title: '名前を決める上での優先順位'
+  likes:
+    create:
+      success: 'ハートしました'
+    destroy:
+      success: 'ハートを外しました'
