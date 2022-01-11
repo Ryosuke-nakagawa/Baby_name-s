@@ -4,7 +4,7 @@
 
 .star-show{
     font-family: "Font Awesome 5 Free";
-    font-size: 36px;
+    font-size: 24px;
     color: #4A3730;
   }
   .star-show:before{
@@ -40,7 +40,7 @@
 
   .star-index{
     font-family: "Font Awesome 5 Free";
-    font-size: 16px;
+    font-size: 12px;
     color: #4A3730;
   }
   .star-index:before{
@@ -55,18 +55,18 @@
   .star-index[data-rate="1.0"]:before{ content: "\f005"; }
   .star-index[data-rate="1.5"]:before{ content: "\f005\f5c0"; }
   .star-index[data-rate="2.0"]:before{ content: "\f005\f005"; }
-  .star-index[data-rate="2.5"]:before{ content: "\f005\f005\f5c0"; }
-  .star-index[data-rate="3.0"]:before{ content: "\f005\f005\f005"; }
-  .star-index[data-rate="3.5"]:before{ content: "\f005\f005\f005\f5c0"; }
-  .star-index[data-rate="4.0"]:before{ content: "\f005\f005\f005\f005"; }
-  .star-index[data-rate="4.5"]:before{ content: "\f005\f005\f005\f005\f5c0"; }
-  .star-index[data-rate="5.0"]:before{ content: "\f005\f005\f005\f005\f005"; }
+  .star-index[data-rate="2.5"]:before{ content: "\f005\f005\f5c0\A"; }
+  .star-index[data-rate="3.0"]:before{ content: "\f005\f005\f005\A"; }
+  .star-index[data-rate="3.5"]:before{ content: "\f005\f005\f005\A\f5c0"; }
+  .star-index[data-rate="4.0"]:before{ content: "\f005\f005\f005\A\f005"; }
+  .star-index[data-rate="4.5"]:before{ content: "\f005\f005\f005\A\f005\f5c0"; }
+  .star-index[data-rate="5.0"]:before{ content: "\f005\f005\f005\A\f005\f005"; }
    
-  .star-index[data-rate="0.0"]:after{ content: "\f005\f005\f005\f005\f005"; }
-  .star-index[data-rate="0.5"]:after{ content: "\f005\f005\f005\f005"; }
-  .star-index[data-rate="1.0"]:after{ content: "\f005\f005\f005\f005"; }
-  .star-index[data-rate="1.5"]:after{ content: "\f005\f005\f005"; }
-  .star-index[data-rate="2.0"]:after{ content: "\f005\f005\f005"; }
+  .star-index[data-rate="0.0"]:after{ content: "\f005\f005\f005\A\f005\f005"; }
+  .star-index[data-rate="0.5"]:after{ content: "\f005\f005\A\f005\f005"; }
+  .star-index[data-rate="1.0"]:after{ content: "\f005\f005\A\f005\f005"; }
+  .star-index[data-rate="1.5"]:after{ content: "\f005\A\f005\f005"; }
+  .star-index[data-rate="2.0"]:after{ content: "\f005\A\f005\f005"; }
   .star-index[data-rate="2.5"]:after{ content: "\f005\f005"; }
   .star-index[data-rate="3.0"]:after{ content: "\f005\f005"; }
   .star-index[data-rate="3.5"]:after{ content: "\f005"; }

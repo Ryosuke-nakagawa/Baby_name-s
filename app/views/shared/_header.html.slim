@@ -1,32 +1,33 @@
-nav.navbar.navbar-expand-xl.navbar-dark.fixed-top.header
-  .navbar-brand.row
-    = image_tag 'baby_img_face.png', size: '70x70', class: 'col p-1 header-image'
-    = link_to "BabyNames", root_path, class: 'header-title col d-flex align-items-center'
-  button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
-    span.navbar-toggler-icon
-  .collapse.navbar-collapse id='navbarSupportedContent'
-    ul.navbar-nav
-      li.nav-item
-        = link_to root_path, class: 'nav-link p-5 d-flex justify-content-end' do
-          .p-2
-            icon.fas.fa-question.drop-down-icon
-          .drop-down-text
-            | 使い方
-      li.nav-item
-        = link_to group_first_names_path(current_user.group), class: 'nav-link p-5 d-flex justify-content-end' do
-          .p-2
-            icon.fas.fa-clipboard-list.drop-down-icon
-          .drop-down-text
-            | 名前一覧
-      li.nav-item
-        = link_to new_group_path, class: 'nav-link p-5 d-flex justify-content-end' do
-          .p-2
-            icon.fas.fa-user-cog.drop-down-icon
-          .drop-down-text
-            | ユーザー設定
-      li.nav-item
-        = link_to infomation_path, class: 'nav-link p-5 d-flex justify-content-end' do
-          .p-2
-            icon.far.fa-comment.drop-down-icon
-          .drop-down-text
-            | サイトについて
+nav.navbar.navbar-dark.fixed-top
+  .container-fluid
+    = link_to root_path, class: 'navbar-brand header-title'
+      = image_tag 'baby_img_face.png', class: 'd-inline-block header-icon me-2'
+      | BabyNames
+    button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
+      ul.navbar-nav.me-2
+        li.nav-item
+          = link_to root_path(anchor: 'how_to_use'), class: 'nav-link d-flex justify-content-end m-1' do
+            .p-2
+              icon.fas.fa-question.drop-down-icon
+            .drop-down-text
+              | 使い方
+        li.nav-item
+          = link_to group_first_names_path(current_user.group), class: 'nav-link d-flex justify-content-end m-1' do
+            .p-2
+              icon.fas.fa-clipboard-list.drop-down-icon
+            .drop-down-text
+              | 名前一覧
+        li.nav-item
+          = link_to new_group_path, class: 'nav-link d-flex justify-content-end m-1' do
+            .p-2
+              icon.fas.fa-user-cog.drop-down-icon
+            .drop-down-text
+              | ユーザー設定
+        li.nav-item
+          = link_to infomation_path, class: 'nav-link d-flex justify-content-end m-1' do
+            .p-2
+              icon.far.fa-comment.drop-down-icon
+            .drop-down-text
+              | サイトについて

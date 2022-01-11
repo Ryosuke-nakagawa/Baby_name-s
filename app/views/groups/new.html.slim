@@ -1,47 +1,47 @@
 
-.container-fluid
+.container-xs
   .col-lg-8.p-5
-    h1.title.text-center.fw-bold.p-5 ユーザー情報登録
+    h1.title.text-center.fw-bold ユーザー情報登録
     = form_with model: @group, local: true do |f|
-      .form-group.pt-5
-        = f.label :last_name, "上の名前を入力してください", class: "form-label fs-1 me-5"
-        = f.text_field :last_name, placeholder: Group.human_attribute_name(:last_name), class: "form-control-lg"
-      h1.pt-5 = t '.for_usersetting_title'
+      .form-group.pt-3
+        = f.label :last_name, "上の名前を入力してください", class: "form-label me-5"
+        = f.text_field :last_name, placeholder: Group.human_attribute_name(:last_name), class: "form-control"
+      h5.py-4 = t '.for_usersetting_title'
       = f.fields_for @user do |u|
-        .form-group.mt-5
+        .form-group.mt-2
           .form-group.row
             .col-sm-2
-              = u.label :sound_rate_setting, '音の響き', class: 'form-label fs-2'
+              = u.label :sound_rate_setting, '音の響き', class: 'form-label'
             .btn-group aria-label=("Basic radio toggle button group") role="group"
               = u.radio_button :sound_rate_setting, 1, class: "btn-check", autocomplete: "off"
-              = u.label :sound_rate_setting_1, "低い", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :sound_rate_setting_1, "低い", class: "btn outline btn-dark mx-2"
               = u.radio_button :sound_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
-              = u.label :sound_rate_setting_2, "普通", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :sound_rate_setting_2, "普通", class: "btn outline btn-dark mx-2"
               = u.radio_button :sound_rate_setting, 3, class: "btn-check", autocomplete: "off"
-              = u.label :sound_rate_setting_3, "高い", class: "btn outline btn-dark mx-2 fs-2"
-        .form-group.mt-5
+              = u.label :sound_rate_setting_3, "高い", class: "btn outline btn-dark mx-2"
+        .form-group.mt-3
           .form-group.row
             .col-sm-2
-              = u.label :character_rate_setting, '漢字', class: 'form-label fs-2'
+              = u.label :character_rate_setting, '漢字', class: 'form-label'
             .btn-group aria-label=("Basic radio toggle button group") role="group"
               = u.radio_button :character_rate_setting, 1, class: "btn-check", autocomplete: "off"
-              = u.label :character_rate_setting_1, "低い", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :character_rate_setting_1, "低い", class: "btn outline btn-dark mx-2"
               = u.radio_button :character_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
-              = u.label :character_rate_setting_2, "普通", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :character_rate_setting_2, "普通", class: "btn outline btn-dark mx-2"
               = u.radio_button :character_rate_setting, 3, class: "btn-check", autocomplete: "off"
-              = u.label :character_rate_setting_3, "高い", class: "btn outline btn-dark mx-2 fs-2"
-        .form-group.my-5
+              = u.label :character_rate_setting_3, "高い", class: "btn outline btn-dark mx-2"
+        .form-group.my-2
           .form-group.row
             .col-sm-2
-              = u.label :fotune_telling_rate_setting, '姓名判断', class: 'form-label fs-2'
+              = u.label :fotune_telling_rate_setting, '姓名判断', class: 'form-label'
             .btn-group aria-label=("Basic radio toggle button group") role="group"
               = u.radio_button :fotune_telling_rate_setting, 1, class: "btn-check", autocomplete: "off"
-              = u.label :fotune_telling_rate_setting_1, "低い", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :fotune_telling_rate_setting_1, "低い", class: "btn outline btn-dark mx-2"
               = u.radio_button :fotune_telling_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
-              = u.label :fotune_telling_rate_setting_2, "普通", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :fotune_telling_rate_setting_2, "普通", class: "btn outline btn-dark mx-2"
               = u.radio_button :fotune_telling_rate_setting, 3, class: "btn-check", autocomplete: "off"
-              = u.label :fotune_telling_rate_setting_3, "高い", class: "btn outline btn-dark mx-2 fs-2"
+              = u.label :fotune_telling_rate_setting_3, "高い", class: "btn outline btn-dark mx-2"
 
-      .col.text-center.pt-5
+      .col.text-center.mt-3
         = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
 
