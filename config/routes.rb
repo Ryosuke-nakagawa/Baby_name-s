@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :groups, only: %i[new update] do
     resources :first_names, only: %i[index]
+    resources :likes, only: %i[index]
   end
 
   resources :first_names, only: %i[new show destroy] do
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
   end
 
   resources :share_target_pickers, only: %i[new]
+  resources :likes, only: %i[create destroy]
 end
