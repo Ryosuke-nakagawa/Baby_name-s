@@ -2,7 +2,8 @@ class User < ApplicationRecord
   belongs_to :group
   belongs_to :editing_name, class_name:'FirstName', optional: true
   has_many :rates
-  has_many :likes_first_names, through: :likes, source: :first_name
+  has_many :likes
+  has_many :like_first_names, through: :likes, source: :first_name
 
   validates :line_id, presence: true, uniqueness: true
   validates :sound_rate_setting, numericality: { in: 1..5  }, allow_nil: true
