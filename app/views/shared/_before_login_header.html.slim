@@ -1,4 +1,4 @@
-nav.navbar.navbar-expand-xl.navbar-dark.fixed-top
+nav.navbar.navbar-dark.fixed-top
   .container-fluid
     = link_to root_path, class: 'navbar-brand header-title'
       = image_tag 'baby_img_face.png', class: 'd-inline-block header-icon me-2'
@@ -8,26 +8,26 @@ nav.navbar.navbar-expand-xl.navbar-dark.fixed-top
     .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
       ul.navbar-nav.me-2
         li.nav-item
-          = link_to root_path(anchor: 'how_to_use'), class: 'nav-link p-3 d-flex justify-content-end m-1' do
+          = link_to root_path(anchor: 'how_to_use'), class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-question.drop-down-icon
             .drop-down-text
               | 使い方
         li.nav-item
-          = link_to contact_path, class: 'nav-link p-3 d-flex justify-content-end m-1' do
+          = link_to contact_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-comment.drop-down-icon
             .drop-down-text
               | お問い合わせ
         li.nav-item
-          = link_to terms_path, class: 'nav-link p-3 d-flex justify-content-end m-1' do
+          = link_to terms_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-book-open.drop-down-icon
             .drop-down-text
               | 利用規約
         li.nav-item
-          = link_to privacy_policy_path, class: 'nav-link m-1 d-flex justify-content-end' do
+          = link_to privacy_policy_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
-              icon.far.fa-user-shield.drop-down-icon
+              icon.fas.fa-user-shield.drop-down-icon
             .drop-down-text
               | プライバシーポリシー
