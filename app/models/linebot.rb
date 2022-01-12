@@ -26,13 +26,13 @@ class Linebot
           replied_message = event.message['text']
           if @user.nil?
             @message.guide_to_initial_registration
-            client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+            client.reply_message(event['replyToken'], @message.object)
           end
           case @user.status
           when 'normal'
             if replied_message == '名前を新規登録'
               @message.send_message_in_characters
-              client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+              client.reply_message(event['replyToken'], @message.object)
               @user.name_registration!
             else
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
@@ -41,7 +41,7 @@ class Linebot
               else
                 @message.fotune_telling(search_name)
               end
-              client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+              client.reply_message(event['replyToken'], @message.object)
             end
           when 'name_registration'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
@@ -53,24 +53,24 @@ class Linebot
             
             new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading              
-            client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+            client.reply_message(event['replyToken'], @message.object)
             @user.reading_registration!
           when 'reading_registration'
             @user.editing_name.update!(reading: replied_message)
             @message.send_rate_for_sound
-            client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+            client.reply_message(event['replyToken'], @message.object)
             @user.sound_rate_registration!
           when 'sound_rate_registration'
             Rate.create!(user: @user, first_name: @user.editing_name, sound_rate: replied_message.to_i)
             @message.send_rate_for_character                
-            client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+            client.reply_message(event['replyToken'], @message.object)
             @user.character_rate_registration!
           when 'character_rate_registration'
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
             @message.registration_is_complete
             
-            client.reply_message(event['replyToken'], @message.object) #返信用のデータ作成して送る
+            client.reply_message(event['replyToken'], @message.object)
             @user.update(editing_name_id: nil)
             @user.normal!
           end
