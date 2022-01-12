@@ -1,12 +1,12 @@
-.container.m-4
+.container.mt-3
   .col
     h1.text-center.py-3 サイトについて
-  .col.my-5
+  .col.my-5.ms-4.d-flex
     i.fas.fa-phone.info-icons
-    = link_to "お問い合わせ", contact_path, class: 'fs-3 btn btn-black'
-  .col.my-5
+    = link_to "お問い合わせ", contact_path, class: 'fs-3 ps-3 brown'
+  .col.my-5.ms-4.d-flex
     i.far.fa-sticky-note.info-icons
-    = link_to "利用規約", terms_path, class: 'fs-3 btn btn-black '
-  .col.my-5
-    i.fas.fa-portrait.info-icons
-    = link_to "プライバシーポリシー", privacy_policy_path, class: 'fs-3 btn btn-black'
+    = link_to "利用規約", terms_path, class: 'fs-3 ps-3 brown'
+  .col.my-5.ms-4.d-flex.
+    i.fas.fa-user-shield.info-icons
+    = link_to "プライバシーポリシー", privacy_policy_path, class: 'fs-3 ps-3 brown'
