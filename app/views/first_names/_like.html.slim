@@ -1,3 +1,2 @@
-= link_to likes_path(first_name_id: first_name.id), method: :post, id: "js-like-button-for-first_name-#{first_name.id}" do
+= link_to likes_path(first_name_id: first_name.id), method: :post, id: "js-like-button-for-first_name-#{first_name.id}", remote: true do
   i.far.fa-heart
-

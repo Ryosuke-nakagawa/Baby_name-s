@@ -1,2 +1,2 @@
-= link_to like_path(current_user.likes.find_by(first_name_id: first_name.id)), method: :delete, id: "js-like-button-for-first_name-#{first_name.id}" do
+= link_to like_path(current_user.likes.find_by(first_name_id: first_name.id)), method: :delete, id: "js-like-button-for-first_name-#{first_name.id}", remote: true do
   i.fas.fa-heart
