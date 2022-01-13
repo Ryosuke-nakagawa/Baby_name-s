@@ -32,6 +32,17 @@ ja:
   first_names:
     index:
       title: '名前一覧'
+      overall_rating: '総評価'
+      character: '漢字'
+      fotune_telling: '姓名判断'
+      sound: '音の響き'
+      headline_character: '漢字'
+      headline_fotune_telling: |-
+        姓名
+        判断
+      headline_sound: |-
+        音の
+        響き
     show:
       title: '名前の詳細'
     likes:

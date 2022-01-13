@@ -34,18 +34,18 @@ class FirstNamesController < ApplicationController
       @first_names = []
       result = FirstName.order_by_sound(@group.id)
       result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
-      @sort = "音の響き"
+      @sort = "sound"
     when 'character'
       @first_names = []
       result = FirstName.order_by_character(@group.id)
       result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
-      @sort = "漢字"
+      @sort = "character"
     when 'fotune_telling'
       @first_names = FirstName.order_by_fotune_telling(@group.id)
-      @sort = "姓名判断"
+      @sort = "fotune_telling"
     else
       @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
-      @sort = "総評価"
+      @sort = "overall_rating"
     end
   end
 
