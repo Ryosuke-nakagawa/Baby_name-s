@@ -9,9 +9,36 @@ ja:
       deleted: '%{item}を削除しました'
       delete_confirm: '削除しますか?'
       no_authorization: '権限がありません'
+  static_pages:
+    top:
+      title: 'トップページ'
+    terms:
+      title: '利用規約'
+    privacy_policy:
+      title: 'プライバシーポリシー'
+    infomation:
+      title: 'サイトについて'
+    contact:
+      title: 'お問い合わせ'
   groups:
     new:
+      title: 'ユーザー設定'
       for_usersetting_title: '名前を決める上での優先順位'
+  rates:
+    new:
+      title: '評価の入力'
+    edit:
+      title: '評価の編集'
+  first_names:
+    index:
+      title: '名前一覧'
+    show:
+      title: '名前の詳細'
+    likes:
+      title: 'ハート一覧'
+  share_target_pickers:
+    new:
+      title: 'アカウント シェア'
   likes:
     create:
       success: 'ハートしました'
