@@ -35,30 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
               "type": "bubble",
               "hero": {
                 "type": "image",
-                "url": "https://enamae.net/result2/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg",
+                "url": "https://www.baby-names-app.com/assets/account_share-57db9732177bbe269f076ef30b774c7a282f7009603a60c789da40de77c29350.png",
                 "size": "full",
-                "aspectRatio": "6:5",
+                "aspectRatio": "1:1",
                 "aspectMode": "cover",
                 "action": {
                   "type": "uri",
                   "uri": "http://linecorp.com/"
                 },
                 "position": "relative"
-              },
-              "body": {
-                "type": "box",
-                "layout": "vertical",
-                "contents": [
-                  {
-                    "type": "text",
-                    "weight": "bold",
-                    "size": "sm",
-                    "text": "名前を評価・保存・シェアするアプリ",
-                    "margin": "none",
-                    "align": "center"
-                  }
-                ],
-                "spacing": "none"
               },
               "footer": {
                 "type": "box",
@@ -80,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     "size": "sm"
                   }
                 ],
-                "flex": 0
               }
             },
           }],
