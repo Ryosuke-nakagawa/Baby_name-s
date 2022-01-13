@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', () => {
       return response.json().then(response_uuid => {
         // JSONパースされたオブジェクトが渡される
         var uuid = response_uuid ;
+        // flexmessage用の画像を取得
+
+
+
         if (liff.isApiAvailable('shareTargetPicker')) {
           const url = `https://liff.line.me/1656693818-N2kw6Bvk?q=${uuid.id}`
           liff.shareTargetPicker([{
@@ -35,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
               "type": "bubble",
               "hero": {
                 "type": "image",
-                "url": "https://enamae.net/result2/%E4%B8%AD%E5%B7%9D__%E5%87%8C%E8%BC%94.jpg",
+                "url": "https://3b07-2001-f77-9e0-800-7446-c69c-5699-2f94.ngrok.io/assets/for_account_share-185746f94b8a45a040331bf57e0a852ee796f7a01dd202584f1d53e6df17739a.png",
                 "size": "full",
                 "aspectRatio": "6:5",
                 "aspectMode": "cover",
