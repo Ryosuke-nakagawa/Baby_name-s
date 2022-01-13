@@ -23,7 +23,7 @@
           = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
       - else
         = link_to '変更',edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg py-2"
-  .container.py-3
+  .container.py-3.d-flex.flex-column.align-items-center
     img src = @fotune_telling_image_url  width="320" height="300"
     = link_to  "いい名前ネット サイトURL", @first_name.fotune_telling_url
 
