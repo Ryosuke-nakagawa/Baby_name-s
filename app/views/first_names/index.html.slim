@@ -11,7 +11,7 @@
         option value=group_first_names_path(@group,sort: 'character') = t('.character')
       - if @sort != "fotune_telling"
         option value=group_first_names_path(@group,sort: 'fotune_telling') = t('.fotune_telling')
-      option value=likes_first_names_path ハート
+      option value=likes_first_names_path = t('.heart')
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
