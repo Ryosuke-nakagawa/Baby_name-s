@@ -12,22 +12,22 @@ nav.navbar.navbar-dark.fixed-top
             .p-2
               icon.fas.fa-question.drop-down-icon
             .drop-down-text
-              | 使い方
+              = t('static_pages.top.how_to_use')
         li.nav-item
           = link_to group_first_names_path(current_user.group), class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-clipboard-list.drop-down-icon
             .drop-down-text
-              | 名前一覧
+              = t('first_names.index.title')
         li.nav-item
           = link_to new_group_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-user-cog.drop-down-icon
             .drop-down-text
-              | ユーザー設定
+              = t('defaults.user_setting')
         li.nav-item
           = link_to infomation_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.far.fa-comment.drop-down-icon
             .drop-down-text
-              | サイトについて
+              = t('static_pages.infomation.title')

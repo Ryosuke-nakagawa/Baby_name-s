@@ -2,7 +2,7 @@ nav.navbar.navbar-dark.fixed-top
   .container-fluid
     = link_to root_path, class: 'navbar-brand header-title'
       = image_tag 'baby_img_face.png', class: 'd-inline-block header-icon me-2'
-      | BabyNames
+      = t('defaults.title')
     button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
@@ -12,22 +12,22 @@ nav.navbar.navbar-dark.fixed-top
             .p-2
               icon.fas.fa-question.drop-down-icon
             .drop-down-text
-              | 使い方
+              = t('static_pages.top.how_to_use')
         li.nav-item
           = link_to contact_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-comment.drop-down-icon
             .drop-down-text
-              | お問い合わせ
+              = t('static_pages.contact.title')
         li.nav-item
           = link_to terms_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-book-open.drop-down-icon
             .drop-down-text
-              | 利用規約
+              = t('static_pages.terms.title')
         li.nav-item
           = link_to privacy_policy_path, class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
               icon.fas.fa-user-shield.drop-down-icon
             .drop-down-text
-              | プライバシーポリシー
+              = t('static_pages.privacy_policy.title')

@@ -3,22 +3,23 @@
   .row.mt-3
     .col-12
       h6.text-center.title-detail-text
-        | 名前を評価・保存・シェアするアプリ
+       = t('.title_detail') 
     .col-12.my-4
-      h1.d-flex.justify-content-center.title-text Baby<br>Names
+      h1.d-flex.justify-content-center.title-text = simple_format(t('.title_newline'),{},wrapper_tag: "div")
     .col-12
       h3.text-center.title-detail-text
-          | 夫婦で、家族で<br>赤ちゃんの名前を考よう
+          = simple_format(t('.think_of_baby_name'),{},wrapper_tag: "div")
     .col-12.d-md-none
       .mx-auto.py-5 style="width: 116px;"
-        <a class="mx-0" href="https://lin.ee/5QqZVFP"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+        a.mx-0 href="https://lin.ee/5QqZVFP" 
+          img alt="#{t('.add_line')}" border="0" height="36" src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" /
     .col-12.d-none.d-md-block.py-4.text-center
-      | LINEの友達に追加してはじめる
-      <img src="https://qr-official.line.me/sid/M/815ptfns.png" class="mx-auto d-block">
+      = t('.add_friends_and_start')
+      img.mx-auto.d-block src="https://qr-official.line.me/sid/M/815ptfns.png" /
 .container
   .row.mt-5
     .col.text-center.fs-2 id='how_to_use'
-      | 使い方
+      = t('.how_to_use')
   .row.text-center
     .col-12.col-sm-4.mt-2.d-flex.flex-column.align-items-center
       = image_tag 'usage_1.png' ,class: 'mt-2',size: '350x350'
@@ -32,9 +33,9 @@
       = image_tag 'usage_5.png' ,class: 'mt-2',size: '350x350'
   .row.mt-3
     .col-12.text-center.fs-6
-      | LINEの友達追加をして名前を考えよう！<br>↓ ↓ ↓
+      = simple_format(t('.add_line_friends'),{},wrapper_tag: "div")
     .col-12.d-none.d-md-block.py-4.text-center
       <img src="https://qr-official.line.me/sid/M/815ptfns.png" class="mx-auto d-block">
     .col-12.d-md-none
       .mx-auto.py-5 style="width: 116px;"
-        <a class="mx-0" href="https://lin.ee/5QqZVFP"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="友だち追加" height="36" border="0"></a>
+        <a class="mx-0" href="https://lin.ee/5QqZVFP"><img src="https://scdn.line-apps.com/n/line_add_friends/btn/ja.png" alt="#{t('.add_line')}" height="36" border="0"></a>

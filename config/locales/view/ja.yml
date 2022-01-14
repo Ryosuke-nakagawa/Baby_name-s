@@ -1,6 +1,13 @@
 ja:
   defaults:
+    title: 'Baby Names'
+    user_setting: 'ユーザー設定'
     register: '決定'
+    change: '変更'
+    rating: '評価する'
+    high: '高い'
+    usual: '普通'
+    row: '低い'
     message:
       registered: '%{item}を登録しました' 
       not_registered: '%{item}を登録できませんでした'
@@ -12,6 +19,19 @@ ja:
   static_pages:
     top:
       title: 'トップページ'
+      title_detail: '名前を評価・保存・シェアするアプリ'
+      title_newline: |-
+        Baby
+        Names
+      think_of_baby_name: |-
+        夫婦で、家族で
+        赤ちゃんの名前を考よう
+      add_friends_and_start: 'LINEの友達に追加してはじめる'
+      how_to_use: '使い方'
+      add_line_friends: |-
+        LINEの友達追加をして名前を考えよう!
+        ↓ ↓ ↓
+      add_line: '友達追加'
     terms:
       title: '利用規約'
     privacy_policy:
@@ -20,9 +40,19 @@ ja:
       title: 'サイトについて'
     contact:
       title: 'お問い合わせ'
+      add_function: '機能の追加の要望'
+      report_bug: '不具合の報告'
+      data_delete: 'ユーザー本人に関連するデータの削除依頼'
+      etc: 'その他'
+      accept: |-
+        googleフォームまたは
+        twitterDMより受け付けています。
+      for_google_form: 'googleフォームはこちら'
+      for_twitter: '作成者のtwitterアカウントはこちら'
   groups:
     new:
-      title: 'ユーザー設定'
+      title: 'ユーザー登録'
+      set_last_name: '上の名前を入力してください'
       for_usersetting_title: '名前を決める上での優先順位'
   rates:
     new:
@@ -32,10 +62,35 @@ ja:
   first_names:
     index:
       title: '名前一覧'
+      overall_rating: '総評価'
+      character: '漢字'
+      fotune_telling: '姓名判断'
+      sound: '音の響き'
+      heart: 'ハート'
+      headline_character: '漢字'
+      headline_fotune_telling: |-
+        姓名
+        判断
+      headline_sound: |-
+        音の
+        響き
     show:
       title: '名前の詳細'
+      delete_name: '名前を削除する'
+      fotune_telling_site: 'いい名前ネット サイトURL'
+      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます※'
     likes:
       title: 'ハート一覧'
+      no_hearted_name: 'ハートされた名前がありません'
+      overall_rating: '総評価'
+      heart: 'ハート'
+      headline_character: '漢字'
+      headline_fotune_telling: |-
+        姓名
+        判断
+      headline_sound: |-
+        音の
+        響き
   share_target_pickers:
     new:
       title: 'アカウント シェア'

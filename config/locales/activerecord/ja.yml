@@ -15,3 +15,6 @@ ja:
       rate:
         sound_rate: '音の響き'
         character_rate: '漢字'
+      first_name:
+        fotune_telling_rate: '姓名判断'
+

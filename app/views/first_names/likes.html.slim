@@ -2,17 +2,17 @@
 .container
   .row.mt-4.under-line
     select.col-4.sort-button id="sort_js"
-      option.selected = "ハート"
-      option value=group_first_names_path(@group) 総評価
-      option value=group_first_names_path(@group,sort: 'sound') 音の響き
-      option value=group_first_names_path(@group,sort: 'character') 漢字
-      option value=group_first_names_path(@group,sort: 'fotune_telling') 姓名判断
-    .col-2.d-flex.align-items-center.justify-content-center 音の<br>響き
-    .col-2.d-flex.align-items-center.justify-content-center 漢字
-    .col-2.d-flex.align-items-center.justify-content-center 姓名<br>判断
+      option.selected = t('.heart')
+      option value=group_first_names_path(@group) = t('.overall_rating')
+      option value=group_first_names_path(@group,sort: 'sound') = Rate.human_attribute_name(:sound_rate)
+      option value=group_first_names_path(@group,sort: 'character') = Rate.human_attribute_name(:character_rate)
+      option value=group_first_names_path(@group,sort: 'fotune_telling') = FirstName.human_attribute_name(:fotune_telling_rate)
+    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
+    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
+    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
   - if @like_first_names.empty?
     .container.pt-5.mt-5.text-center
-      | ハートされた名前がありません
+      = t('.no_hearted_name')
   else
     - @like_first_names.each do |first_name|
       .row.text-center.pt-3
