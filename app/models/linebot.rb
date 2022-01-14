@@ -16,6 +16,7 @@ class Linebot
     unless client.validate_signature(body, signature) # 署名検証を行う https://developers.line.biz/ja/docs/messaging-api/receiving-messages/#verifying-signatures
       return head :bad_request
     end
+
     events = client.parse_events_from(body) # リクエストのbodyを抜き取る
     events.each do |event|
       case event
@@ -83,6 +84,6 @@ class Linebot
     @client ||= Line::Bot::Client.new { |config|
         config.channel_secret = ENV['LINEBOT_CHANNEL_SECRET']
         config.channel_token = ENV['LINEBOT_CHANNEL_TOKEN']
-      }
+    }
   end
 end

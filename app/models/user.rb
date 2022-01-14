@@ -1,8 +1,8 @@
 class User < ApplicationRecord
   belongs_to :group
   belongs_to :editing_name, class_name: 'FirstName', optional: true
-  has_many :rates
-  has_many :likes
+  has_many :rates, dependent: :destroy
+  has_many :likes, dependent: :destroy
   has_many :like_first_names, through: :likes, source: :first_name
 
   validates :line_id, presence: true, uniqueness: true
