@@ -4,6 +4,7 @@ module ApplicationHelper
     site = defaults[:site]
     description = defaults[:description]
     keywords = defaults[:keywords]
+    title = defaults[:title]
 
     {
       site: site,
@@ -27,7 +28,7 @@ module ApplicationHelper
       twitter: {
         card: 'summary_large_image',
         site: '@Nmittyancccccc',
-        title: 'Baby Names',
+        title: title,
         image: image_url('twitter_card.png')
       }
     }
