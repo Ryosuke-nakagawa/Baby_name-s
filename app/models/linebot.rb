@@ -33,7 +33,7 @@ class Linebot
             if replied_message == '名前を新規登録'
               @message.send_message_in_characters
               client.reply_message(event['replyToken'], @message.object)
-              @user.name_registration!
+              @user.name!
             else
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
               if search_name.nil?
@@ -43,7 +43,7 @@ class Linebot
               end
               client.reply_message(event['replyToken'], @message.object)
             end
-          when 'name_registration'
+          when 'name'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
@@ -54,18 +54,18 @@ class Linebot
             new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
-            @user.reading_registration!
-          when 'reading_registration'
+            @user.reading!
+          when 'reading'
             @user.editing_name.update!(reading: replied_message)
             @message.send_rate_for_sound
             client.reply_message(event['replyToken'], @message.object)
-            @user.sound_rate_registration!
-          when 'sound_rate_registration'
+            @user.sound_rate!
+          when 'sound_rate'
             Rate.create!(user: @user, first_name: @user.editing_name, sound_rate: replied_message.to_i)
             @message.send_rate_for_character
             client.reply_message(event['replyToken'], @message.object)
-            @user.character_rate_registration!
-          when 'character_rate_registration'
+            @user.character_rate!
+          when 'character_rate'
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
             @message.registration_is_complete
