@@ -1,5 +1,5 @@
 # 将来的には対応する規約の読込
-inherit_from: .rubocop_todo.yml
+
 
 # 追加した規約ファイル読込
 require:
@@ -17,6 +17,10 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - !ruby/regexp /old_and_unused\.rb$/
+    - 'spec/**/*'
+    - 'Gemfile'
+    - 'Gemfile.lock'
+
 
 # 日本語でのコメントを許可
 AsciiComments:
@@ -28,4 +32,8 @@ Documentation:
 
 # モジュール名::クラス名の定義を許可
 ClassAndModuleChildren:
+  Enabled: false
+
+# 参考https://teratail.com/questions/74592
+Style/FrozenStringLiteralComment:
   Enabled: false

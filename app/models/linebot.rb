@@ -12,11 +12,11 @@ class Linebot
 
   def respond_to_user
     body = request.body.read
-    signature = request.env['HTTP_X_LINE_SIGNATURE'] #リクエストのヘッダーの署名情報を取得
-    unless client.validate_signature(body, signature) #署名検証を行う https://developers.line.biz/ja/docs/messaging-api/receiving-messages/#verifying-signatures
+    signature = request.env['HTTP_X_LINE_SIGNATURE'] # リクエストのヘッダーの署名情報を取得
+    unless client.validate_signature(body, signature) # 署名検証を行う https://developers.line.biz/ja/docs/messaging-api/receiving-messages/#verifying-signatures
       return head :bad_request
     end
-    events = client.parse_events_from(body) #リクエストのbodyを抜き取る
+    events = client.parse_events_from(body) # リクエストのbodyを抜き取る
     events.each do |event|
       case event
       when Line::Bot::Event::Message
@@ -47,12 +47,12 @@ class Linebot
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
             fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-            
+
             image_name = "img_#{Random.uuid}.jpg"
             fotune_telling.save_image_to_s3(image_name)
-            
+
             new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
-            @message.send_message_in_reading              
+            @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
             @user.reading_registration!
           when 'reading_registration'
@@ -62,7 +62,7 @@ class Linebot
             @user.sound_rate_registration!
           when 'sound_rate_registration'
             Rate.create!(user: @user, first_name: @user.editing_name, sound_rate: replied_message.to_i)
-            @message.send_rate_for_character                
+            @message.send_rate_for_character
             client.reply_message(event['replyToken'], @message.object)
             @user.character_rate_registration!
           when 'character_rate_registration'
@@ -80,9 +80,9 @@ class Linebot
   end
 
   def client
-      @client ||= Line::Bot::Client.new { |config|
-        config.channel_secret = ENV["LINEBOT_CHANNEL_SECRET"]
-        config.channel_token = ENV["LINEBOT_CHANNEL_TOKEN"]
+    @client ||= Line::Bot::Client.new { |config|
+        config.channel_secret = ENV['LINEBOT_CHANNEL_SECRET']
+        config.channel_token = ENV['LINEBOT_CHANNEL_TOKEN']
       }
   end
 end

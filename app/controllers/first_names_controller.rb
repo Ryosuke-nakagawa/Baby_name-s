@@ -6,14 +6,13 @@ class FirstNamesController < ApplicationController
   require 'net/http'
   require 'uri'
 
-  def new
-  end
+  def new; end
 
   def login
-    idToken = params[:idToken]
-    channelId = ENV['LIFF_CHANNEL_ID']
-    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),{'id_token'=>idToken, 'client_id'=>channelId})
-    line_user_id = JSON.parse(res.body)["sub"]
+    id_token = params[:idToken]
+    channel_id = ENV['LIFF_CHANNEL_ID']
+    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'), { 'id_token' => id_token, 'client_id' => channel_id })
+    line_user_id = JSON.parse(res.body)['sub']
     user = User.find_by(line_id: line_user_id)
 
     session[:user_id] = user.id
@@ -28,24 +27,24 @@ class FirstNamesController < ApplicationController
       redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
       return
     end
-  
+
     case params[:sort]
     when 'sound'
       @first_names = []
       result = FirstName.order_by_sound(@group.id)
-      result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
-      @sort = "sound"
+      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
+      @sort = 'sound'
     when 'character'
       @first_names = []
       result = FirstName.order_by_character(@group.id)
-      result.map{ |first_name_id, average| @first_names << FirstName.find(first_name_id) }
-      @sort = "character"
+      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
+      @sort = 'character'
     when 'fotune_telling'
       @first_names = FirstName.order_by_fotune_telling(@group.id)
-      @sort = "fotune_telling"
+      @sort = 'fotune_telling'
     else
-      @first_names = FirstName.sort_by_overall_rating(@group.first_names,@group.users)
-      @sort = "overall_rating"
+      @first_names = FirstName.sort_by_overall_rating(@group.first_names, @group.users)
+      @sort = 'overall_rating'
     end
   end
 
@@ -56,17 +55,17 @@ class FirstNamesController < ApplicationController
 
   def destroy
     @first_name.destroy!
-    redirect_to  group_first_names_path(@first_name.group), success: t('defaults.message.deleted',item: FirstName.model_name.human)
+    redirect_to group_first_names_path(@first_name.group), success: t('defaults.message.deleted', item: FirstName.model_name.human)
   end
 
   def show
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
-    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV["AWS_BUCKET"], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
-    @rates = Rate.ratings_within_group(@first_name,@group)
+    @rates = Rate.ratings_within_group(@first_name, @group)
   end
 
   private

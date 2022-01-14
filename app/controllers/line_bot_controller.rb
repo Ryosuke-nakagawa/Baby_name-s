@@ -8,5 +8,4 @@ class LineBotController < ApplicationController
 
     head :ok
   end
-
 end

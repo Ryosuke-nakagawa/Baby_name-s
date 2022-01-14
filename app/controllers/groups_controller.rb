@@ -12,16 +12,16 @@ class GroupsController < ApplicationController
       uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
       http = Net::HTTP.new(uri.host, uri.port)
 
-      http.use_ssl = true #なかったらエラー発生
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE #なくてもエラーは出なかった
+      http.use_ssl = true # なかったらエラー発生
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE # なくてもエラーは出なかった
 
       req = Net::HTTP::Post.new(uri.request_uri)
-      req["Authorization"] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
-      res = http.request(req)
+      req['Authorization'] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
+      res = http.request(req) # レスポンスを使って処理を切り替えれる(未対応)
 
       redirect_to group_first_names_path(@group), success: t('defaults.message.updated', item: User.model_name.human)
     else
-      flash.now[:danger]= t('defaults.message.not_updated', item: User.model_name.human)
+      flash.now[:danger] = t('defaults.message.not_updated', item: User.model_name.human)
       render :new
     end
   end
@@ -29,8 +29,9 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:last_name, users_attributes: [:id, :sound_rate_setting, :character_rate_setting, :fotune_telling_rate_setting])
+    params.require(:group).permit(:last_name, users_attributes: %i[id sound_rate_setting character_rate_setting fotune_telling_rate_setting])
   end
+
   def user_params
     params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fotune_telling_rate_setting)
   end
