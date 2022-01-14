@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :character_rate_setting, numericality: { in: 1..3 }, allow_nil: true
   validates :fotune_telling_rate_setting, numericality: { in: 1..3 }, allow_nil: true
 
-  enum status: { normal: 0, name: 1, reading: 2, sound_rate: 3, character_rate: 4 }
+  enum status: { normal: 0, name_add: 1, reading_add: 2, sound_rate_add: 3, character_rate_add: 4 }
 
   before_create -> { self.uuid = SecureRandom.uuid }
 
