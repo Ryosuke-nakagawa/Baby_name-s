@@ -1,5 +1,4 @@
 class LikesController < ApplicationController
-
   def create
     @first_name = FirstName.find(params[:first_name_id])
     current_user.like(@first_name)

@@ -3,18 +3,18 @@ class FirstName < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  scope :order_by_sound, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_sound_rate DESC NULLS LAST').average("rates.sound_rate") }
-  scope :order_by_character, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_character_rate DESC NULLS LAST').average("rates.character_rate") }
+  scope :order_by_sound, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_sound_rate DESC NULLS LAST').average('rates.sound_rate') }
+  scope :order_by_character, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_character_rate DESC NULLS LAST').average('rates.character_rate') }
   scope :order_by_fotune_telling, ->(group_id) { where(group_id: group_id).order('fotune_telling_rate DESC NULLS LAST') }
 
-  def self.sort_by_overall_rating(first_names,group_users)
+  def self.sort_by_overall_rating(first_names, group_users)
     score = {}
 
     first_names.each_with_index do |first_name, i|
       sum = 0
       user_count = group_users.count
       group_users.each do |user|
-        rate = Rate.find_by(first_name: first_name,user: user)
+        rate = Rate.find_by(first_name: first_name, user: user)
         if rate.nil?
           user_count -= 1
           next
@@ -37,7 +37,7 @@ class FirstName < ApplicationRecord
     end
     sorted_score = score.sort.reverse
     sorted_first_names = []
-    sorted_score.map{ |result, first_name| sorted_first_names << first_name }
-    return sorted_first_names
+    sorted_score.map { |_result, first_name| sorted_first_names << first_name }
+    sorted_first_names
   end
 end
