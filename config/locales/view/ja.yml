@@ -3,6 +3,9 @@ ja:
     register: '決定'
     change: '変更'
     rating: '評価する'
+    high: '高い'
+    usual: '普通'
+    row: '低い'
     message:
       registered: '%{item}を登録しました' 
       not_registered: '%{item}を登録できませんでした'
@@ -24,7 +27,8 @@ ja:
       title: 'お問い合わせ'
   groups:
     new:
-      title: 'ユーザー設定'
+      title: 'ユーザー登録'
+      set_last_name: '上の名前を入力してください'
       for_usersetting_title: '名前を決める上での優先順位'
   rates:
     new:
