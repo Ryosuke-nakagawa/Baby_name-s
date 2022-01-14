@@ -8,26 +8,26 @@
         i.fas.fa-angle-left.back-button
   .row.py-2
     .col-6.text-center
-      h1. 音の響き
+      h1. = Rate.human_attribute_name(:sound_rate)
     .col-6.text-left
       span.star-show data-rate = sound_average(@rates)
     .col-6.text-center.py-2
-      h1. 漢字
+      h1. = Rate.human_attribute_name(:character_rate)
     .col-6.text-left.py-2
       span.star-show data-rate = character_average(@rates)
     .col-6.text-center.py-2
-      h1. 姓名判断
+      h1. = FirstName.human_attribute_name(:fotune_telling_rate)
     .col-6.text-left.py-2
       span.star-show data-rate = @first_name.fotune_telling_rate.to_f
     .d-flex.flex-row-reverse
       - if @rate.nil?
-          = link_to '評価をする',new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
+          = link_to t('defaults.rating'),new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
       - else
-        = link_to '変更',edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg py-2"
+        = link_to t('defaults.change'),edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg py-2"
   .container.py-3.d-flex.flex-column.align-items-center
     img src = @fotune_telling_image_url  width="320" height="300"
-    = link_to  "いい名前ネット サイトURL", @first_name.fotune_telling_url
+    = link_to t('.fotune_telling_site'), @first_name.fotune_telling_url
 
   .container.text-center.pt-3
-    = link_to '名前を削除する',first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
-    p ※共有しているユーザーのアカウントからも名前が消えます※
+    = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
+    p = t('.notes_on_deleting')

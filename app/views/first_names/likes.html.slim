@@ -4,9 +4,9 @@
     select.col-4.sort-button id="sort_js"
       option.selected = t('.heart')
       option value=group_first_names_path(@group) = t('.overall_rating')
-      option value=group_first_names_path(@group,sort: 'sound') = t('.sound')
-      option value=group_first_names_path(@group,sort: 'character') = t('.character')
-      option value=group_first_names_path(@group,sort: 'fotune_telling') = t('.fotune_telling')
+      option value=group_first_names_path(@group,sort: 'sound') = Rate.human_attribute_name(:sound_rate)
+      option value=group_first_names_path(@group,sort: 'character') = Rate.human_attribute_name(:character_rate)
+      option value=group_first_names_path(@group,sort: 'fotune_telling') = FirstName.human_attribute_name(:fotune_telling_rate)
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
