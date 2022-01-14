@@ -40,6 +40,15 @@ ja:
       title: 'サイトについて'
     contact:
       title: 'お問い合わせ'
+      add_function: '機能の追加の要望'
+      report_bug: '不具合の報告'
+      data_delete: 'ユーザー本人に関連するデータの削除依頼'
+      etc: 'その他'
+      accept: |-
+        googleフォームまたは
+        twitterDMより受け付けています。
+      for_google_form: 'googleフォームはこちら'
+      for_twitter: '作成者のtwitterアカウントはこちら'
   groups:
     new:
       title: 'ユーザー登録'
