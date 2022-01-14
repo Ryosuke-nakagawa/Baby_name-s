@@ -1,9 +1,6 @@
 ja:
   defaults:
     title: 'Baby Names'
-    title_newline: |-
-      Baby
-      Names
     user_setting: 'ユーザー設定'
     register: '決定'
     change: '変更'
@@ -22,7 +19,19 @@ ja:
   static_pages:
     top:
       title: 'トップページ'
+      title_detail: '名前を評価・保存・シェアするアプリ'
+      title_newline: |-
+        Baby
+        Names
+      think_of_baby_name: |-
+        夫婦で、家族で
+        赤ちゃんの名前を考よう
+      add_friends_and_start: 'LINEの友達に追加してはじめる'
       how_to_use: '使い方'
+      add_line_friends: |-
+        LINEの友達追加をして名前を考えよう!
+        ↓ ↓ ↓
+      add_line: '友達追加'
     terms:
       title: '利用規約'
     privacy_policy:
