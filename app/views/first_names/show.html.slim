@@ -1,5 +1,5 @@
 - set_meta_tags title: t('.title')
-.container.pt-5
+.container.pt-3
   .row
     .col
       h4.text-center = @first_name.reading
@@ -8,16 +8,16 @@
         i.fas.fa-angle-left.back-button
   .row.py-2
     .col-6.text-center
-      h1. = Rate.human_attribute_name(:sound_rate)
+      h4. = Rate.human_attribute_name(:sound_rate)
     .col-6.text-left
       span.star-show data-rate = sound_average(@rates)
     .col-6.text-center.py-2
-      h1. = Rate.human_attribute_name(:character_rate)
+      h4. = Rate.human_attribute_name(:character_rate)
     .col-6.text-left.py-2
       span.star-show data-rate = character_average(@rates)
-    .col-6.text-center.py-2
-      h1. = FirstName.human_attribute_name(:fotune_telling_rate)
-    .col-6.text-left.py-2
+    .col-6.text-center
+      h4. = FirstName.human_attribute_name(:fotune_telling_rate)
+    .col-6.text-left
       span.star-show data-rate = @first_name.fotune_telling_rate.to_f
     .d-flex.flex-row-reverse
       - if @rate.nil?
