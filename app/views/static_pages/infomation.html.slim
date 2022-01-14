@@ -1,13 +1,13 @@
 - set_meta_tags title: t('.title')
 .container.mt-3
   .col
-    h1.text-center.py-3 サイトについて
+    h1.text-center.py-3 = t('.title')
   .col.my-5.ms-4.d-flex
     i.fas.fa-phone.info-icons
-    = link_to "お問い合わせ", contact_path, class: 'fs-3 ps-3 brown'
+    = link_to t('static_pages.contact.title'), contact_path, class: 'fs-3 ps-3 brown'
   .col.my-5.ms-4.d-flex
     i.far.fa-sticky-note.info-icons
-    = link_to "利用規約", terms_path, class: 'fs-3 ps-3 brown'
+    = link_to t('static_pages.terms.title'), terms_path, class: 'fs-3 ps-3 brown'
   .col.my-5.ms-4.d-flex.
     i.fas.fa-user-shield.info-icons
-    = link_to "プライバシーポリシー", privacy_policy_path, class: 'fs-3 ps-3 brown'
+    = link_to t('static_pages.privacy_policy.title'), privacy_policy_path, class: 'fs-3 ps-3 brown'
