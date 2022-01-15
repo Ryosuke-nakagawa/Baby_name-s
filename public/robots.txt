@@ -1,2 +1,2 @@
 # See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
-Sitemap: "https://https://s3-ap-northeast-1.amazonaws.com/#{ENV[AWS_BUCKET]}/sitemaps/sitemap.xml.gz"
+Sitemap: https://www.baby-names-app.com/sitemap
