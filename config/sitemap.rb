@@ -1,7 +1,15 @@
 # Set the host name for URL creation
-SitemapGenerator::Sitemap.default_host = "http://www.example.com"
+SitemapGenerator::Sitemap.default_host = 'https://example.com'
+SitemapGenerator::Sitemap.sitemaps_host = "https://s3-ap-northeast-1.amazonaws.com/#{ENV['AWS_BUCKET']}"
+SitemapGenerator::Sitemap.adapter = SitemapGenerator::AwsSdkAdapter.new(
+  ENV['AWS_BUCKET'],
+  aws_access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+  aws_secret_access_key: ENV['AWS_SECRET_ACCESS_KEY'],
+  aws_region: ENV['AWS_REGION']
+)
 
 SitemapGenerator::Sitemap.create do
+  add root_path
   # Put links creation logic here.
   #
   # The root path '/' and sitemap index file are added automatically for you.
