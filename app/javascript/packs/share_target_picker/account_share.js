@@ -35,9 +35,9 @@ $('#js-account-share-button').on('click', function() {
               "type": "bubble",
               "hero": {
                 "type": "image",
-                "url": "https://www.baby-names-app.com/assets/account_share-57db9732177bbe269f076ef30b774c7a282f7009603a60c789da40de77c29350.png",
+                "url": "https://www.baby-names-app.com/assets/card-cab16440c1e08d2685c36fef37bbfcb4121fd8fb849fc06efb9ad6c139aebb64.png",
                 "size": "full",
-                "aspectRatio": "1:1",
+                "aspectRatio": "2:1",
                 "aspectMode": "cover",
                 "position": "relative"
               },
