@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+$('#js-account-share-button').on('click', function() {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   liff.init({
@@ -39,10 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 "size": "full",
                 "aspectRatio": "1:1",
                 "aspectMode": "cover",
-                "action": {
-                  "type": "uri",
-                  "uri": "http://linecorp.com/"
-                },
                 "position": "relative"
               },
               "footer": {

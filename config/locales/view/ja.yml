@@ -93,7 +93,12 @@ ja:
         響き
   share_target_pickers:
     new:
-      title: 'アカウント シェア'
+      title: 'シェア'
+      account_share: 'アカウントを共有する'
+      account_share_detail: '名前の登録や確認を一緒に行えます'
+      account_share_btn: 'アカウント共有する'
+      social_share: 'アプリをシェアする'
+      social_share_detail: '(アカウント共有しない)'
   likes:
     create:
       success: 'ハートしました'
