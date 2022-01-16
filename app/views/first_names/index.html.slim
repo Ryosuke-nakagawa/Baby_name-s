@@ -37,7 +37,12 @@
           span.star-index data-rate = character_average(Rate.ratings_within_group(first_name,first_name.group))
         .col-2.d-inline-flex
           span.star-index data-rate = first_name.fotune_telling_rate.to_f
-        .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
-          i.fas.fa-edit
+        - if first_name.rated?(current_user)
+          .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
+            i.fas.fa-edit
+        - else
+          .col-2.d-flex.align-items-center.justify-content-center = link_to new_first_name_rate_path(first_name)
+            i.fas.fa-exclamation.icon-unrated
+            i.fas.fa-edit
 
 = javascript_pack_tag 'first_names/sort'
