@@ -29,7 +29,7 @@ module ApplicationHelper
         card: 'summary_large_image',
         site: 'https://www.baby-names-app.com/',
         title: title,
-        image: image_url('twitter_card.png')
+        image: image_url('card.png')
       }
     }
   end

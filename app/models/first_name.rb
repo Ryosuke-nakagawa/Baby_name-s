@@ -40,4 +40,8 @@ class FirstName < ApplicationRecord
     sorted_score.map { |_result, first_name| sorted_first_names << first_name }
     sorted_first_names
   end
+
+  def rated?(user)
+    rates.find_by(user_id: user.id)
+  end
 end
