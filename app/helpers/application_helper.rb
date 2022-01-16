@@ -27,7 +27,7 @@ module ApplicationHelper
       },
       twitter: {
         card: 'summary_large_image',
-        site: '@Nmittyancccccc',
+        site: 'https://www.baby-names-app.com/',
         title: title,
         image: image_url('twitter_card.png')
       }
