@@ -2,11 +2,11 @@
 .container.pt-3
   .row
     .col
-      h4.text-center = @first_name.reading
-      .display-2.text-center = @first_name.name
-      = link_to group_first_names_path(@group),class: "float-start"
+      h5.text-center = @first_name.reading
+      = link_to group_first_names_path(@group),class: "position-absolute"
         i.fas.fa-angle-left.back-button
-  .row.py-2
+      .display-3.text-center = @first_name.name
+  .row.pb-2.pt-3
     .col-6.text-center
       h4. = Rate.human_attribute_name(:sound_rate)
     .col-6.text-left
@@ -23,8 +23,8 @@
       - if @rate.nil?
           = link_to t('defaults.rating'),new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
       - else
-        = link_to t('defaults.change'),edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark btn-lg py-2"
-  .container.py-3.d-flex.flex-column.align-items-center
+        = link_to t('defaults.change'),edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark py-2"
+  .container.py-1.d-flex.flex-column.align-items-center
     img src = @fotune_telling_image_url  width="320" height="300"
     = link_to t('.fotune_telling_site'), @first_name.fotune_telling_url
 

@@ -16,8 +16,10 @@
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
   - if @first_names.empty?
-    .container-fluid.pt-5.mt-5
-      = image_tag 'guide_to_registration.png', width: "696"
+    .container-fluid.my-5
+      .d-flex.flex-column.align-items-center.justify-content-center
+        h4.text-center.fw-bold Baby namesのトーク画面から<br>ボタンをタップして<br>名前を登録してみよう<br>↓ ↓ ↓
+        = image_tag 'guide_to_registration.jpeg', width: "300"
   else
     - @first_names.each do |first_name|
       .row.text-center.pt-3
