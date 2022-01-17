@@ -1,13 +1,13 @@
 
 - set_meta_tags title: t('.title')
 .container-xs
-  .col-lg-8.p-5
+  .col-lg-8.px-5.py-3
     h1.title.text-center.fw-bold = t('.title')
     = form_with model: @group, local: true do |f|
       .form-group.pt-3
         = f.label :last_name, t('.set_last_name'), class: "form-label me-5"
         = f.text_field :last_name, placeholder: Group.human_attribute_name(:last_name), class: "form-control"
-      h5.py-4 = t '.for_usersetting_title'
+      h5.pt-4.pb-2 = t '.for_usersetting_title'
       = f.fields_for @user do |u|
         .form-group.mt-2
           .form-group.row
@@ -20,7 +20,7 @@
               = u.label :sound_rate_setting_2, t('defaults.usual'), class: "btn outline btn-dark mx-2"
               = u.radio_button :sound_rate_setting, 1, class: "btn-check", autocomplete: "off"
               = u.label :sound_rate_setting_1, t('defaults.row'), class: "btn outline btn-dark mx-2"
-        .form-group.mt-3
+        .form-group.mt-2
           .form-group.row
             .col-sm-2
               = u.label :character_rate_setting, User.human_attribute_name(:character_rate_setting), class: 'form-label'
