@@ -51,7 +51,6 @@ ActiveRecord::Schema.define(version: 2022_01_17_195313) do
     t.string "reading", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["year", "sex", "rank"], name: "index_rankings_on_year_and_sex_and_rank", unique: true
   end
 
   create_table "rates", force: :cascade do |t|
