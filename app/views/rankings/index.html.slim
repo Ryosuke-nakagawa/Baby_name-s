@@ -24,5 +24,7 @@
       = "#{girl_first_name.rank}位" 
     .col-4.text-center
       h4. = girl_first_name.name
-    
+.col-12.text-center.py-3
+  = link_to 'お名前一覧に戻る', group_first_names_path(@group), class: 'btn btn-dark'
+
 = javascript_pack_tag 'share/for_select_box'

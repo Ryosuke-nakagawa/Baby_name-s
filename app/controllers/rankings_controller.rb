@@ -1,6 +1,7 @@
 class RankingsController < ApplicationController
 
   def index
+    @group = current_user.group
     if params[:year]
       @selected_year = params[:year]
     else

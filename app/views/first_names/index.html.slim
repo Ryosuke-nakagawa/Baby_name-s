@@ -46,5 +46,7 @@
           .col-2.d-flex.align-items-center.justify-content-center = link_to new_first_name_rate_path(first_name)
             i.fas.fa-exclamation.icon-unrated
             i.fas.fa-edit
+    .col-12.text-center.py-4
+      = link_to 'お名前ランキングを見てみる', rankings_path, class: 'btn btn-dark'
 
 = javascript_pack_tag 'share/for_select_box'
