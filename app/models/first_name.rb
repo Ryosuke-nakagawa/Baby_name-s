@@ -3,9 +3,15 @@ class FirstName < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :likes, dependent: :destroy
 
-  scope :order_by_sound, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_sound_rate DESC NULLS LAST').average('rates.sound_rate') }
-  scope :order_by_character, ->(group_id) { where(group_id: group_id).joins(:rates).group(:id).order('average_rates_character_rate DESC NULLS LAST').average('rates.character_rate') }
-  scope :order_by_fotune_telling, ->(group_id) { where(group_id: group_id).order('fotune_telling_rate DESC NULLS LAST') }
+  scope :order_by_sound, lambda { |group_id|
+                           where(group_id: group_id).joins(:rates).group(:id).order('average_rates_sound_rate DESC NULLS LAST').average('rates.sound_rate')
+                         }
+  scope :order_by_character, lambda { |group_id|
+                               where(group_id: group_id).joins(:rates).group(:id).order('average_rates_character_rate DESC NULLS LAST').average('rates.character_rate')
+                             }
+  scope :order_by_fotune_telling, lambda { |group_id|
+                                    where(group_id: group_id).order('fotune_telling_rate DESC NULLS LAST')
+                                  }
 
   def self.sort_by_overall_rating(first_names, group_users)
     score = {}

@@ -1,5 +1,4 @@
 class Message
-
   attr_accessor :object
 
   def guide_to_initial_registration
@@ -139,65 +138,66 @@ class Message
   def registration_is_complete(first_name)
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
-    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'], key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
+                                                                 key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
 
     @object = {
-      'type': 'flex',
-      'altText': '名前の登録が完了しました。',
-      'contents': 
+      type: 'flex',
+      altText: '名前の登録が完了しました。',
+      contents:
         {
-          "type": "bubble",
-          "header": 
+          type: 'bubble',
+          header:
             {
-              "type": "box",
-              "layout": "vertical",
-              "contents":
+              type: 'box',
+              layout: 'vertical',
+              contents:
                 [
                   {
-                    "type": "text",
-                    "text": "お名前の登録が完了しました!",
-                    "weight": "bold",
-                    "size": "md"
+                    type: 'text',
+                    text: 'お名前の登録が完了しました!',
+                    weight: 'bold',
+                    size: 'md'
                   }
                 ]
             },
-          "hero":
+          hero:
             {
-              "type": "image",
-              "url": fotune_telling_image_url,
-              "size": "full",
-              "aspectRatio": "15:13",
-              "aspectMode": "cover",
-              "action": 
+              type: 'image',
+              url: fotune_telling_image_url,
+              size: 'full',
+              aspectRatio: '15:13',
+              aspectMode: 'cover',
+              action:
                 {
-                  "type": "uri",
-                  "uri": first_name.fotune_telling_url
+                  type: 'uri',
+                  uri: first_name.fotune_telling_url
                 }
-             },
-          "footer":
+            },
+          footer:
             {
-              "type": "box",
-              "layout": "vertical",
-              "spacing": "sm",
-              "contents":
+              type: 'box',
+              layout: 'vertical',
+              spacing: 'sm',
+              contents:
                 [
                   {
-                    "type": "button",
-                    "style": "link",
-                    "height": "sm",
-                    "action":
+                    type: 'button',
+                    style: 'link',
+                    height: 'sm',
+                    action:
                       {
-                        "type": "uri",
-                        "label": "姓名判断の詳細はこちら",
-                        "uri": first_name.fotune_telling_url
+                        type: 'uri',
+                        label: '姓名判断の詳細はこちら',
+                        uri: first_name.fotune_telling_url
                       }
                   },
                   {
-                    "type": "spacer",
-                    "size": "sm"
+                    type: 'spacer',
+                    size: 'sm'
                   }
                 ],
-              "flex": 0
+              flex: 0
             }
         }
     }
@@ -206,41 +206,42 @@ class Message
   def fotune_telling(first_name)
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
-    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'], key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
+                                                                 key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
 
     @object = {
-      'type': 'flex',
-      'altText': '姓名判断の結果です。',
-      'contents': {
-        'type': 'bubble',
-        'hero': {
-          'type': 'image',
-          'url': fotune_telling_image_url,
-          'size': 'full',
-          'aspectRatio': '10:9',
-          'aspectMode': 'cover'
+      type: 'flex',
+      altText: '姓名判断の結果です。',
+      contents: {
+        type: 'bubble',
+        hero: {
+          type: 'image',
+          url: fotune_telling_image_url,
+          size: 'full',
+          aspectRatio: '10:9',
+          aspectMode: 'cover'
         },
-        'footer': {
-          'type': 'box',
-          'layout': 'vertical',
-          'spacing': 'sm',
-          'contents': [
+        footer: {
+          type: 'box',
+          layout: 'vertical',
+          spacing: 'sm',
+          contents: [
             {
-              'type': 'button',
-              'style': 'link',
-              'height': 'sm',
-              'action': {
-                'type': 'uri',
-                'label': '詳しく見る',
-                'uri': first_name.fotune_telling_url
+              type: 'button',
+              style: 'link',
+              height: 'sm',
+              action: {
+                type: 'uri',
+                label: '詳しく見る',
+                uri: first_name.fotune_telling_url
               }
             },
             {
-              'type': 'spacer',
-              'size': 'sm'
+              type: 'spacer',
+              size: 'sm'
             }
           ],
-          'flex': 0
+          flex: 0
         }
       }
     }

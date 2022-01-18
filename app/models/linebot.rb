@@ -52,7 +52,8 @@ class Linebot
             image_name = "img_#{Random.uuid}.jpg"
             fotune_telling.save_image_to_s3(image_name)
 
-            new_first_name.update(fotune_telling_url: fotune_telling.search_url, fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
+            new_first_name.update(fotune_telling_url: fotune_telling.search_url,
+                                  fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
             @user.reading_add!
@@ -70,7 +71,7 @@ class Linebot
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
             @message.registration_is_complete(@user.editing_name)
-            
+
             client.reply_message(event['replyToken'], @message.object)
             @user.update(editing_name_id: nil)
             @user.normal!
@@ -81,9 +82,9 @@ class Linebot
   end
 
   def client
-    @client ||= Line::Bot::Client.new { |config|
-        config.channel_secret = ENV['LINEBOT_CHANNEL_SECRET']
-        config.channel_token = ENV['LINEBOT_CHANNEL_TOKEN']
-    }
+    @client ||= Line::Bot::Client.new do |config|
+      config.channel_secret = ENV['LINEBOT_CHANNEL_SECRET']
+      config.channel_token = ENV['LINEBOT_CHANNEL_TOKEN']
+    end
   end
 end
