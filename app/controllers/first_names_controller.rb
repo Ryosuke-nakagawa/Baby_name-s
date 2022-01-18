@@ -51,7 +51,25 @@ class FirstNamesController < ApplicationController
 
   def likes
     @group = current_user.group
-    @like_first_names = current_user.like_first_names.order(created_at: :DESC)
+    like_first_names = current_user.like_first_names
+    case params[:sort]
+    when 'sound'
+      @like_first_names = []
+      result = like_first_names.order_by_sound(@group.id)
+      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
+      @sort = 'sound'
+    when 'character'
+      @like_first_names = []
+      result = like_first_names.order_by_character(@group.id)
+      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
+      @sort = 'character'
+    when 'fotune_telling'
+      @like_first_names = like_first_names.order_by_fotune_telling(@group.id)
+      @sort = 'fotune_telling'
+    else
+      @like_first_names = FirstName.sort_by_overall_rating(like_first_names, @group.users)
+      @sort = 'overall_rating'
+    end
   end
 
   def destroy
