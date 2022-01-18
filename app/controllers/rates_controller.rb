@@ -8,7 +8,8 @@ class RatesController < ApplicationController
 
   def create
     @rate = Rate.create(rate_params)
-    redirect_to first_name_path(@rate.first_name), success: t('defaults.message.registered', item: Rate.model_name.human)
+    redirect_to first_name_path(@rate.first_name),
+                success: t('defaults.message.registered', item: Rate.model_name.human)
   end
 
   def update
@@ -23,7 +24,8 @@ class RatesController < ApplicationController
   private
 
   def rate_params
-    params.require(:rate).permit(:sound_rate, :character_rate).merge(user_id: current_user.id, first_name_id: params[:first_name_id])
+    params.require(:rate).permit(:sound_rate, :character_rate).merge(user_id: current_user.id,
+                                                                     first_name_id: params[:first_name_id])
   end
 
   def update_rate_params

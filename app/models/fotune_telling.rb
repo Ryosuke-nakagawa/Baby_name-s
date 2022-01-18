@@ -1,6 +1,6 @@
 class FotuneTelling
   require 'open-uri'
-  
+
   def initialize(first_name:, last_name:)
     @first_name = first_name
     @last_name = last_name
@@ -22,7 +22,6 @@ class FotuneTelling
   end
 
   def save_image_to_s3(image_name)
-
     file = "public/fotune_telling_images/#{image_name}"
     image_url = "https://enamae.net/result2/#{search_param}.jpg"
 

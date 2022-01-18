@@ -11,7 +11,8 @@ class FirstNamesController < ApplicationController
   def login
     id_token = params[:idToken]
     channel_id = ENV['LIFF_CHANNEL_ID']
-    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'), { 'id_token' => id_token, 'client_id' => channel_id })
+    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
+                              { 'id_token' => id_token, 'client_id' => channel_id })
     line_user_id = JSON.parse(res.body)['sub']
     user = User.find_by(line_id: line_user_id)
 
@@ -55,13 +56,15 @@ class FirstNamesController < ApplicationController
 
   def destroy
     @first_name.destroy!
-    redirect_to group_first_names_path(@first_name.group), success: t('defaults.message.deleted', item: FirstName.model_name.human)
+    redirect_to group_first_names_path(@first_name.group),
+                success: t('defaults.message.deleted', item: FirstName.model_name.human)
   end
 
   def show
     s3 = Aws::S3::Resource.new
     signer = Aws::S3::Presigner.new(client: s3.client)
-    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'], key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
+                                                                  key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
