@@ -15,6 +15,9 @@
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
+    .col-2.heart-change-button.d-flex.justify-content-center
+      = link_to likes_first_names_path,class: 'd-flex align-items-center brown' do
+        i.far.fa-heart.brown.fa-2x
   - if @first_names.empty?
     .container-fluid.my-5
       .d-flex.flex-column.align-items-center.justify-content-center
