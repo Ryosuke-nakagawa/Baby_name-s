@@ -1,0 +1,28 @@
+- set_meta_tags title: t('.title')
+.container
+  .row.mt-4.under-line.justify-content-center
+    select.col-3.sort-button id="select_box_js"
+      option.selected = @selected_year
+      - @saved_years.each do |year|
+        - if @selected_year != year
+          option value=rankings_path(year: year) = year
+    .col-7.d-flex 年の名前人気ランキング
+    .col-6.d-flex.align-items-center.justify-content-center.py-2 男の子
+    .col-6.d-flex.align-items-center.justify-content-center.py-2 女の子
+- @ranking_first_names.each do |boy_first_name,girl_first_name|
+  .row.text-center.pt-3
+      .col-2
+      .col-4.index-reading-text = boy_first_name.reading
+      .col-2
+      .col-4.index-reading-text = girl_first_name.reading
+  .row.under-line-dot
+    .col-2.text-end
+      = "#{boy_first_name.rank}位" 
+    .col-4.text-center
+      h4. = boy_first_name.name
+    .col-2.text-end
+      = "#{girl_first_name.rank}位" 
+    .col-4.text-center
+      h4. = girl_first_name.name
+    
+= javascript_pack_tag 'share/for_select_box'

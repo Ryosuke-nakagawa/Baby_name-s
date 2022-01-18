@@ -1,7 +1,7 @@
 - set_meta_tags title: t('.title')
 .container
   .row.mt-4.under-line
-    select.col-4.sort-button id="sort_js"
+    select.col-4.sort-button id="select_box_js"
       option.selected = t(".#{@sort}")
       - if @sort != "overall_rating"
         option value=group_first_names_path(@group) = t('.overall_rating')
@@ -47,4 +47,4 @@
             i.fas.fa-exclamation.icon-unrated
             i.fas.fa-edit
 
-= javascript_pack_tag 'first_names/sort'
+= javascript_pack_tag 'share/for_select_box'

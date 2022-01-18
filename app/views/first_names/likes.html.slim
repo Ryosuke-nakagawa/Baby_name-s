@@ -1,7 +1,7 @@
 - set_meta_tags title: t('.title')
 .container
   .row.mt-4.under-line
-    select.col-4.sort-button id="sort_js"
+    select.col-4.sort-button id="select_box_js"
       option.selected = t('.heart')
       option value=group_first_names_path(@group) = t('.overall_rating')
       option value=group_first_names_path(@group,sort: 'sound') = Rate.human_attribute_name(:sound_rate)
@@ -35,4 +35,4 @@
         .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
           i.fas.fa-edit
 
-= javascript_pack_tag 'first_names/sort'
+= javascript_pack_tag 'share/for_select_box'
