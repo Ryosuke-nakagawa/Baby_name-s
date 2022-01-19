@@ -16,7 +16,11 @@ class UsersController < ApplicationController
     user = User.find_by(line_id: line_user_id)
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
-      user = User.create!(line_id: line_user_id, group: link_user.group)
+      if user.nil?
+        user = User.create!(line_id: line_user_id, group: link_user.group)
+      else
+        user.update!(group: link_user.group)
+      end
       session[:user_id] = user.id
       return
     end

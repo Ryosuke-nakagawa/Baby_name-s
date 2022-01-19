@@ -105,8 +105,12 @@ ja:
       account_share: 'アカウントを共有する'
       account_share_detail: '名前の登録や確認を一緒に行えます'
       account_share_btn: 'アカウント共有する'
+      account_share_caution: |-
+        ※招待されるユーザーが既にBabyNamesをご使用している場合、
+        招待する側の名前一覧に上書きされるのでご注意ください
       social_share: 'アプリをシェアする'
       social_share_detail: '(アカウント共有しない)'
+
   likes:
     create:
       success: 'ハートしました'
