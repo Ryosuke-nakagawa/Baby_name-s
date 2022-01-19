@@ -21,7 +21,7 @@
     .container-fluid.my-5
       .d-flex.flex-column.align-items-center.justify-content-center
         h4.text-center.fw-bold = simple_format(t('.suggest_registration'),{},wrapper_tag: "div")
-        = image_tag 'guide_to_registration.jpeg', width: "300"
+        = image_tag 'guide_to_name_registration.jpeg', width: "300"
   else
     - @first_names.each do |first_name|
       .row.text-center.pt-3
