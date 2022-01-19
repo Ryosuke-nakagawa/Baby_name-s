@@ -50,4 +50,10 @@ class FirstName < ApplicationRecord
   def rated?(user)
     rates.find_by(user_id: user.id)
   end
+
+  def remove_other_than_same(first_names_list)
+    self.delete_if do |fist_name|
+      first_names_list.include?(first_name)
+    end
+  end
 end
