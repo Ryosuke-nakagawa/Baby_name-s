@@ -74,6 +74,11 @@ ja:
       headline_sound: |-
         音の
         響き
+      suggest_registration: |-
+        BabyNamesのトーク画面から
+        ボタンをタップして
+        名前を登録してみよう
+        ↓ ↓ ↓
     show:
       title: '名前の詳細'
       delete_name: '名前を削除する'
