@@ -7,14 +7,26 @@
         i.fas.fa-angle-left.back-button
       .display-3.text-center = @first_name.name
   .row.pb-2.pt-3
-    .col-6.text-center
+    .col-6.d-flex.align-items-center.justify-content-center
       h4. = Rate.human_attribute_name(:sound_rate)
-    .col-6.text-left
-      span.star-show data-rate = sound_average(@rates)
-    .col-6.text-center.py-2
+    .col-6.text-left.d-flex.flex-wrap
+      - if @group.two_or_more_user?
+        span.star-show data-rate = sound_average(@rates)
+        .flex-fill.text-center
+          |  平均
+        span.star-show-users data-rate = @rate.sound_rate.to_f
+        .flex-fill.text-center
+          |  あなた
+      - else
+        span.star-show data-rate = @rate.sound_rate.to_f
+    .col-6.py-2.d-flex.align-items-center.justify-content-center
       h4. = Rate.human_attribute_name(:character_rate)
-    .col-6.text-left.py-2
-      span.star-show data-rate = character_average(@rates)
+    .col-6.text-left.py-2.d-flex.flex-wrap
+      - if @group.two_or_more_user?
+        span.star-show data-rate = character_average(@rates)
+        span.star-show-users data-rate = @rate.character_rate.to_f
+      - else
+        span.star-show data-rate = @rate.character_rate.to_f
     .col-6.text-center
       h4. = FirstName.human_attribute_name(:fotune_telling_rate)
     .col-6.text-left
