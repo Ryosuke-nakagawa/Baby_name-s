@@ -30,4 +30,15 @@ class UsersController < ApplicationController
     end
     session[:user_id] = user.id
   end
+
+  def destroy
+    user = User.find(session[:user_id])
+    leave_group = user.group
+    new_group = Group.create!
+    user.likes.delete_all
+    user.rates.delete_all
+    user.update!(group: new_group, status: 'normal', editing_name_id: nil, sound_rate_setting: nil, character_rate_setting: nil, fotune_telling_rate_setting: nil)
+    leave_group.destroy if leave_group.users.empty?
+    redirect_to new_user_path, success: 'ユーザー情報のリセットに成功しました'
+  end
 end

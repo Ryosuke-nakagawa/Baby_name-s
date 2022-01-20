@@ -1,7 +1,7 @@
 
 - set_meta_tags title: t('.title')
 .container-xs
-  .col-lg-8.px-5.py-3
+  .col-lg-8.px-5.py-3.under-line-dot
     h1.title.text-center.fw-bold = t('.title')
     = form_with model: @group, local: true do |f|
       .form-group.pt-3
@@ -42,7 +42,11 @@
               = u.label :fotune_telling_rate_setting_2, t('defaults.usual'), class: "btn outline btn-dark mx-2"
               = u.radio_button :fotune_telling_rate_setting, 1, class: "btn-check", autocomplete: "off"
               = u.label :fotune_telling_rate_setting_1, t('defaults.row'), class: "btn outline btn-dark mx-2"
-
       .col.text-center.mt-3
         = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
-
+  .col.pt-5
+    h1.title.text-center.fw-bold ユーザー情報リセット
+    .text-center.pt-2
+      | 名前一覧の情報がリセットされます。<br>アカウント共有している場合、共有が解除されます。
+  .col.py-4.text-center
+    = link_to 'ユーザーリセット', user_path(@user), method: :delete, class: 'btn btn-danger fs-4', data: {confirm: "リセットしてよろしいですか？"}
