@@ -83,7 +83,9 @@ ja:
       title: '名前の詳細'
       delete_name: '名前を削除する'
       fotune_telling_site: 'いい名前ネット サイトURL'
-      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます※'
+      average: '平均'
+      you: 'あなた'
+      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
     likes:
       title: 'ハート一覧'
       no_hearted_name: 'ハートされた名前がありません'

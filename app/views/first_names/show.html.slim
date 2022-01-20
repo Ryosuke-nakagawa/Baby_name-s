@@ -13,10 +13,10 @@
       - if @group.two_or_more_user?
         span.star-show data-rate = sound_average(@rates)
         .flex-fill.text-center
-          |  平均
+          = t('.average')
         span.star-show-users data-rate = @rate.sound_rate.to_f
         .flex-fill.text-center
-          |  あなた
+          = t('.you')
       - else
         span.star-show data-rate = @rate.sound_rate.to_f
     .col-6.py-2.d-flex.align-items-center.justify-content-center
