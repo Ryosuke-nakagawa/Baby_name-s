@@ -5,7 +5,15 @@ class Message
     @object =
       {
         type: 'text',
-        text: 'メニューバーの始めるからユーザー登録を行なってね'
+        text: 'メニューバーの「START」からユーザー登録を行なってね'
+      }
+  end
+
+  def registration_last_name
+    @object =
+      {
+        type: 'text',
+        text: 'メニューの「ユーザー設定」から姓を登録してね'
       }
   end
 
@@ -21,7 +29,7 @@ class Message
     @object =
       {
         type: 'text',
-        text: 'メニューバーから「新規登録」で名前候補を登録できるよ/登録された名前を漢字で送ると、姓名判断の結果を返すよ'
+        text: 'メニューバーから「新規登録」で名前候補を登録できるよ / 登録された名前を漢字で送ると、姓名判断の結果を返すよ'
       }
   end
 

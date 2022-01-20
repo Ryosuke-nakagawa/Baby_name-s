@@ -32,9 +32,14 @@ class Linebot
           case @user.status
           when 'normal'
             if replied_message == '名前を新規登録'
-              @message.send_message_in_characters
-              client.reply_message(event['replyToken'], @message.object)
-              @user.name_add!
+              if @user.group.last_name.nil?
+                @message.registration_last_name
+                client.reply_message(event['replyToken'], @message.object)
+              else
+                @message.send_message_in_characters
+                client.reply_message(event['replyToken'], @message.object)
+                @user.name_add!
+              end
             else
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
               if search_name.nil?
