@@ -42,4 +42,4 @@
 
   .container.text-center.pt-3
     = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
-    p = t('.notes_on_deleting')
+    p.detail-text = t('.notes_on_deleting')
