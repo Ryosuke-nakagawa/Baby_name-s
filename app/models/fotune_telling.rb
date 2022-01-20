@@ -18,7 +18,7 @@ class FotuneTelling
     kikkyou = doc.css('.kikkyou').count
     kyou = doc.css('.kyou').count
     tokusyu = doc.css('.tokusyu').count
-    (daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 2) / 6
+    (daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 1) / 6
   end
 
   def save_image_to_s3(image_name)
