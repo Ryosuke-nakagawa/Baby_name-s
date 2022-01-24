@@ -29,5 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location = `/groups/${group_id.id}/first_names`
       })
     })
+    .catch(function(response) {
+      console.log('Login failed')
+    })
   })
 })
