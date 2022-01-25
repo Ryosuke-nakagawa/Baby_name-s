@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
+  before_action :set_user, only: %i[new update]
+
   def new
-    @user = current_user
     @group = @user.group
   end
 
   def update
-    @user = current_user
     @group = Group.find(params[:id])
     if @group.update(group_params) && @user.update(user_params)
       # LINERICHメニューの切り替え
@@ -36,5 +36,9 @@ class GroupsController < ApplicationController
 
   def user_params
     params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fotune_telling_rate_setting)
+  end
+
+  def set_user
+    @user = current_user
   end
 end

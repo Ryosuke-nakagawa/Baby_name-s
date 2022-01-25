@@ -7,7 +7,7 @@ class RatesController < ApplicationController
   end
 
   def create
-    @rate = Rate.create(rate_params)
+    @rate = Rate.create!(rate_params)
     redirect_to first_name_path(@rate.first_name),
                 success: t('defaults.message.registered', item: Rate.model_name.human)
   end
