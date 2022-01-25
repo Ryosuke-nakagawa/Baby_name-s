@@ -21,8 +21,6 @@ class UsersController < ApplicationController
       else
         user.update!(group: link_user.group)
       end
-      session[:user_id] = user.id
-      return
     end
     if user.nil?
       group = Group.create!
