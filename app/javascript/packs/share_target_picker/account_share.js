@@ -64,13 +64,22 @@ $('#js-account-share-button').on('click', function() {
               }
             },
           }],
-          ).catch(function (res) {
-            //「シェアターゲットピッカー」が有効になっているが取得に失敗した場合 
-            console.log('LINEのバージョンが古い可能性があります');
+          ).then((res) => {
+            if (res) {
+              // TargetPickerが送られた場合
+              liff.closeWindow();
+            } else {
+              // TargetPickerを送らずに閉じた場合
+              console.log('TargetPicker was closed!')
+              liff.closeWindow();
+            }
+          })
+          .catch(function (res) {
+            alert('Failed to send')
           });
         } else {
           //「シェアターゲットピッカー」が無効になっている場合
-          console.log('「シェアターゲットピッカー」が無効になっています');
+          console.log('TargetPicker is disabled');
         }
       })
     })
