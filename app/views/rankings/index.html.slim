@@ -1,12 +1,14 @@
 - set_meta_tags title: t('.title')
 .container
-  .row.mt-4.under-line.justify-content-center
-    select.col-3.sort-button id="select_box_js"
-      option.selected = @selected_year
-      - @saved_years.each do |year|
-        - if @selected_year != year
-          option value=rankings_path(year: year) = year
-    .col-7.d-flex 年の名前人気ランキング
+  = link_to '出典元: たまひよ 赤ちゃんの名前ランキング','https://st.benesse.ne.jp/ninshin/name/', class: 'float-end text-reset pt-2 small'
+  .row.mt-5.under-line.justify-content-center
+    .col-12.d-flex.justify-content-center
+      select.ranking-sort-button id="select_box_js"
+        option.selected = @selected_year
+        - @saved_years.each do |year|
+          - if @selected_year != year
+            option value=rankings_path(year: year) = year
+      | 年の名前人気ランキング
     .col-6.d-flex.align-items-center.justify-content-center.py-2 男の子
     .col-6.d-flex.align-items-center.justify-content-center.py-2 女の子
 - @ranking_first_names.each do |boy_first_name,girl_first_name|
