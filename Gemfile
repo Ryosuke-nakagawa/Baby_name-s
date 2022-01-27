@@ -41,7 +41,8 @@ group :development, :test do
 end
 
 group :test do
-  gem "capybara"
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 group :development do
