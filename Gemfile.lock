@@ -116,6 +116,9 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    exception_notification (4.5.0)
+      actionmailer (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
     execjs (2.8.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -326,6 +329,7 @@ DEPENDENCIES
   byebug
   capybara
   dotenv-rails
+  exception_notification
   factory_bot_rails
   gon
   jbuilder (~> 2.7)
