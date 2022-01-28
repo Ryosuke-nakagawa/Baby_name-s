@@ -20,12 +20,6 @@ RSpec.describe "FirstNames", type: :system do
       end
     end
   end
-  describe '名前新規作成' do
-    context '正常系' do
-      it '名前が新規作成されること' do
-      end
-    end
-  end
   describe '名前詳細' do
     context '正常系' do
       it '名前が表示されること' do
