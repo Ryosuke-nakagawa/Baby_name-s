@@ -30,11 +30,8 @@ class FotuneTelling
       img.write(URI.open(image_url).read)
     end
 
-    s3resource = Aws::S3::Resource.new
-    # 空のS3オブジェクトを作成
-    obj = s3resource.bucket(ENV['AWS_BUCKET']).object("/fotune_telling_images/#{image_name}")
-    # S3オブジェクトに画像ファイルをアップロード
-    obj.upload_file("public/fotune_telling_images/#{image_name}")
+    s3_access = S3Access.new
+    s3_access.image_save(image_name,file)
     # railsアプリに保存した画像ファイルはもう必要ないので削除
     File.delete("public/fotune_telling_images/#{image_name}")
   end

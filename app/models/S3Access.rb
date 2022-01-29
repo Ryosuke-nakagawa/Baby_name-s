@@ -7,4 +7,12 @@ class S3Access
     signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
                                       key: "/fotune_telling_images/#{image_name}", expires_in: 60)
   end
+
+  def image_save(image_name,save_file)
+    s3resource = Aws::S3::Resource.new
+    # 空のS3オブジェクトを作成
+    obj = s3resource.bucket(ENV['AWS_BUCKET']).object("/fotune_telling_images/#{image_name}")
+    # S3オブジェクトに画像ファイルをアップロード
+    obj.upload_file(save_file)
+  end
 end
