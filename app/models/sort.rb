@@ -15,8 +15,8 @@ class Sort
         # userの評価基準と、実際の評価(rate)を掛け合わせて総評価の点をsumで出力
         sound_rate = rate.sound_rate.to_i * user.sound_rate_setting.to_i
         character_rate = rate.character_rate.to_i * user.character_rate_setting.to_i
-        fotune_telling_rate = first_name.fotune_telling_rate.to_i * user.fotune_telling_rate_setting.to_i
-        sum = sound_rate + character_rate + fotune_telling_rate
+        fortune_telling_rate = first_name.fortune_telling_rate.to_i * user.fortune_telling_rate_setting.to_i
+        sum = sound_rate + character_rate + fortune_telling_rate
       end
       if user_count.zero?
         # 名前の評価がまだない場合1以下で定義

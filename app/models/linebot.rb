@@ -45,20 +45,20 @@ class Linebot
               if search_name.nil?
                 @message.how_to_use
               else
-                @message.fotune_telling(search_name)
+                @message.fortune_telling(search_name)
               end
               client.reply_message(event['replyToken'], @message.object)
             end
           when 'name_add'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
-            fotune_telling = FotuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
+            fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
 
             image_name = "img_#{Random.uuid}.jpg"
-            fotune_telling.save_image_to_s3(image_name)
+            fortune_telling.save_image_to_s3(image_name)
 
-            new_first_name.update(fotune_telling_url: fotune_telling.search_url,
-                                  fotune_telling_rate: fotune_telling.rate, fotune_telling_image: image_name)
+            new_first_name.update(fortune_telling_url: fortune_telling.search_url,
+                                  fortune_telling_rate: fortune_telling.rate, fortune_telling_image: image_name)
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
             @user.reading_add!

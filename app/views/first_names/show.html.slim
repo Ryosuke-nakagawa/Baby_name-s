@@ -28,17 +28,17 @@
       - else
         span.star-show data-rate = @rate.character_rate.to_f
     .col-6.text-center
-      h4. = FirstName.human_attribute_name(:fotune_telling_rate)
+      h4. = FirstName.human_attribute_name(:fortune_telling_rate)
     .col-6.text-left
-      span.star-show data-rate = @first_name.fotune_telling_rate.to_f
+      span.star-show data-rate = @first_name.fortune_telling_rate.to_f
     .d-flex.flex-row-reverse
       - if @rate.nil?
           = link_to t('defaults.rating'),new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
       - else
         = link_to t('defaults.change'),edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark py-2"
   .container.py-1.d-flex.flex-column.align-items-center
-    img src = @fotune_telling_image_url  width="320" height="300"
-    = link_to t('.fotune_telling_site'), @first_name.fotune_telling_url
+    img src = @fortune_telling_image_url  width="320" height="300"
+    = link_to t('.fortune_telling_site'), @first_name.fortune_telling_url
 
   .container.text-center.pt-3
     = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"

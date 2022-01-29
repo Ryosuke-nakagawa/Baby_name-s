@@ -36,9 +36,9 @@ class FirstNamesController < ApplicationController
       result = FirstName.order_by_character(@group.id)
       result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
       @sort_type = 'character'
-    when 'fotune_telling'
-      @first_names = FirstName.order_by_fotune_telling(@group.id)
-      @sort_type = 'fotune_telling'
+    when 'fortune_telling'
+      @first_names = FirstName.order_by_fortune_telling(@group.id)
+      @sort_type = 'fortune_telling'
     else
       sort = Sort.new
       @first_names = sort.by_overall_rating(@group.first_names, @group.users)
@@ -60,9 +60,9 @@ class FirstNamesController < ApplicationController
       result = like_first_names.order_by_character(@group.id)
       result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
       @sort_type = 'character'
-    when 'fotune_telling'
-      @like_first_names = like_first_names.order_by_fotune_telling(@group.id)
-      @sort_type = 'fotune_telling'
+    when 'fortune_telling'
+      @like_first_names = like_first_names.order_by_fortune_telling(@group.id)
+      @sort_type = 'fortune_telling'
     else
       sort = Sort.new
       @like_first_names = sort.by_overall_rating(like_first_names, @group.users)
@@ -78,7 +78,7 @@ class FirstNamesController < ApplicationController
 
   def show
     s3_access = S3Access.new
-    @fotune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fotune_telling_image)
+    @fortune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fortune_telling_image)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)

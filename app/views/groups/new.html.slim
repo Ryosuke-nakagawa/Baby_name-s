@@ -34,14 +34,14 @@
         .form-group.my-2
           .form-group.row
             .col-sm-2
-              = u.label :fotune_telling_rate_setting, User.human_attribute_name(:fotune_telling_rate_setting), class: 'form-label'
+              = u.label :fortune_telling_rate_setting, User.human_attribute_name(:fortune_telling_rate_setting), class: 'form-label'
             .btn-group aria-label=("Basic radio toggle button group") role="group"
-              = u.radio_button :fotune_telling_rate_setting, 3, class: "btn-check", autocomplete: "off"
-              = u.label :fotune_telling_rate_setting_3, t('defaults.high'), class: "btn outline btn-dark mx-2"
-              = u.radio_button :fotune_telling_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
-              = u.label :fotune_telling_rate_setting_2, t('defaults.usual'), class: "btn outline btn-dark mx-2"
-              = u.radio_button :fotune_telling_rate_setting, 1, class: "btn-check", autocomplete: "off"
-              = u.label :fotune_telling_rate_setting_1, t('defaults.row'), class: "btn outline btn-dark mx-2"
+              = u.radio_button :fortune_telling_rate_setting, 3, class: "btn-check", autocomplete: "off"
+              = u.label :fortune_telling_rate_setting_3, t('defaults.high'), class: "btn outline btn-dark mx-2"
+              = u.radio_button :fortune_telling_rate_setting, 2, class: "btn-check", autocomplete: "off",checked: "checked"
+              = u.label :fortune_telling_rate_setting_2, t('defaults.usual'), class: "btn outline btn-dark mx-2"
+              = u.radio_button :fortune_telling_rate_setting, 1, class: "btn-check", autocomplete: "off"
+              = u.label :fortune_telling_rate_setting_1, t('defaults.row'), class: "btn outline btn-dark mx-2"
       .col.text-center.mt-3
         = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
   .col.pt-5

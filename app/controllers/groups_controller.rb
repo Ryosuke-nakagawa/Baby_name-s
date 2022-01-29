@@ -31,11 +31,11 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:last_name,
                                   users_attributes: %i[id sound_rate_setting character_rate_setting
-                                                       fotune_telling_rate_setting])
+                                                       fortune_telling_rate_setting])
   end
 
   def user_params
-    params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fotune_telling_rate_setting)
+    params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fortune_telling_rate_setting)
   end
 
   def set_user
