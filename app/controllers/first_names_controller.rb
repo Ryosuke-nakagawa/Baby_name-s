@@ -40,7 +40,8 @@ class FirstNamesController < ApplicationController
       @first_names = FirstName.order_by_fotune_telling(@group.id)
       @sort = 'fotune_telling'
     else
-      @first_names = FirstName.sort_by_overall_rating(@group.first_names, @group.users)
+      sort = Sort.new
+      @first_names = sort.by_overall_rating(@group.first_names, @group.users)
       @sort = 'overall_rating'
     end
   end
@@ -63,7 +64,8 @@ class FirstNamesController < ApplicationController
       @like_first_names = like_first_names.order_by_fotune_telling(@group.id)
       @sort = 'fotune_telling'
     else
-      @like_first_names = FirstName.sort_by_overall_rating(like_first_names, @group.users)
+      sort = Sort.new
+      @like_first_names = sort.by_overall_rating(like_first_names, @group.users)
       @sort = 'overall_rating'
     end
   end
