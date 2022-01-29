@@ -77,10 +77,8 @@ class FirstNamesController < ApplicationController
   end
 
   def show
-    s3 = Aws::S3::Resource.new
-    signer = Aws::S3::Presigner.new(client: s3.client)
-    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
-                                                                  key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+    s3_access = S3Access.new
+    @fotune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fotune_telling_image)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
