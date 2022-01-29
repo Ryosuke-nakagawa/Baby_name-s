@@ -2,15 +2,15 @@
 .container
   .row.mt-4.under-line
     select.col-4.sort-button id="sort_js"
-      option.selected = t(".#{@sort}")
-      - if @sort != "overall_rating"
+      option.selected = t(".#{@sort_type}")
+      - if @sort_type != "overall_rating"
         option value=group_first_names_path(@group) = t('.overall_rating')
-      - if @sort != "sound"
-        option value=group_first_names_path(@group,sort: 'sound') = t('.sound')
-      - if @sort != "character"
-        option value=group_first_names_path(@group,sort: 'character') = t('.character')
-      - if @sort != "fotune_telling"
-        option value=group_first_names_path(@group,sort: 'fotune_telling') = t('.fotune_telling')
+      - if @sort_type != "sound"
+        option value=group_first_names_path(@group,sort_type: 'sound') = t('.sound')
+      - if @sort_type != "character"
+        option value=group_first_names_path(@group,sort_type: 'character') = t('.character')
+      - if @sort_type != "fotune_telling"
+        option value=group_first_names_path(@group,sort_type: 'fotune_telling') = t('.fotune_telling')
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")

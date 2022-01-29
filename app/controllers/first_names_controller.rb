@@ -25,48 +25,48 @@ class FirstNamesController < ApplicationController
       return
     end
 
-    case params[:sort]
+    case params[:sort_type]
     when 'sound'
       @first_names = []
       result = FirstName.order_by_sound(@group.id)
       result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort = 'sound'
+      @sort_type = 'sound'
     when 'character'
       @first_names = []
       result = FirstName.order_by_character(@group.id)
       result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort = 'character'
+      @sort_type = 'character'
     when 'fotune_telling'
       @first_names = FirstName.order_by_fotune_telling(@group.id)
-      @sort = 'fotune_telling'
+      @sort_type = 'fotune_telling'
     else
       sort = Sort.new
       @first_names = sort.by_overall_rating(@group.first_names, @group.users)
-      @sort = 'overall_rating'
+      @sort_type = 'overall_rating'
     end
   end
 
   def likes
     @group = current_user.group
     like_first_names = current_user.like_first_names
-    case params[:sort]
+    case params[:sort_type]
     when 'sound'
       @like_first_names = []
       result = like_first_names.order_by_sound(@group.id)
       result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort = 'sound'
+      @sort_type = 'sound'
     when 'character'
       @like_first_names = []
       result = like_first_names.order_by_character(@group.id)
       result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort = 'character'
+      @sort_type = 'character'
     when 'fotune_telling'
       @like_first_names = like_first_names.order_by_fotune_telling(@group.id)
-      @sort = 'fotune_telling'
+      @sort_type = 'fotune_telling'
     else
       sort = Sort.new
       @like_first_names = sort.by_overall_rating(like_first_names, @group.users)
-      @sort = 'overall_rating'
+      @sort_type = 'overall_rating'
     end
   end
 
