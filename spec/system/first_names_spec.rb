@@ -27,7 +27,6 @@ RSpec.describe "FirstNames", type: :system do
         expect(page).to have_content(first_name.name)
         expect(page).to have_content(first_name.reading)
         expect(current_path).to eq first_name_path(first_name)
-        binding.pry
       end
     end
   end
