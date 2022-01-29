@@ -10,7 +10,7 @@ class FirstNamesController < ApplicationController
 
   def login
     line_authenticate_service = LineAuthenticateService.new(params[:idToken])
-    user = User.find_by(line_id: line_authenticate_service.get_line_id)
+    user = User.find_by(line_id: line_authenticate_service.search_line_id)
 
     session[:user_id] = user.id
     group_id = { id: user.group_id }

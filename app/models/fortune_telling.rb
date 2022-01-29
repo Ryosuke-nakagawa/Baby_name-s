@@ -31,7 +31,7 @@ class FortuneTelling
     end
 
     s3_access = S3Access.new
-    s3_access.image_save(image_name,file)
+    s3_access.image_save(image_name, file)
     # railsアプリに保存した画像ファイルはもう必要ないので削除
     File.delete("public/fortune_telling_images/#{image_name}")
   end

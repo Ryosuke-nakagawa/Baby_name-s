@@ -8,7 +8,7 @@ class S3Access
                                       key: "/fortune_telling_images/#{image_name}", expires_in: 60)
   end
 
-  def image_save(image_name,save_file)
+  def image_save(image_name, save_file)
     s3resource = Aws::S3::Resource.new
     # 空のS3オブジェクトを作成
     obj = s3resource.bucket(ENV['AWS_BUCKET']).object("/fortune_telling_images/#{image_name}")

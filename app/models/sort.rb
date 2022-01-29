@@ -1,5 +1,4 @@
 class Sort
-
   def by_overall_rating(first_names, group_users)
     score = {}
 

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def create
     line_authenticate_service = LineAuthenticateService.new(params[:idToken])
-    user = User.find_by(line_id: lineid_authenticate_service.get_line_id)
+    user = User.find_by(line_id: line_authenticate_service.search_line_id)
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
       if user.nil?
@@ -31,7 +31,8 @@ class UsersController < ApplicationController
     new_group = Group.create!
     user.likes.delete_all
     user.rates.delete_all
-    user.update!(group: new_group, status: 'normal', editing_name_id: nil, sound_rate_setting: nil, character_rate_setting: nil, fortune_telling_rate_setting: nil)
+    user.update!(group: new_group, status: 'normal', editing_name_id: nil, sound_rate_setting: nil,
+                 character_rate_setting: nil, fortune_telling_rate_setting: nil)
     leave_group.destroy if leave_group.users.empty?
     redirect_to new_user_path, success: 'ユーザー情報のリセットに成功しました'
   end
