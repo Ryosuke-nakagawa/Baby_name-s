@@ -24,50 +24,14 @@ class FirstNamesController < ApplicationController
       redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
       return
     end
-
-    case params[:sort_type]
-    when 'sound'
-      @first_names = []
-      result = FirstName.order_by_sound(@group.id)
-      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort_type = 'sound'
-    when 'character'
-      @first_names = []
-      result = FirstName.order_by_character(@group.id)
-      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort_type = 'character'
-    when 'fortune_telling'
-      @first_names = FirstName.order_by_fortune_telling(@group.id)
-      @sort_type = 'fortune_telling'
-    else
-      sort = Sort.new
-      @first_names = sort.by_overall_rating(@group.first_names, @group.users)
-      @sort_type = 'overall_rating'
-    end
+    @first_names = FirstName.order_by(params[:sort_type], @group.first_names)
+    @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
 
   def likes
     @group = current_user.group
-    like_first_names = current_user.like_first_names
-    case params[:sort_type]
-    when 'sound'
-      @like_first_names = []
-      result = like_first_names.order_by_sound(@group.id)
-      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort_type = 'sound'
-    when 'character'
-      @like_first_names = []
-      result = like_first_names.order_by_character(@group.id)
-      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort_type = 'character'
-    when 'fortune_telling'
-      @like_first_names = like_first_names.order_by_fortune_telling(@group.id)
-      @sort_type = 'fortune_telling'
-    else
-      sort = Sort.new
-      @like_first_names = sort.by_overall_rating(like_first_names, @group.users)
-      @sort_type = 'overall_rating'
-    end
+    @like_first_names = FirstName.order_by(params[:sort_type], current_user.like_first_names)
+    @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
 
   def destroy

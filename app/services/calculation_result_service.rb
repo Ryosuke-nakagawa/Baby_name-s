@@ -1,11 +1,15 @@
-class Sort
-  def by_overall_rating(first_names, group_users)
-    score = {}
+class CalculationResultService
+  def initialize(first_names, group_users)
+    @first_names = first_names
+    @group_users = group_users
+  end
 
-    first_names.each_with_index do |first_name, i|
+  def by_overall_rating
+    score = {}
+    @first_names.each_with_index do |first_name, i|
       sum = 0
-      user_count = group_users.count
-      group_users.each do |user|
+      user_count = @group_users.count
+      @group_users.each do |user|
         rate = Rate.find_by(first_name: first_name, user: user)
         if rate.nil?
           user_count -= 1
