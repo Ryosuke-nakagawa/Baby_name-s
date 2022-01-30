@@ -64,11 +64,11 @@ ja:
       title: '名前一覧'
       overall_rating: '総評価'
       character: '漢字'
-      fotune_telling: '姓名判断'
+      fortune_telling: '姓名判断'
       sound: '音の響き'
       heart: 'ハート'
       headline_character: '漢字'
-      headline_fotune_telling: |-
+      headline_fortune_telling: |-
         姓名
         判断
       headline_sound: |-
@@ -82,7 +82,7 @@ ja:
     show:
       title: '名前の詳細'
       delete_name: 'お名前を削除する'
-      fotune_telling_site: 'いい名前ネット サイトURL'
+      fortune_telling_site: 'いい名前ネット サイトURL'
       average: '平均'
       you: 'あなた'
       notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
@@ -91,11 +91,11 @@ ja:
       no_hearted_name: 'ハートされた名前がありません'
       overall_rating: '総評価'
       character: '漢字'
-      fotune_telling: '姓名判断'
+      fortune_telling: '姓名判断'
       sound: '音の響き'
       heart: 'ハート'
       headline_character: '漢字'
-      headline_fotune_telling: |-
+      headline_fortune_telling: |-
         姓名
         判断
       headline_sound: |-

@@ -9,12 +9,8 @@ class FirstNamesController < ApplicationController
   def new; end
 
   def login
-    id_token = params[:idToken]
-    channel_id = ENV['LIFF_CHANNEL_ID']
-    res = Net::HTTP.post_form(URI.parse('https://api.line.me/oauth2/v2.1/verify'),
-                              { 'id_token' => id_token, 'client_id' => channel_id })
-    line_user_id = JSON.parse(res.body)['sub']
-    user = User.find_by(line_id: line_user_id)
+    line_authenticate_service = LineAuthenticateService.new(params[:idToken])
+    user = User.find_by(line_id: line_authenticate_service.search_line_id)
 
     session[:user_id] = user.id
     group_id = { id: user.group_id }
@@ -28,48 +24,14 @@ class FirstNamesController < ApplicationController
       redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
       return
     end
-
-    case params[:sort]
-    when 'sound'
-      @first_names = []
-      result = FirstName.order_by_sound(@group.id)
-      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort = 'sound'
-    when 'character'
-      @first_names = []
-      result = FirstName.order_by_character(@group.id)
-      result.map { |first_name_id, _average| @first_names << FirstName.find(first_name_id) }
-      @sort = 'character'
-    when 'fotune_telling'
-      @first_names = FirstName.order_by_fotune_telling(@group.id)
-      @sort = 'fotune_telling'
-    else
-      @first_names = FirstName.sort_by_overall_rating(@group.first_names, @group.users)
-      @sort = 'overall_rating'
-    end
+    @first_names = FirstName.order_by(params[:sort_type], @group.first_names)
+    @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
 
   def likes
     @group = current_user.group
-    like_first_names = current_user.like_first_names
-    case params[:sort]
-    when 'sound'
-      @like_first_names = []
-      result = like_first_names.order_by_sound(@group.id)
-      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort = 'sound'
-    when 'character'
-      @like_first_names = []
-      result = like_first_names.order_by_character(@group.id)
-      result.map { |first_name_id, _average| @like_first_names << FirstName.find(first_name_id) }
-      @sort = 'character'
-    when 'fotune_telling'
-      @like_first_names = like_first_names.order_by_fotune_telling(@group.id)
-      @sort = 'fotune_telling'
-    else
-      @like_first_names = FirstName.sort_by_overall_rating(like_first_names, @group.users)
-      @sort = 'overall_rating'
-    end
+    @like_first_names = FirstName.order_by(params[:sort_type], current_user.like_first_names)
+    @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
 
   def destroy
@@ -79,10 +41,8 @@ class FirstNamesController < ApplicationController
   end
 
   def show
-    s3 = Aws::S3::Resource.new
-    signer = Aws::S3::Presigner.new(client: s3.client)
-    @fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
-                                                                  key: "/fotune_telling_images/#{@first_name.fotune_telling_image}", expires_in: 60)
+    s3_access = S3Access.new
+    @fortune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fortune_telling_image)
 
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)

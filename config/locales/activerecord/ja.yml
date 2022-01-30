@@ -9,12 +9,12 @@ ja:
       user:
         sound_rate_setting: '音の響き'
         character_rate_setting: '漢字'
-        fotune_telling_rate_setting: '姓名判断'
+        fortune_telling_rate_setting: '姓名判断'
       group:
         last_name: '姓'
       rate:
         sound_rate: '音の響き'
         character_rate: '漢字'
       first_name:
-        fotune_telling_rate: '姓名判断'
+        fortune_telling_rate: '姓名判断'
 

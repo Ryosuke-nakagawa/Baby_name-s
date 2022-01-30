@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     # log/development.logに記録
     logger.error(error.message)
     logger.error(error.backtrace.join('\n'))
-    ExceptionNotifier.notify_exception(error, data: { message: 'error' })
+    ExceptionNotifier.notify_exception(error, env: request.env, data: { message: 'error' })
     render file: Rails.root.join('public/500.html'), layout: false, status: :internal_server_error
   end
 end

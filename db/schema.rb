@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_14_075821) do
+ActiveRecord::Schema.define(version: 2022_01_29_211231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,9 +19,9 @@ ActiveRecord::Schema.define(version: 2022_01_14_075821) do
     t.bigint "group_id", null: false
     t.string "name", null: false
     t.string "reading"
-    t.string "fotune_telling_url"
-    t.integer "fotune_telling_rate"
-    t.string "fotune_telling_image"
+    t.string "fortune_telling_url"
+    t.integer "fortune_telling_rate"
+    t.string "fortune_telling_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_first_names_on_group_id"
@@ -43,6 +43,16 @@ ActiveRecord::Schema.define(version: 2022_01_14_075821) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "rankings", force: :cascade do |t|
+    t.integer "year", null: false
+    t.integer "sex", null: false
+    t.integer "rank", null: false
+    t.string "name", null: false
+    t.string "reading", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "rates", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "first_name_id", null: false
@@ -59,7 +69,7 @@ ActiveRecord::Schema.define(version: 2022_01_14_075821) do
     t.string "line_id", null: false
     t.integer "sound_rate_setting"
     t.integer "character_rate_setting"
-    t.integer "fotune_telling_rate_setting"
+    t.integer "fortune_telling_rate_setting"
     t.bigint "group_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

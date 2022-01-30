@@ -16,10 +16,10 @@ RSpec.describe "Rates", type: :system do
         visit group_first_names_path(user.group)
         sound_rate = all('.star-index')[0]
         character_rate = all('.star-index')[1]
-        fotune_telling_rate = all('.star-index')[2]
+        fortune_telling_rate = all('.star-index')[2]
         expect(sound_rate['data-rate']).to eq rate.sound_rate.to_f.to_s
         expect(character_rate['data-rate']).to eq rate.character_rate.to_f.to_s
-        expect(fotune_telling_rate['data-rate']).to eq first_name.fotune_telling_rate.to_f.to_s
+        expect(fortune_telling_rate['data-rate']).to eq first_name.fortune_telling_rate.to_f.to_s
         expect(Rate.count).to eq 1
         expect(current_path).to eq group_first_names_path(user.group)
       end
@@ -31,10 +31,10 @@ RSpec.describe "Rates", type: :system do
         visit first_name_path(first_name)
         sound_rate = all('.star-show')[0]
         character_rate = all('.star-show')[1]
-        fotune_telling_rate = all('.star-show')[2]
+        fortune_telling_rate = all('.star-show')[2]
         expect(sound_rate['data-rate']).to eq rate.sound_rate.to_f.to_s
         expect(character_rate['data-rate']).to eq rate.character_rate.to_f.to_s
-        expect(fotune_telling_rate['data-rate']).to eq first_name.fotune_telling_rate.to_f.to_s
+        expect(fortune_telling_rate['data-rate']).to eq first_name.fortune_telling_rate.to_f.to_s
         expect(Rate.count).to eq 1
         expect(current_path).to eq first_name_path(first_name)
       end

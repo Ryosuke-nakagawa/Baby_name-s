@@ -144,10 +144,8 @@ class Message
   end
 
   def registration_is_complete(first_name)
-    s3 = Aws::S3::Resource.new
-    signer = Aws::S3::Presigner.new(client: s3.client)
-    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
-                                                                 key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+    s3_access = S3Access.new
+    fortune_telling_image_url = s3_access.get_presigned_image_url(first_name.fortune_telling_image)
 
     @object = {
       type: 'flex',
@@ -172,14 +170,14 @@ class Message
           hero:
             {
               type: 'image',
-              url: fotune_telling_image_url,
+              url: fortune_telling_image_url,
               size: 'full',
               aspectRatio: '15:13',
               aspectMode: 'cover',
               action:
                 {
                   type: 'uri',
-                  uri: first_name.fotune_telling_url
+                  uri: first_name.fortune_telling_url
                 }
             },
           footer:
@@ -197,7 +195,7 @@ class Message
                       {
                         type: 'uri',
                         label: '姓名判断の詳細はこちら',
-                        uri: first_name.fotune_telling_url
+                        uri: first_name.fortune_telling_url
                       }
                   },
                   {
@@ -211,11 +209,9 @@ class Message
     }
   end
 
-  def fotune_telling(first_name)
-    s3 = Aws::S3::Resource.new
-    signer = Aws::S3::Presigner.new(client: s3.client)
-    fotune_telling_image_url = signer.presigned_url(:get_object, bucket: ENV['AWS_BUCKET'],
-                                                                 key: "/fotune_telling_images/#{first_name.fotune_telling_image}", expires_in: 300)
+  def fortune_telling(first_name)
+    s3_access = S3Access.new
+    fortune_telling_image_url = s3_access.get_presigned_image_url(first_name.fortune_telling_image)
 
     @object = {
       type: 'flex',
@@ -224,7 +220,7 @@ class Message
         type: 'bubble',
         hero: {
           type: 'image',
-          url: fotune_telling_image_url,
+          url: fortune_telling_image_url,
           size: 'full',
           aspectRatio: '10:9',
           aspectMode: 'cover'
@@ -241,7 +237,7 @@ class Message
               action: {
                 type: 'uri',
                 label: '詳しく見る',
-                uri: first_name.fotune_telling_url
+                uri: first_name.fortune_telling_url
               }
             },
             {

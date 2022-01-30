@@ -66,7 +66,7 @@ Layout/EmptyLinesAroundClassBody:
     - 'app/controllers/likes_controller.rb'
     - 'app/controllers/line_bot_controller.rb'
     - 'app/controllers/users_controller.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
     - 'app/models/group.rb'
     - 'app/models/message.rb'
 
@@ -74,7 +74,7 @@ Layout/EmptyLinesAroundClassBody:
 # Cop supports --auto-correct.
 Layout/EmptyLinesAroundMethodBody:
   Exclude:
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
     - 'app/models/message.rb'
 
 # Offense count: 3
@@ -116,7 +116,7 @@ Layout/LeadingCommentSpace:
   Exclude:
     - 'app/controllers/groups_controller.rb'
     - 'app/controllers/users_controller.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
     - 'app/models/linebot.rb'
 
 # Offense count: 4
@@ -151,7 +151,7 @@ Layout/SpaceAfterComma:
     - 'app/controllers/share_target_pickers_controller.rb'
     - 'app/controllers/users_controller.rb'
     - 'app/models/first_name.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
 
 # Offense count: 11
 # Cop supports --auto-correct.
@@ -163,7 +163,7 @@ Layout/SpaceAroundOperators:
     - 'app/controllers/groups_controller.rb'
     - 'app/controllers/share_target_pickers_controller.rb'
     - 'app/controllers/users_controller.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
 
 # Offense count: 3
 # Cop supports --auto-correct.
@@ -209,7 +209,7 @@ Layout/SpaceInsideHashLiteralBraces:
 # SupportedStyles: space, compact, no_space
 Layout/SpaceInsideParens:
   Exclude:
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
 
 # Offense count: 4
 # Cop supports --auto-correct.
@@ -218,7 +218,7 @@ Layout/SpaceInsideParens:
 Layout/TrailingEmptyLines:
   Exclude:
     - 'Gemfile'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
     - 'app/models/linebot.rb'
     - 'config/initializers/aws.rb'
 
@@ -230,7 +230,7 @@ Layout/TrailingWhitespace:
     - 'app/controllers/first_names_controller.rb'
     - 'app/controllers/rates_controller.rb'
     - 'app/controllers/users_controller.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
     - 'app/models/linebot.rb'
 
 # Offense count: 3
@@ -294,7 +294,7 @@ Naming/VariableName:
 # Offense count: 2
 Security/Open:
   Exclude:
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.
@@ -389,7 +389,7 @@ Style/RedundantReturn:
   Exclude:
     - 'app/helpers/rates_helper.rb'
     - 'app/models/first_name.rb'
-    - 'app/models/fotune_telling.rb'
+    - 'app/models/fortune_telling.rb'
 
 # Offense count: 1
 # Cop supports --auto-correct.

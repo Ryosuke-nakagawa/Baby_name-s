@@ -2,18 +2,18 @@
 .container
   .row.mt-4.under-line
     select.col-4.sort-button id="sort_js"
-      option.selected = t(".#{@sort}")
-      - if @sort != "overall_rating"
+      option.selected = t(".#{@sort_type}")
+      - if @sort_type != "overall_rating"
         option value=likes_first_names_path = t('.overall_rating')
-      - if @sort != "sound"
-        option value=likes_first_names_path(sort: 'sound') = Rate.human_attribute_name(:sound_rate)
-      - if @sort != "character"
-        option value=likes_first_names_path(sort: 'character') = Rate.human_attribute_name(:character_rate)
-      - if @sort != "fotune_telling"
-        option value=likes_first_names_path(sort: 'fotune_telling') = FirstName.human_attribute_name(:fotune_telling_rate)
+      - if @sort_type != "sound"
+        option value=likes_first_names_path(sort_type: 'sound') = Rate.human_attribute_name(:sound_rate)
+      - if @sort_type != "character"
+        option value=likes_first_names_path(sort_type: 'character') = Rate.human_attribute_name(:character_rate)
+      - if @sort_type != "fortune_telling"
+        option value=likes_first_names_path(sort_type: 'fortune_telling') = FirstName.human_attribute_name(:fortune_telling_rate)
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
-    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
+    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fortune_telling'),{},wrapper_tag: "div")
     .col-2.heart-change-button.d-flex.justify-content-center
       = link_to group_first_names_path(@group),class: 'd-flex align-items-center brown' do
         i.fas.fa-heart.brown.fa-2x
@@ -38,7 +38,7 @@
         .col-2.d-inline-flex
           span.star-index data-rate = character_average(Rate.ratings_within_group(first_name,first_name.group))
         .col-2.d-inline-flex
-          span.star-index data-rate = first_name.fotune_telling_rate.to_f
+          span.star-index data-rate = first_name.fortune_telling_rate.to_f
         .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
           i.fas.fa-edit
 
