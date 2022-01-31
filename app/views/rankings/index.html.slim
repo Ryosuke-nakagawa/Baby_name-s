@@ -1,16 +1,16 @@
 - set_meta_tags title: t('.title')
 .container
-  = link_to '出典元: たまひよ 赤ちゃんの名前ランキング','https://st.benesse.ne.jp/ninshin/name/', class: 'float-end text-reset pt-2 small'
+  = link_to t('.source'),'https://namae-yurai.net/oneYearNamaeTrendBoysGirls.htm', class: 'float-end text-reset pt-2 small'
   .row.mt-5.under-line.justify-content-center
     .col-12.d-flex.justify-content-center
       select.ranking-sort-button id="select_box_js"
         option.selected = @selected_year
         - @saved_years.each do |year|
-          - if @selected_year != year
+          - if @selected_year.to_i != year
             option value=rankings_path(year: year) = year
-      | 年の名前人気ランキング
-    .col-6.d-flex.align-items-center.justify-content-center.py-2 男の子
-    .col-6.d-flex.align-items-center.justify-content-center.py-2 女の子
+      = t('.name_ranking')
+    .col-6.d-flex.align-items-center.justify-content-center.py-2 = t('.boy')
+    .col-6.d-flex.align-items-center.justify-content-center.py-2 = t('.girl')
 - @ranking_first_names.each do |boy_first_name,girl_first_name|
   .row.text-center.pt-3
       .col-2
@@ -27,6 +27,6 @@
     .col-4.text-center
       h4. = girl_first_name.name
 .col-12.text-center.py-3
-  = link_to 'お名前一覧に戻る', group_first_names_path(@group), class: 'btn btn-dark'
+  = link_to t('.back_to_index_page'), group_first_names_path(@group), class: 'btn btn-dark'
 
-= javascript_pack_tag 'share/for_select_box'
+= javascript_pack_tag 'first_names/sort'
