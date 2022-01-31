@@ -1,7 +1,7 @@
 - set_meta_tags title: t('.title')
 .container
   .row.mt-4.under-line
-    select.col-4.sort-button id="sort_js"
+    select.col-4.sort-button id="select_box_js"
       option.selected = t(".#{@sort_type}")
       - if @sort_type != "overall_rating"
         option value=likes_first_names_path = t('.overall_rating')
