@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post 'share_target_pickers/login', to: 'share_target_pickers#login'
   post 'callback', to: 'line_bot#callback'
   get '/sitemap', to: redirect("https://s3-ap-northeast-1.amazonaws.com/#{ENV['AWS_BUCKET']}/sitemap.xml.gz")
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create destroy]
   resources :groups, only: %i[new update] do
     resources :first_names, only: %i[index]
   end

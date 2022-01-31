@@ -1,25 +1,27 @@
 - set_meta_tags title: t('.title')
 .container
   .row.mt-4.under-line
-    select.col-4.sort-button id="select_box_js"
-      option.selected = t(".#{@sort}")
-      - if @sort != "overall_rating"
+    select.col-4.sort-button id="sort_js"
+      option.selected = t(".#{@sort_type}")
+      - if @sort_type != "overall_rating"
         option value=group_first_names_path(@group) = t('.overall_rating')
-      - if @sort != "sound"
-        option value=group_first_names_path(@group,sort: 'sound') = t('.sound')
-      - if @sort != "character"
-        option value=group_first_names_path(@group,sort: 'character') = t('.character')
-      - if @sort != "fotune_telling"
-        option value=group_first_names_path(@group,sort: 'fotune_telling') = t('.fotune_telling')
-      option value=likes_first_names_path = t('.heart')
+      - if @sort_type != "sound"
+        option value=group_first_names_path(@group,sort_type: 'sound') = t('.sound')
+      - if @sort_type != "character"
+        option value=group_first_names_path(@group,sort_type: 'character') = t('.character')
+      - if @sort_type != "fortune_telling"
+        option value=group_first_names_path(@group,sort_type: 'fortune_telling') = t('.fortune_telling')
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_sound'),{},wrapper_tag: "div")
     .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_character'),{},wrapper_tag: "div")
-    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fotune_telling'),{},wrapper_tag: "div")
+    .col-2.d-flex.align-items-center.justify-content-center = simple_format(t('.headline_fortune_telling'),{},wrapper_tag: "div")
+    .col-2.heart-change-button.d-flex.justify-content-center
+      = link_to likes_first_names_path,class: 'd-flex align-items-center brown' do
+        i.far.fa-heart.brown.fa-2x
   - if @first_names.empty?
     .container-fluid.my-5
       .d-flex.flex-column.align-items-center.justify-content-center
-        h4.text-center.fw-bold Baby namesのトーク画面から<br>ボタンをタップして<br>名前を登録してみよう<br>↓ ↓ ↓
-        = image_tag 'guide_to_registration.jpeg', width: "300"
+        h4.text-center.fw-bold = simple_format(t('.suggest_registration'),{},wrapper_tag: "div")
+        = image_tag 'guide_to_name_registration.jpeg', width: "300"
   else
     - @first_names.each do |first_name|
       .row.text-center.pt-3
@@ -38,7 +40,7 @@
         .col-2.d-inline-flex
           span.star-index data-rate = character_average(Rate.ratings_within_group(first_name,first_name.group))
         .col-2.d-inline-flex
-          span.star-index data-rate = first_name.fotune_telling_rate.to_f
+          span.star-index data-rate = first_name.fortune_telling_rate.to_f
         - if first_name.rated?(current_user)
           .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
             i.fas.fa-edit
@@ -49,4 +51,4 @@
     .col-12.text-center.py-4
       = link_to 'お名前ランキングを見てみる', rankings_path, class: 'btn btn-dark'
 
-= javascript_pack_tag 'share/for_select_box'
+= javascript_pack_tag 'first_names/sort'

@@ -6,7 +6,9 @@
       = t('.account_share_detail')
     .col.text-center
       .btn.btn-dark id="js-account-share-button" = t('.account_share_btn')
-    .col-12.text-center.mt-4.py-4
+    .col-12.text-center.detail-text.pt-3
+      = simple_format(t('.account_share_caution'))
+    .col-12.text-center.mt-3.py-4
       h4. = t('.social_share')
       = t('.social_share_detail')
     .col-6.d-flex.justify-content-center

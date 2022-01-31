@@ -64,28 +64,38 @@ ja:
       title: '名前一覧'
       overall_rating: '総評価'
       character: '漢字'
-      fotune_telling: '姓名判断'
+      fortune_telling: '姓名判断'
       sound: '音の響き'
       heart: 'ハート'
       headline_character: '漢字'
-      headline_fotune_telling: |-
+      headline_fortune_telling: |-
         姓名
         判断
       headline_sound: |-
         音の
         響き
+      suggest_registration: |-
+        BabyNamesのトーク画面から
+        ボタンをタップして
+        名前を登録してみよう
+        ↓ ↓ ↓
     show:
       title: '名前の詳細'
-      delete_name: '名前を削除する'
-      fotune_telling_site: 'いい名前ネット サイトURL'
-      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます※'
+      delete_name: 'お名前を削除する'
+      fortune_telling_site: 'いい名前ネット サイトURL'
+      average: '平均'
+      you: 'あなた'
+      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
     likes:
       title: 'ハート一覧'
       no_hearted_name: 'ハートされた名前がありません'
       overall_rating: '総評価'
+      character: '漢字'
+      fortune_telling: '姓名判断'
+      sound: '音の響き'
       heart: 'ハート'
       headline_character: '漢字'
-      headline_fotune_telling: |-
+      headline_fortune_telling: |-
         姓名
         判断
       headline_sound: |-
@@ -97,8 +107,12 @@ ja:
       account_share: 'アカウントを共有する'
       account_share_detail: '名前の登録や確認を一緒に行えます'
       account_share_btn: 'アカウント共有する'
+      account_share_caution: |-
+        ※招待されるユーザーが既にBabyNamesをご使用している場合、
+        招待する側の名前一覧に上書きされるのでご注意ください
       social_share: 'アプリをシェアする'
       social_share_detail: '(アカウント共有しない)'
+
   likes:
     create:
       success: 'ハートしました'

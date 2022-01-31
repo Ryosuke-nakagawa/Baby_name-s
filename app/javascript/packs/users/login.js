@@ -27,8 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
         body: body
         });
     fetch(request)
-    .then(() => {
+    .then(response => {
+      if (!response.ok) {
+        console.error('Login failed');
+      }
       window.location = '/groups/new'
+    })
+    .catch(function(response) {
+      console.log('Network error');
     })
   })
 })

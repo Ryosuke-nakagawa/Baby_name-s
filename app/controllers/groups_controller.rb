@@ -1,11 +1,11 @@
 class GroupsController < ApplicationController
+  before_action :set_user, only: %i[new update]
+
   def new
-    @user = current_user
     @group = @user.group
   end
 
   def update
-    @user = current_user
     @group = Group.find(params[:id])
     if @group.update(group_params) && @user.update(user_params)
       # LINERICHメニューの切り替え
@@ -17,8 +17,8 @@ class GroupsController < ApplicationController
 
       req = Net::HTTP::Post.new(uri.request_uri)
       req['Authorization'] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
-      res = http.request(req) # レスポンスを使って処理を切り替えれる(未対応)
-
+      res = http.request(req)
+      res.value
       redirect_to group_first_names_path(@group), success: t('defaults.message.updated', item: User.model_name.human)
     else
       flash.now[:danger] = t('defaults.message.not_updated', item: User.model_name.human)
@@ -29,10 +29,16 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:last_name, users_attributes: %i[id sound_rate_setting character_rate_setting fotune_telling_rate_setting])
+    params.require(:group).permit(:last_name,
+                                  users_attributes: %i[id sound_rate_setting character_rate_setting
+                                                       fortune_telling_rate_setting])
   end
 
   def user_params
-    params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fotune_telling_rate_setting)
+    params[:group].require(:user).permit(:sound_rate_setting, :character_rate_setting, :fortune_telling_rate_setting)
+  end
+
+  def set_user
+    @user = current_user
   end
 end

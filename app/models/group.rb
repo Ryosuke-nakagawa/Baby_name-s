@@ -5,4 +5,7 @@ class Group < ApplicationRecord
 
   validates :last_name, length: { maximum: 20 }, allow_nil: true
 
+  def two_or_more_user?
+    users.count >= 2
+  end
 end

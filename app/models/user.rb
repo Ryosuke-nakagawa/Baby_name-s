@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :line_id, presence: true, uniqueness: true
   validates :sound_rate_setting, numericality: { in: 1..3 }, allow_nil: true
   validates :character_rate_setting, numericality: { in: 1..3 }, allow_nil: true
-  validates :fotune_telling_rate_setting, numericality: { in: 1..3 }, allow_nil: true
+  validates :fortune_telling_rate_setting, numericality: { in: 1..3 }, allow_nil: true
 
   enum status: { normal: 0, name_add: 1, reading_add: 2, sound_rate_add: 3, character_rate_add: 4 }
 

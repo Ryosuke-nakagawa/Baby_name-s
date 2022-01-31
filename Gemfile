@@ -37,6 +37,12 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'rspec-rails'
   gem 'pry-rails'
+  gem 'factory_bot_rails'
+end
+
+group :test do
+  gem 'capybara'
+  gem 'webdrivers'
 end
 
 group :development do
@@ -63,3 +69,4 @@ gem 'nokogiri'
 gem 'aws-sdk-s3'
 gem 'meta-tags'
 gem 'sitemap_generator'
+gem 'exception_notification'

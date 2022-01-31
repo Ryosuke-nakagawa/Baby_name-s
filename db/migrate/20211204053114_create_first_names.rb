@@ -4,9 +4,9 @@ class CreateFirstNames < ActiveRecord::Migration[6.1]
       t.references :group, null: false, foreign_key: true
       t.string :name, null: false
       t.string :reading
-      t.string :fotune_telling_url
-      t.integer :fotune_telling_rate
-      t.string :fotune_telling_image
+      t.string :fortune_telling_url
+      t.integer :fortune_telling_rate
+      t.string :fortune_telling_image
 
       t.timestamps
     end
