@@ -2,28 +2,22 @@ require 'open-uri'
 
 
 namespace :name_ranking do
-  desc '「たまひよ」から名前ランキングを取得'
+  desc '「赤ちゃん名づけ」から名前ランキングを取得'
   task :get, ['year'] => :environment do |task,args|
+    article_number = args[:year].to_i - 2013
+    search_url = "https://namae-yurai.net/oneYearNamaeTrendBoysGirls.htm?rankingId=#{article_number}"
 
-    boys_search_url = "https://st.benesse.ne.jp/ninshin/name/#{args[:year]}/boy/name-ranking/"
-    girls_search_url = "https://st.benesse.ne.jp/ninshin/name/#{args[:year]}/girl/name-ranking/"
+    html = URI.open(search_url).read
+    doc = Nokogiri::HTML.parse(html)
 
-    search_urls = [boys_search_url, girls_search_url]
+    ranking = doc.at_css('#ranking')
+    tbody = ranking.css('tbody')
 
-    search_urls.each.with_index(1) do |search_url, sex_num|
-      html = URI.open(search_url).read
-      doc = Nokogiri::HTML.parse(html)
-
-      nums = doc.css('.tbl_ranking_num')
-      names =doc.css('.tbl_ranking_name')
-      kanas =doc.css('.tbl_ranking_kana')
-      result = [nums, names, kanas].transpose
-
-      result.each.with_index(1) do |result, index|
-        ranking = Ranking.new(year: args[:year].to_i, sex: sex_num, rank: result[0].text.to_i, name: result[1].text, reading: result[2].text)
-        ranking.save
-        break if index == 40
-      end
+    tbody.css('td').each_slice(5).with_index(1) do |result, index|
+      boy_read = result[2].text.sub(/ など/, '')
+      girl_read = result[4].text.sub(/ など/, '')
+      Ranking.create!(year: args[:year].to_i, sex: 1, rank: index, name: result[1].text, reading: boy_read)
+      Ranking.create!(year: args[:year].to_i, sex: 2, rank: index, name: result[3].text, reading: girl_read)
     end
   end
 end
