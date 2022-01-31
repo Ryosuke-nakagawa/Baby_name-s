@@ -22,4 +22,5 @@ Rails.application.routes.draw do
 
   resources :share_target_pickers, only: %i[new]
   resources :likes, only: %i[create destroy]
+  resources :rankings, only: %i[index]
 end

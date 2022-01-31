@@ -118,3 +118,11 @@ ja:
       success: 'ハートしました'
     destroy:
       success: 'ハートを外しました'
+  rankings:
+    index:
+      title: 'ランキング'
+      name_ranking: '年の名前人気ランキング'
+      boy: '男の子'
+      girl: '女の子'
+      source: '出典元: 赤ちゃん名づけ'
+      back_to_index_page: 'お名前一覧に戻る'
