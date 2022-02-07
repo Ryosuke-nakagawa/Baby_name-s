@@ -8,8 +8,9 @@ class UsersController < ApplicationController
   def new; end
 
   def create
-    line_authenticate_service = LineAuthenticateService.new(params[:idToken])
-    user = User.find_by(line_id: line_authenticate_service.search_line_id)
+    result = LineAuthenticateService.new(params[:idToken]).call
+    user = User.find_by(line_id: result[:line_id])
+
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
       if user.nil?
