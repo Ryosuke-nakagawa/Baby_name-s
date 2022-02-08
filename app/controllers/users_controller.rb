@@ -14,21 +14,22 @@ class UsersController < ApplicationController
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
       if user.nil?
-        user = User.create!(line_id: line_user_id, group: link_user.group)
+        user = User.create!(line_id: result[:line_id], group: link_user.group, name: result[:name], avatar: result[:avatar])
       else
-        user.update!(group: link_user.group)
+        user.update!(group: link_user.group, name: result[:name], avatar: result[:avatar])
       end
     end
     if user.nil?
       group = Group.create!
-      user = User.create!(line_id: line_user_id, group: group)
+      user = User.create!(line_id: result[:line_id], group: group, name: result[:name], avatar: result[:avatar])
+    else
+      user.update!(name: result[:name], avatar: result[:avatar])
     end
     session[:user_id] = user.id
   end
 
   def destroy
-    user = User.find(session[:user_id])
-    leave_group = user.group
+    leave_group = current_user.group
     new_group = Group.create!
     user.likes.delete_all
     user.rates.delete_all

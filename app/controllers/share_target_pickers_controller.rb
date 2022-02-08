@@ -6,7 +6,7 @@ class ShareTargetPickersController < ApplicationController
 
   def login
     result = LineAuthenticateService.new(params[:idToken]).call
-    user = User.find_by(line_id: result[:user_id])
+    user = User.find_by(line_id: result[:line_id])
 
     session[:user_id] = user.id
     uuid = { id: user.uuid }

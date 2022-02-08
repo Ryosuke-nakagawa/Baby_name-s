@@ -10,8 +10,7 @@ class FirstNamesController < ApplicationController
 
   def login
     result = LineAuthenticateService.new(params[:idToken]).call
-    user = User.find_by(line_id: result[line_id])
-
+    user = User.find_by(line_id: result[:line_id])
     session[:user_id] = user.id
     group_id = { id: user.group_id }
     render json: group_id
