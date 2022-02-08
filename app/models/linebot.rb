@@ -76,8 +76,24 @@ class Linebot
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
             @message.registration_is_complete(@user.editing_name)
-
             client.reply_message(event['replyToken'], @message.object)
+
+            group_users = @user.group.users
+            group_users.each do |user|
+              if @user != user
+                if @user.name
+                  text = "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。"
+                else
+                  text = '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
+                end
+                message = {
+                  type: 'text',
+                  text: text
+                }
+                response = client.push_message(user.line_id, message)
+              end
+            end
+
             @user.update(editing_name_id: nil)
             @user.normal!
           end
