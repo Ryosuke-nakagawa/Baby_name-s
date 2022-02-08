@@ -82,7 +82,7 @@ ja:
     show:
       title: '名前の詳細'
       delete_name: 'お名前を削除する'
-      fortune_telling_site: 'いい名前ネット サイトURL'
+      fortune_telling_site: '引用元: いい名前ネット'
       average: '平均'
       you: 'あなた'
       notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'

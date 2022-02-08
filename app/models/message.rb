@@ -194,8 +194,8 @@ class Message
                     action:
                       {
                         type: 'uri',
-                        label: '姓名判断の詳細はこちら',
-                        uri: first_name.fortune_telling_url
+                        label: '引用元: いい名前ネット',
+                        uri: 'https://enamae.net/'
                       }
                   },
                   {
@@ -223,8 +223,13 @@ class Message
           url: fortune_telling_image_url,
           size: 'full',
           aspectRatio: '10:9',
-          aspectMode: 'cover'
-        },
+          aspectMode: 'cover',
+          action:
+            {
+              type: 'uri',
+              uri: first_name.fortune_telling_url
+            }
+          },
         footer: {
           type: 'box',
           layout: 'vertical',
@@ -236,8 +241,8 @@ class Message
               height: 'sm',
               action: {
                 type: 'uri',
-                label: '詳しく見る',
-                uri: first_name.fortune_telling_url
+                label: '引用元: いい名前ネット',
+                uri: 'https://enamae.net'
               }
             },
             {
