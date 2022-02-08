@@ -12,6 +12,8 @@ class FirstName < ApplicationRecord
   end
 
   def self.order_by(sort_type,first_names)
+    return if first_names.blank?
+
     case sort_type
     when 'sound'
       result = first_names.order_by_sound
