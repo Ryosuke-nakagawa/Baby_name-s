@@ -14,14 +14,14 @@ class UsersController < ApplicationController
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
       if user.nil?
-        user = User.create!(line_id: result[:line_id], group: link_user.group, name: result[:name], avatar: result[:avatar])
+        user = User.create!(user_params(result, link_user.group))
       else
-        user.update!(group: link_user.group, name: result[:name], avatar: result[:avatar])
+        user.update!(user_params(result, link_user.group))
       end
     end
     if user.nil?
       group = Group.create!
-      user = User.create!(line_id: result[:line_id], group: group, name: result[:name], avatar: result[:avatar])
+      user = User.create!(user_params(result, group))
     else
       user.update!(name: result[:name], avatar: result[:avatar])
     end
@@ -37,5 +37,11 @@ class UsersController < ApplicationController
                  character_rate_setting: nil, fortune_telling_rate_setting: nil)
     leave_group.destroy if leave_group.users.empty?
     redirect_to new_user_path, success: 'ユーザー情報のリセットに成功しました'
+  end
+
+  private
+
+  def user_params(result, group)
+    { group: group, line_id: result[:line_id], name: result[:name], avatar: result[:avatar] }
   end
 end
