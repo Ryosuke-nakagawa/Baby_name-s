@@ -10,7 +10,7 @@ class LineAuthenticateService
     result = {}
     result[:line_id] = JSON.parse(res.body)['sub']
     result[:name] = JSON.parse(res.body)['name']
-    result[:picture] = JSON.parse(res.body)['picture']
+    result[:avatar] = JSON.parse(res.body)['picture']
     result
   end
 end
