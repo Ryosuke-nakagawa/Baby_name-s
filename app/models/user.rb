@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates :fortune_telling_rate_setting, numericality: { in: 1..3 }, allow_nil: true
 
   enum status: { normal: 0, name_add: 1, reading_add: 2, sound_rate_add: 3, character_rate_add: 4 }
+  enum role: { general: 0, admin: 10 }
 
   before_create -> { self.uuid = SecureRandom.uuid }
 
