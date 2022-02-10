@@ -10,4 +10,7 @@ class Admin::UserSessionsController < Admin::BaseController
     user = User.find_by(line_id: result[:line_id])
     session[:user_id] = user.id
   end
+
+  def logout
+  end
 end
