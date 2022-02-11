@@ -20,7 +20,7 @@ html lang="ja"
         /! Right navbar links
         ul.navbar-nav.ml-auto
           li.nav-item
-            = link_to 'Logout', admin_logout_path, class: 'nav-link', method: :delete, data: { confirm: 'Are you sure?' }
+            = link_to 'Logout', admin_logout_path, class: 'nav-link', method: :delete, data: { confirm: t('defaults.message.logout_confirm') }
       = render 'shared/admin/sidebar'
       /! Content Wrapper. Contains page content
       .content-wrapper
