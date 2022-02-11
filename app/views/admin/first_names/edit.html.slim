@@ -1,0 +1,17 @@
+.content-wrapper
+  .container
+    .row
+      .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+        h1 Edit FirstName
+        = form_with model: @first_name, url: admin_first_name_path(@first_name), local: true do |f|
+          = render 'shared/error_messages', object: f.object
+          .form-group
+            = f.label :group_id
+            = f.select :group_id, Group.ids, class: 'form-control'
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :reading
+            = f.text_field :reading, class: 'form-control'
+          = f.submit class: 'btn btn-primary'

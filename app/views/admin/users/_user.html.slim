@@ -1,0 +1,18 @@
+tbody
+  tr
+    - if user.avatar
+      td= image_tag user.avatar, \
+            class: 'rounded-circle', \
+            id: 'preview', \
+            size: '50x50'
+    - else
+      td No image
+    td= user.id
+    td= user.name
+    td= user.group_id
+    td= user.role
+    td= user.created_at
+    td
+      = link_to 'Show', admin_user_path(user), class: "btn btn-info"
+      = link_to 'Edit', edit_admin_user_path(user), class: "btn btn-success"
+      = link_to 'Delete', admin_user_path(user), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", rel: "nofollow"

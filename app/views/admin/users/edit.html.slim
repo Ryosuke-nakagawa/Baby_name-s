@@ -1,0 +1,22 @@
+.content-wrapper
+  .container
+    .row
+      .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+        h1 Edit User
+        = form_with model: @user, url: admin_user_path(@user), local: true do |f|
+          = render 'shared/error_messages', object: f.object
+          .form-group
+            = f.label :name
+            = f.text_field :name, class: 'form-control'
+          .form-group
+            = f.label :group_id
+            = f.select :group_id, Group.ids, class: 'form-control'
+          .form-group
+            = f.label :avatar
+            = f.text_field :avatar, class: 'form-control'
+          .mt-3.mb-3
+            img.rounded-circle height="100" src="#{@user.avatar}" width="100"
+          .form-group
+            = f.label :role
+            = f.select :role, User.roles.keys.to_a, class: 'form-control'
+          = f.submit class: 'btn btn-primary'

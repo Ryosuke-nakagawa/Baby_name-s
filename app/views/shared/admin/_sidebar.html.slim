@@ -8,9 +8,9 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
         = image_tag current_user.avatar, \
           class: 'rounded-circle',           \
           id: 'preview',                     \
-          size: '100x100'                    
+          size: '100x100'
       .info
-        a.d-block href="#" 
+        a.d-block href=admin_user_path(current_user)
           = current_user.name
     nav.mt-2
       ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 

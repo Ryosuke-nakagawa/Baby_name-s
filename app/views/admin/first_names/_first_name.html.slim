@@ -1,0 +1,12 @@
+tbody
+  tr
+    td= first_name.id
+    td= first_name.group_id
+    td= first_name.name
+    td= first_name.reading
+    td= first_name.fortune_telling_rate
+    td= first_name.created_at
+    td
+      = link_to 'Show', admin_first_name_path(first_name), class: "btn btn-info"
+      = link_to 'Edit', edit_admin_first_name_path(first_name), class: "btn btn-success"
+      = link_to 'Delete', admin_first_name_path(first_name), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", rel: "nofollow"
