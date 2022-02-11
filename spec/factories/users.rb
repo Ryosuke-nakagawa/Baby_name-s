@@ -5,5 +5,13 @@ FactoryBot.define do
     character_rate_setting { rand(1..3) }
     fortune_telling_rate_setting { rand(1..3) }
     group
+
+    trait :admin do
+      role { 10 }
+    end
+
+    trait :general do
+      role{ 0 }
+    end
   end
 end
