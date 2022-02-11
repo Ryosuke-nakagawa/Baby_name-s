@@ -2,17 +2,22 @@ require 'rails_helper'
 
 RSpec.describe "AdminFirstNames", type: :system do
 
-  let!(:user) { create(:user, :admin) }
+  let(:admin_user) { create(:user, :admin) }
   let!(:another_user) { create(:user, :general) }
   let!(:first_name) { create(:first_name, group: another_user.group) }
   before do
     # session[:user_id]に値を入れユーザーがログインしている状態を作る
-    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: user.id)
+    allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: admin_user.id)
   end
 
   describe '管理画面:名前一覧ページ' do
     context '正常系' do
-      it '名前一覧ページにアクセスした場合、全ユーザーの作成した名前が表示されること' do
+      it '名前一覧ページにアクセスした場合、自分以外のユーザーの作成した名前も表示されること' do
+        visit admin_first_names_path
+        expect(page).to have_content(first_name.name)
+        expect(page).to have_content(first_name.reading)
+        expect(FirstName.count).to eq 1
+        expect(current_path).to eq admin_first_names_path
       end
       it '一覧ページで「show」をクリックすると、名前が表示されること' do
       end

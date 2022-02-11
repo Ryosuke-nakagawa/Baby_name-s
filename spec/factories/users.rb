@@ -7,10 +7,12 @@ FactoryBot.define do
     group
 
     trait :admin do
+      name { 'admin' }
       role { 10 }
     end
 
     trait :general do
+      name { 'general' }
       role{ 0 }
     end
   end

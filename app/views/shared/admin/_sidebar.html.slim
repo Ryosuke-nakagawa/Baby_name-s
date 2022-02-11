@@ -4,11 +4,12 @@ aside.main-sidebar.sidebar-dark-primary.elevation-4
     span.brand-text.font-weight-light AdminLTE 3
   .sidebar
     .user-panel.mt-3.pb-3.mb-3.d-flex
-      .image
-        = image_tag current_user.avatar, \
-          class: 'rounded-circle',           \
-          id: 'preview',                     \
-          size: '100x100'
+      - if current_user.avatar
+        .image
+          = image_tag current_user.avatar, \
+            class: 'rounded-circle',\
+            id: 'preview',\
+            size: '100x100'
       .info
         a.d-block href=admin_user_path(current_user)
           = current_user.name
