@@ -19,16 +19,24 @@ RSpec.describe "AdminFirstNames", type: :system do
         expect(FirstName.count).to eq 1
         expect(current_path).to eq admin_first_names_path
       end
-      it '一覧ページで「show」をクリックすると、名前が表示されること' do
+      it '一覧ページで「Show」をクリックすると、名前が表示れること' do
         visit admin_first_names_path
         click_link 'Show'
         expect(page).to have_content(first_name.name)
         expect(page).to have_content(first_name.reading)
         expect(current_path).to eq admin_first_name_path(first_name)
       end
-      it '一覧ページで「delete」をクリックすると、名前が削除されること' do
+      it '一覧ページで「Delete」をクリックすると、名前が削除されること' do
+        visit admin_first_names_path
+        page.accept_confirm do
+          click_link 'Delete'
+        end
+        expect(page).not_to have_content(first_name.name)
+        expect(page).not_to have_content(first_name.reading)
+        expect(FirstName.count).to eq 0
+        expect(current_path).to eq admin_first_names_path
       end
-      it '一覧ページで「edit」をクリックすると、編集画面に遷移する' do
+      it '一覧ページで「Edit」をクリックすると、編集画面に遷移する' do
       end
     end
     context '異常系' do
