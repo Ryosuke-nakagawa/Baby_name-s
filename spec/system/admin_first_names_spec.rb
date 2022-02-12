@@ -39,8 +39,6 @@ RSpec.describe "AdminFirstNames", type: :system do
       it '一覧ページで「Edit」をクリックすると、編集画面に遷移する' do
         visit admin_first_names_path
         click_link 'Edit'
-        expect(page).to have_content(first_name.name)
-        expect(page).to have_content(first_name.reading)
         expect(current_path).to eq edit_admin_first_name_path(first_name)
       end
     end
@@ -57,9 +55,20 @@ RSpec.describe "AdminFirstNames", type: :system do
   end
   describe '管理画面: 名前詳細' do
     context '正常系' do
-      it '「edit」ボタンで編集画面に遷移できる' do
+      it '「Edit」ボタンで編集画面に遷移できる' do
+        visit admin_first_name_path(first_name)
+        click_link 'Edit'
+        expect(current_path).to eq edit_admin_first_name_path(first_name)
       end
-      it '「delete」ボタンで名前を削除できる' do
+      it '「Delete」ボタンで名前を削除できる' do
+        visit admin_first_name_path(first_name)
+        page.accept_confirm do
+          click_link 'Delete'
+        end
+        expect(page).not_to have_content(first_name.name)
+        expect(page).not_to have_content(first_name.reading)
+        expect(FirstName.count).to eq 0
+        expect(current_path).to eq admin_first_names_path
       end
     end
   end
