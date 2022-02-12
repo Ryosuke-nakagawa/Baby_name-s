@@ -16,6 +16,12 @@ RSpec.describe "AdminPages", type: :system do
         expect(current_path).to eq admin_root_path
       end
       it 'ログアウトボタンで管理画面からトップページに遷移する' do
+        visit admin_root_path
+        page.accept_confirm do
+          click_link 'Logout'
+        end
+        expect(page).to have_content('ログアウトしました') 
+        expect(current_path).to eq root_path 
       end
     end
     context '異常系' do
