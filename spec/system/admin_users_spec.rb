@@ -30,7 +30,7 @@ RSpec.describe "AdminUsers", type: :system do
         expect(page).to have_content(another_user.uuid)
         expect(current_path).to eq admin_user_path(another_user)
       end
-      fit '一覧ページで「Delete」をクリックすると、ユーザーが削除されること' do
+      it '一覧ページで「Delete」をクリックすると、ユーザーが削除されること' do
         visit admin_users_path
         page.accept_confirm do
           page.all('.btn-danger')[0].click
@@ -40,6 +40,9 @@ RSpec.describe "AdminUsers", type: :system do
         expect(current_path).to eq admin_users_path
       end
       it '一覧ページで「Edit」をクリックすると、ユーザー編集画面に遷移する' do
+        visit admin_users_path
+        page.all('.btn-success')[0].click
+        expect(current_path).to eq edit_admin_user_path(another_user)
       end
     end
     context '異常系' do
