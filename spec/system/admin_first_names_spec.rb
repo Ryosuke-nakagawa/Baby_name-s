@@ -37,6 +37,11 @@ RSpec.describe "AdminFirstNames", type: :system do
         expect(current_path).to eq admin_first_names_path
       end
       it '一覧ページで「Edit」をクリックすると、編集画面に遷移する' do
+        visit admin_first_names_path
+        click_link 'Edit'
+        expect(page).to have_content(first_name.name)
+        expect(page).to have_content(first_name.reading)
+        expect(current_path).to eq edit_admin_first_name_path(first_name)
       end
     end
     context '異常系' do
