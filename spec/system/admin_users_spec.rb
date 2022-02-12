@@ -12,6 +12,14 @@ RSpec.describe "AdminUsers", type: :system do
   describe '管理画面:ユーザ一覧ページ' do
     context '正常系' do
       it 'ユーザーページにアクセスした場合、全てのユーザーが表示されること' do
+        visit admin_users_path
+        expect(page).to have_content(admin_user.name)
+        expect(page).to have_content(admin_user.group_id)
+        expect(page).to have_content(admin_user.line_id)
+        expect(page).to have_content(another_user.name)
+        expect(page).to have_content(another_user.group_id)
+        expect(page).to have_content(another_user.line_id)
+        expect(current_path).to eq admin_users_path
       end
       it '一覧ページで「Show」をクリックすると、ユーザー詳細が表示れること' do
       end

@@ -16,7 +16,6 @@ RSpec.describe "AdminFirstNames", type: :system do
         visit admin_first_names_path
         expect(page).to have_content(first_name.name)
         expect(page).to have_content(first_name.reading)
-        expect(FirstName.count).to eq 1
         expect(current_path).to eq admin_first_names_path
       end
       it '一覧ページで「Show」をクリックすると、名前が表示れること' do
