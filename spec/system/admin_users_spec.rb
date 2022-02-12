@@ -15,13 +15,20 @@ RSpec.describe "AdminUsers", type: :system do
         visit admin_users_path
         expect(page).to have_content(admin_user.name)
         expect(page).to have_content(admin_user.group_id)
-        expect(page).to have_content(admin_user.line_id)
+        expect(page).to have_content(admin_user.role)
+        expect(page).to have_content(another_user.name)
+        expect(page).to have_content(another_user.group_id)
+        expect(page).to have_content(another_user.role)
+        expect(current_path).to eq admin_users_path
+      end
+      it '一覧ページで「Show」をクリックすると、ユーザー詳細が表示されること' do
+        visit admin_users_path
+        page.all('.btn-info')[0].click
         expect(page).to have_content(another_user.name)
         expect(page).to have_content(another_user.group_id)
         expect(page).to have_content(another_user.line_id)
-        expect(current_path).to eq admin_users_path
-      end
-      it '一覧ページで「Show」をクリックすると、ユーザー詳細が表示れること' do
+        expect(page).to have_content(another_user.uuid)
+        expect(current_path).to eq admin_user_path(another_user)
       end
       it '一覧ページで「Delete」をクリックすると、ユーザーが削除されること' do
       end
