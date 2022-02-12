@@ -11,8 +11,9 @@ RSpec.describe "AdminPages", type: :system do
   describe '管理画面' do
     context '正常系' do
       it 'adminユーザーは管理画面のダッシュボードページに遷移できる' do
-      end
-      it '一覧ページで「Show」をクリックすると、名前が表示れること' do
+        visit admin_root_path
+        expect(page).to have_content('DashBoard')
+        expect(current_path).to eq admin_root_path
       end
       it 'ログアウトボタンで管理画面からトップページに遷移する' do
       end
