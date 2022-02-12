@@ -63,7 +63,7 @@ RSpec.describe "AdminUsers", type: :system do
         click_link 'Edit'
         expect(current_path).to eq edit_admin_user_path(another_user)
       end
-      fit '「Delete」ボタンでユーザーを削除できる' do
+      it '「Delete」ボタンでユーザーを削除できる' do
         visit admin_user_path(another_user)
         page.accept_confirm do
           click_link 'Delete'
@@ -78,6 +78,13 @@ RSpec.describe "AdminUsers", type: :system do
   describe '管理画面: ユーザー編集' do
     context '正常系' do
       it '他ユーザーの編集ができる' do
+        visit edit_admin_user_path(another_user)
+        fill_in 'Name', with: 'edit_name'
+        select 'admin', from: 'Role'
+        click_on '更新する'
+        visit admin_user_path(another_user)
+        expect(page).to have_content('edit_name')
+        expect(page).to have_content('admin')
       end
     end
   end
