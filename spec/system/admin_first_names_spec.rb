@@ -75,6 +75,13 @@ RSpec.describe "AdminFirstNames", type: :system do
   describe '管理画面: 名前編集' do
     context '正常系' do
       it '他ユーザーの作成した名前の編集ができる' do
+        visit edit_admin_first_name_path(first_name)
+        fill_in 'Name', with: 'edit_name'
+        fill_in 'Reading', with: 'edit_reading'
+        click_on '更新する'
+        expect(page).to have_content('edit_name')
+        expect(page).to have_content('edit_reading')
+        expect(current_path).to eq admin_first_names_path
       end
     end
   end
