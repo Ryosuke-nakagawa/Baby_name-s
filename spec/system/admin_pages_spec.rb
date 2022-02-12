@@ -26,6 +26,10 @@ RSpec.describe "AdminPages", type: :system do
     end
     context '異常系' do
       it 'adminユーザーではないユーザーは管理画面に遷移できない' do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: another_user.id)
+        visit admin_root_path
+        expect(page).to have_content('権限がありません')
+        expect(current_path).to eq root_path
       end
     end
   end
