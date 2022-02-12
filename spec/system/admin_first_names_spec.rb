@@ -20,6 +20,11 @@ RSpec.describe "AdminFirstNames", type: :system do
         expect(current_path).to eq admin_first_names_path
       end
       it '一覧ページで「show」をクリックすると、名前が表示されること' do
+        visit admin_first_names_path
+        click_link 'Show'
+        expect(page).to have_content(first_name.name)
+        expect(page).to have_content(first_name.reading)
+        expect(current_path).to eq admin_first_name_path(first_name)
       end
       it '一覧ページで「delete」をクリックすると、名前が削除されること' do
       end
