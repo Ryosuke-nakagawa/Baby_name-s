@@ -59,6 +59,9 @@ RSpec.describe "AdminUsers", type: :system do
   describe '管理画面: ユーザー詳細' do
     context '正常系' do
       it '「Edit」ボタンで編集画面に遷移できる' do
+        visit admin_user_path(admin_user)
+        click_link 'Edit'
+        expect(current_path).to eq edit_admin_user_path(admin_user)
       end
       it '「Delete」ボタンでユーザーを削除できる' do
       end
