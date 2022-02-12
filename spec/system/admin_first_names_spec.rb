@@ -46,6 +46,12 @@ RSpec.describe "AdminFirstNames", type: :system do
     end
     context '異常系' do
       it 'adminユーザーではないユーザーは名前一覧の管理画面に遷移できない' do
+        allow_any_instance_of(ActionDispatch::Request).to receive(:session).and_return(user_id: another_user.id)
+        visit admin_first_names_path
+        expect(page).not_to have_content(first_name.name)
+        expect(page).not_to have_content(first_name.reading)
+        expect(page).to have_content('権限がありません')
+        expect(current_path).to eq root_path
       end
     end
   end
