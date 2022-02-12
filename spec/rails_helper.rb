@@ -1,6 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 require 'capybara/rspec'
+require 'webdrivers/chromedriver'
+Webdrivers::Chromedriver.required_version = '97.0.4692.71'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production

@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :login_required
 
-  rescue_from StandardError, with: :render500
+  # rescue_from StandardError, with: :render500
   rescue_from ActiveRecord::RecordNotFound, with: :render404
 
   add_flash_types :success, :info, :warning, :danger

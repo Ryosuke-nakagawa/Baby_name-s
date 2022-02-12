@@ -1,0 +1,32 @@
+doctype html
+html lang="ja" 
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta charset="utf-8" /
+    meta content="width=device-width, initial-scale=1" name="viewport" /
+    title AdminLTE 3 | Starter
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag 'admin', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+  body.hold-transition.sidebar-mini
+    .wrapper
+      nav.main-header.navbar.navbar-expand.navbar-white.navbar-light
+        /! Left navbar links
+        ul.navbar-nav
+          li.nav-item
+            a.nav-link data-widget="pushmenu" href="#" role="button" 
+              i.fas.fa-bars
+        /! Right navbar links
+        ul.navbar-nav.ml-auto
+          li.nav-item
+            = link_to 'Logout', admin_logout_path, class: 'nav-link', method: :delete, data: { confirm: t('defaults.message.logout_confirm') }
+      = render 'shared/admin/sidebar'
+      /! Content Wrapper. Contains page content
+      .content-wrapper
+        = yield
+      footer.main-footer
+        strong
+          | Copyright © 2014-2021
+            a href="https://adminlte.io"  AdminLTE.io
+        | All rights reserved.

@@ -16,6 +16,7 @@ ja:
       deleted: '%{item}を削除しました'
       delete_confirm: '削除しますか?'
       no_authorization: '権限がありません'
+      logout_confirm: 'ログアウトしますか?'
   static_pages:
     top:
       title: 'トップページ'

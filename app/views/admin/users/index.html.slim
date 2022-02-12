@@ -1,0 +1,15 @@
+.content
+  .container-fluid
+    .row
+      .col-sm-12
+        table.table.table-striped
+          thead
+            tr
+              th scope="col"  Avatar
+              th scope="col"  Id
+              th scope="col"  Name
+              th scope="col"  GroupId
+              th scope="col"  Role
+              th scope="col"  Created_at
+          tbody
+            = render @users

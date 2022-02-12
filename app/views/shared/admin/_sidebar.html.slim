@@ -1,0 +1,28 @@
+aside.main-sidebar.sidebar-dark-primary.elevation-4
+  a.brand-link href="/admin" 
+    = image_tag 'AdminLTELogo.png', class: 'brand-image img-circle elevation-3'
+    span.brand-text.font-weight-light AdminLTE 3
+  .sidebar
+    .user-panel.mt-3.pb-3.mb-3.d-flex
+      - if current_user.avatar
+        .image
+          = image_tag current_user.avatar, \
+            class: 'rounded-circle',\
+            id: 'preview',\
+            size: '100x100'
+      .info
+        a.d-block href=admin_user_path(current_user)
+          = current_user.name
+    nav.mt-2
+      ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 
+        li.nav-item
+          = link_to admin_users_path, class: "nav-link" do
+            i.nav-icon.fas.fa-user
+            p
+              | User List
+      ul.nav.nav-pills.nav-sidebar.flex-column data-accordion="false" data-widget="treeview" role="menu" 
+        li.nav-item
+          = link_to admin_first_names_path, class: "nav-link" do
+            i.nav-icon.fas.fa-file
+            p
+              | First_name List

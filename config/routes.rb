@@ -23,4 +23,13 @@ Rails.application.routes.draw do
   resources :share_target_pickers, only: %i[new]
   resources :likes, only: %i[create destroy]
   resources :rankings, only: %i[index]
+
+  namespace :admin do
+    root to: 'dashboards#top'
+    get 'login', to: 'user_sessions#new'
+    post 'login', to: 'user_sessions#login'
+    delete 'logout', to: 'user_sessions#logout'
+    resources :first_names, only: %i[index show edit destroy update]
+    resources :users, only: %i[index show edit destroy update]
+  end
 end

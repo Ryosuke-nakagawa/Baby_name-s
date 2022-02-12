@@ -1,0 +1,34 @@
+.container
+  .row
+    .col-md-10.offset-md-1.col-lg-8.offset-lg-2
+      h1 Show FirstName
+      .text-right.mb-3
+        = link_to t('defaults.edit'), edit_admin_first_name_path(@first_name), class: 'btn btn-success'
+        = link_to t('defaults.delete'), admin_first_name_path(@first_name), method: :delete, data: { confirm: t('defaults.message.delete_confirm') }, class: 'btn btn-danger'
+      table.table.table-bordered.bg-white
+        tr
+          th scope="row"  Id
+          td= @first_name.id
+        tr
+          th scope="row"  GroupId
+          td= @first_name.group_id
+        tr
+          th scope="row"  Name
+          td= @first_name.name
+        tr
+          th scope="row"  Reading
+          td= @first_name.reading
+        tr
+          th scope="row"  FortuneTellingRate
+          td= @first_name.fortune_telling_rate
+        tr
+          th scope='row' FortuneTellingImage
+          td= image_tag @fortune_telling_image_url, \
+                id: 'preview', \
+                size: '200x200'
+        tr
+          th scope="row"  FortuneTellingUrl
+          td= @first_name.fortune_telling_url
+        tr
+          th scope="row"  Created_at
+          td= l @first_name.created_at, format: :long
