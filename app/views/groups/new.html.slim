@@ -53,7 +53,10 @@
         - @group.users.each do |user|
           - if user != current_user
             div.d-flex.flex-column.text-center.align-items-center
-              img src = user.avatar  width="50" height="50" class= 'rounded-circle'
+              - if user.avatar
+                = image_tag("#{user.avatar}", size: '50x50', class: 'rounded-circle')
+              - else
+                = image_tag('no_image.png', size: '50x50', class: 'rounded-circle')
               = user.name
     - else
         .text-center.py2
