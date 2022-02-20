@@ -44,6 +44,20 @@
               = u.label :fortune_telling_rate_setting_1, t('defaults.row'), class: "btn outline btn-dark mx-2"
       .col.text-center.mt-3
         = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
+  .col.py-5.under-line-dot
+    h1.title.text-center.fw-bold アカウント共有状態
+    - if @group.two_or_more_user?
+      .text-center.pt2
+        | 現在、アカウント共有しているユーザーは#{@group.users.count - 1}名です。
+      .col.pt-2.d-flex.justify-content-evenly.flex-wrap
+        - @group.users.each do |user|
+          - if user != current_user
+            div.d-flex.flex-column.text-center.align-items-center
+              img src = user.avatar  width="50" height="50" class= 'rounded-circle'
+              = user.name
+    - else
+        .text-center.py2
+          | 現在、アカウント共有しているユーザーはいません。
   .col.pt-5
     h1.title.text-center.fw-bold ユーザー情報リセット
     .text-center.pt-2
