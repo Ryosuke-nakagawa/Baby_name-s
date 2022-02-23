@@ -14,12 +14,12 @@ Rails.application.routes.draw do
   end
 
   resources :first_names, only: %i[new show destroy] do
-    resources :rates, only: %i[new create update edit]
+    resources :rates, only: %i[new create edit]
     collection do
       get :likes
     end
   end
-
+  resources :rates, only: %i[update]
   resources :share_target_pickers, only: %i[new]
   resources :likes, only: %i[create destroy]
   resources :rankings, only: %i[index]

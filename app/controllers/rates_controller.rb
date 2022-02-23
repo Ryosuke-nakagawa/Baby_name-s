@@ -13,8 +13,12 @@ class RatesController < ApplicationController
   end
 
   def update
-    @rate.update!(update_rate_params)
-    redirect_to first_name_path(@rate.first_name), success: t('defaults.message.updated', item: Rate.model_name.human)
+    @rate = current_user.rates.find(params[:id])
+    if @rate.update(rate_update_params)
+      render json: { rate: @rate }, status: :ok
+    else
+      render json: { rate: @rate, errors: { messages: @rate.errors.full_messages } }, status: :bad_request
+    end
   end
 
   def edit
@@ -28,7 +32,7 @@ class RatesController < ApplicationController
                                                                      first_name_id: params[:first_name_id])
   end
 
-  def update_rate_params
+  def rate_update_params
     params.require(:rate).permit(:sound_rate, :character_rate)
   end
 
