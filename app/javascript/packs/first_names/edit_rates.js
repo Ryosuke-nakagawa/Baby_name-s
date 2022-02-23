@@ -5,6 +5,11 @@ $(function() {
         switchToEdit();
     })
 
+    $(document).on("click", '#js-cancel-sound-rate', function(e) {
+        e.preventDefault();
+        switchToLabel();
+    })
+
     function switchToEdit() {
         $("#js-edit-sound-rate").hide()
         $("#js-show-sound-rate").hide()
@@ -26,12 +31,10 @@ $(function() {
         const rateId = $(this).data('rate-id')
         submitRate($("*[name='rate[sound_rate]']").val(), rateId)
             .then(result => {
-                debugger;
                 $("#js-show-sound-rate").attr('data-rate', result.rate.sound_rate.toFixed(1))
                 switchToLabel()
             })
             .catch(result => {
-                debugger;
                 const rateId = result.responseJSON.rate.id
                 const messages = result.responseJSON.errors.messages
                 showErrorMessages(rateId, messages)
