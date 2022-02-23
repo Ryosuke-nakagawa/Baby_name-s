@@ -18,7 +18,18 @@
         .flex-fill.text-center
           = t('.you')
       - else
-        span.star-show data-rate = @rate.sound_rate.to_f
+        span#js-show-sound-rate.star-show data-rate = @rate.sound_rate.to_f
+        = link_to '#', id: 'js-edit-sound-rate' do
+          i.fas.fa-edit
+        #js-sound-rate-form.form-group style= 'display:none'
+        = link_to '#', id: 'js-update-sound-rate', data: {rate_id: @rate.id}, style: 'display:none' do
+          i.fas.fa-check-circle
+        = link_to '#', id: 'js-cancel-sound-rate', style: 'display:none' do
+          i.fas.fa-times
+
+       
+
+
     .col-6.py-2.d-flex.align-items-center.justify-content-center
       h4. = Rate.human_attribute_name(:character_rate)
     .col-6.text-left.py-2.d-flex.flex-wrap
@@ -44,3 +55,15 @@
   .container.text-center.pt-3
     = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
     p.detail-text = t('.notes_on_deleting')
+
+
+javascript:
+  $('#js-sound-rate-form').raty({
+    starOff: "#{asset_path('star-off.png')}",
+    starOn: "#{asset_path('star-on.png')}",
+    scoreName: 'rate[sound_rate]',
+
+    half: false,
+  });
+
+= javascript_pack_tag 'first_names/edit_rates'
