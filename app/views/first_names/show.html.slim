@@ -7,7 +7,7 @@
         i.fas.fa-angle-left.back-button
       .display-3.text-center = @first_name.name
   .row.pb-2.pt-3
-    .col-6.d-flex.align-items-center.justify-content-center
+    .col-6.d-flex.justify-content-center
       h4. = Rate.human_attribute_name(:sound_rate)
     .col-6.text-left.d-flex.flex-wrap
       - if @group.two_or_more_user?
@@ -18,27 +18,37 @@
         .flex-fill.text-center
           = t('.you')
       - else
-        span#js-show-sound-rate.star-show data-rate = @rate.sound_rate.to_f
-        = link_to '#', id: 'js-edit-sound-rate', class: 'flex-fill text-center' do
-          i.fas.fa-edit
-        #js-sound-rate-form style= 'display:none'
-        .flex-fill.d-flex.justify-content-end.pt-2
-          = link_to '#', id: 'js-update-sound-rate', data: {rate_id: @rate.id}, style: 'display:none', class: 'px-2' do
-            i.fas.fa-check-circle.brown.fa-lg
-          = link_to '#', id: 'js-cancel-sound-rate', style: 'display:none', class: 'px-2' do
-            i.fas.fa-times.brown.fa-lg
+        #js-show-sound-rate
+          span#js-star-sound-rate.star-show data-rate = @rate.sound_rate.to_f
+          = link_to '#', id: 'js-edit-rate', class: 'text-center px-3', data: { rate_type: 'sound' } do
+            i.fas.fa-edit
+        #js-edit-sound-rate style= 'display:none'
+          #raty-sound-rate
+          .flex-fill.d-flex.justify-content-end.pt-2
+            = link_to '#', id: 'js-update-rate', data: { rate_id: @rate.id, rate_type: 'sound' }, class: 'px-2' do
+              i.fas.fa-check-circle.brown.fa-lg
+            = link_to '#', id: 'js-cancel-rate', data: { rate_type: 'sound' }, class: 'px-2' do
+              i.fas.fa-times.brown.fa-lg
 
-       
 
-
-    .col-6.py-2.d-flex.align-items-center.justify-content-center
+    .col-6.py-2.d-flex.justify-content-center
       h4. = Rate.human_attribute_name(:character_rate)
     .col-6.text-left.py-2.d-flex.flex-wrap
       - if @group.two_or_more_user?
         span.star-show data-rate = character_average(@rates)
         span.star-show-users data-rate = @rate.character_rate.to_f
       - else
-        span.star-show data-rate = @rate.character_rate.to_f
+        #js-show-character-rate
+          span#js-star-character-rate.star-show data-rate = @rate.character_rate.to_f
+          = link_to '#', id: 'js-edit-rate', class: 'text-center px-3', data: { rate_type: 'character' } do
+            i.fas.fa-edit
+        #js-edit-character-rate style= 'display:none'
+          #raty-character-rate
+          .flex-fill.d-flex.justify-content-end.pt-2
+            = link_to '#', id: 'js-update-rate', data: { rate_id: @rate.id, rate_type: 'character' }, class: 'px-2' do
+              i.fas.fa-check-circle.brown.fa-lg
+            = link_to '#', id: 'js-cancel-rate', data: { rate_type: 'character' }, class: 'px-2' do
+              i.fas.fa-times.brown.fa-lg
     .col-6.text-center
       h4. = FirstName.human_attribute_name(:fortune_telling_rate)
     .col-6.text-left
@@ -59,12 +69,18 @@
 
 
 javascript:
-  $('#js-sound-rate-form').raty({
+  $('#raty-sound-rate').raty({
     size: 10,
     starOff: "#{asset_path('star-off.png')}",
     starOn: "#{asset_path('star-on.png')}",
     scoreName: 'rate[sound_rate]',
-
+    half: false,
+  });
+  $('#raty-character-rate').raty({
+    size: 10,
+    starOff: "#{asset_path('star-off.png')}",
+    starOn: "#{asset_path('star-on.png')}",
+    scoreName: 'rate[character_rate]',
     half: false,
   });
 

@@ -1,38 +1,42 @@
 $(function() {
 
-    $(document).on("click", '#js-edit-sound-rate', function(e) {
+    $(document).on("click", '#js-edit-rate', function(e) {
         e.preventDefault();
-        switchToEdit();
+        const rateType = $(this).data('rate-type')
+        switchToEdit(rateType);
     })
 
-    $(document).on("click", '#js-cancel-sound-rate', function(e) {
+    $(document).on("click", '#js-cancel-rate', function(e) {
         e.preventDefault();
-        switchToLabel();
+        const rateType = $(this).data('rate-type')
+        switchToLabel(rateType);
     })
 
-    function switchToEdit() {
-        $("#js-edit-sound-rate").hide()
-        $("#js-show-sound-rate").hide()
-        $("#js-sound-rate-form").show()
-        $("#js-cancel-sound-rate").show()
-        $("#js-update-sound-rate").show()
+    function switchToEdit(rateType) {
+
+        $("#js-show-" + rateType + "-rate").hide()
+        $("#js-edit-" + rateType + "-rate").show()
     }
 
-    function switchToLabel() {
-        $("#js-sound-rate-form").hide()
-        $("#js-cancel-sound-rate").hide()
-        $("#js-update-sound-rate").hide()
-        $("#js-show-sound-rate").show()
-        $("#js-edit-sound-rate").show()
+    function switchToLabel(rateType) {
+        $("#js-edit-" + rateType + "-rate").hide()
+        $("#js-show-" + rateType + "-rate").show()
     }
 
-    $(document).on("click", '#js-update-sound-rate', function() {
+    $(document).on("click", '#js-update-rate', function() {
         // clearErrorMessages()
         const rateId = $(this).data('rate-id')
-        submitRate($("*[name='rate[sound_rate]']").val(), rateId)
+        const rateType = $(this).data('rate-type')
+        const formName = `*[name='rate[${rateType}_rate]']`
+        submitRate($(formName).val(), rateType, rateId)
             .then(result => {
-                $("#js-show-sound-rate").attr('data-rate', result.rate.sound_rate.toFixed(1))
-                switchToLabel()
+                if (rateType === 'sound') {
+                    $("#js-star-sound-rate").attr('data-rate', result.rate.sound_rate.toFixed(1))
+                    switchToLabel(rateType)
+                }else if (rateType === 'character') {
+                    $("#js-star-character-rate").attr('data-rate', result.rate.character_rate.toFixed(1))
+                    switchToLabel(rateType)
+                }
             })
             .catch(result => {
                 const rateId = result.responseJSON.rate.id
@@ -41,16 +45,15 @@ $(function() {
             })
     })
 
-    function submitRate(body, rateId) {
+    function submitRate(body, rateType, rateId) {
         return new Promise(function(resolve, reject) {
+            let rate = {};
+            rate[rateType + '_rate'] = body
+
             $.ajax({
                 type: 'PATCH',
                 url: '/rates/' + rateId,
-                data: {
-                    rate: {
-                        sound_rate: body
-                    }
-                },
+                data: { rate },
                 headers: {
                     'X-CSRF-Token' : $('meta[name="csrf-token"]').attr('content')
                 }
