@@ -1,36 +1,54 @@
 - set_meta_tags title: t('.title')
-.container
-  h1.title.text-center.fw-bold.mt-5 名前の評価
-  .col-lg-8
+.container.pt-3
+  .row
+    .col
+      h5.text-center = @first_name.reading
+      = link_to group_first_names_path(@first_name.group),class: "position-absolute"
+        i.fas.fa-angle-left.back-button
+      .display-3.text-center = @first_name.name
     = form_with model: [@first_name,@rate], local: true do |f|
-      .form-group.row
-            .py-4
-              = f.label :sound_rate, class: 'form-label fs-2'
-            .btn-group aria-label=("Basic radio toggle button group") role="group"
-              = f.radio_button :sound_rate, 1, class: "btn-check", autocomplete: "off"
-              = f.label :sound_rate_1, "1", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :sound_rate, 2, class: "btn-check", autocomplete: "off"
-              = f.label :sound_rate_2, "2", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :sound_rate, 3, class: "btn-check", autocomplete: "off",checked: "checked"
-              = f.label :sound_rate_3, "3", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :sound_rate, 4, class: "btn-check", autocomplete: "off"
-              = f.label :sound_rate_4, "4", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :sound_rate, 5, class: "btn-check", autocomplete: "off"
-              = f.label :sound_rate_5, "5", class: "btn outline btn-dark mx-2 fs-2"
-      .form-group.row
-            .py-4
-              = f.label :character_rate, class: 'form-label fs-2'
-            .btn-group.mb-5 aria-label=("Basic radio toggle button group") role="group"
-              = f.radio_button :character_rate, 1, class: "btn-check", autocomplete: "off"
-              = f.label :character_rate_1, "1", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :character_rate, 2, class: "btn-check", autocomplete: "off"
-              = f.label :character_rate_2, "2", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :character_rate, 3, class: "btn-check", autocomplete: "off",checked: "checked"
-              = f.label :character_rate_3, "3", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :character_rate, 4, class: "btn-check", autocomplete: "off"
-              = f.label :character_rate_4, "4", class: "btn outline btn-dark mx-2 fs-2"
-              = f.radio_button :character_rate, 5, class: "btn-check", autocomplete: "off"
-              = f.label :character_rate_5, "5", class: "btn outline btn-dark mx-2 fs-2"
+      .row.py-3
+        .col-5.d-flex.justify-content-center
+          = f.label :sound_rate, class: 'h4'
+        .col-7.d-flex.flex-wrap
+          div.col.d-flex
+            #raty-sound-rate
+    
+        .col-5.py-2.d-flex.justify-content-center
+          = f.label :character_rate, class: 'h4'
+        .col-7.d-flex.flex-wrap.py-2
+          div.col.d-flex
+            #raty-character-rate
+      
+        .col-5.text-center
+          h4. = FirstName.human_attribute_name(:fortune_telling_rate)
+        .col-7.text-left
+          span.star-show data-rate = @first_name.fortune_telling_rate.to_f
+        .col.text-center.pt-3
+          = f.submit (t 'defaults.register'), class: "btn btn-dark fs-2"
 
-      .col.text-center
-        = f.submit (t 'defaults.register'), class: "btn btn-dark fs-1"
+  .container.py-1.d-flex.flex-column.align-items-center
+    =link_to @first_name.fortune_telling_url
+      img src = @fortune_telling_image_url  width="320" height="300"
+    = link_to t('.fortune_telling_site'), 'https://enamae.net/'
+
+  .container.text-center.pt-3
+    = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
+    p.detail-text = t('.notes_on_deleting')
+
+
+javascript:
+  $('#raty-sound-rate').raty({
+    size: 10,
+    starOff: "#{asset_path('star-off.png')}",
+    starOn: "#{asset_path('star-on.png')}",
+    scoreName: 'rate[sound_rate]',
+    half: false,
+  });
+  $('#raty-character-rate').raty({
+    size: 10,
+    starOff: "#{asset_path('star-off.png')}",
+    starOn: "#{asset_path('star-on.png')}",
+    scoreName: 'rate[character_rate]',
+    half: false,
+  });

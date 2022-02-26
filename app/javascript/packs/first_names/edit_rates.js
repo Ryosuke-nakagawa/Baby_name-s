@@ -31,17 +31,18 @@ $(function() {
         submitRate($(formName).val(), rateType, rateId)
             .then(result => {
                 if (rateType === 'sound') {
-                    $("#js-star-sound-rate").attr('data-rate', result.rate.sound_rate.toFixed(1))
+                    $('#js-star-sound-rate').attr('data-rate', result.rate.sound_rate.toFixed(1))
+                    $('#js-star-sound-rate-ave').attr('data-rate', result.sound_rate_ave.toFixed(1))
                     switchToLabel(rateType)
                 }else if (rateType === 'character') {
                     $("#js-star-character-rate").attr('data-rate', result.rate.character_rate.toFixed(1))
+                    $('#js-star-character-rate-ave').attr('data-rate', result.character_rate_ave.toFixed(1))
                     switchToLabel(rateType)
                 }
             })
             .catch(result => {
-                const rateId = result.responseJSON.rate.id
                 const messages = result.responseJSON.errors.messages
-                showErrorMessages(rateId, messages)
+                showErrorMessages(messages)
             })
     })
 

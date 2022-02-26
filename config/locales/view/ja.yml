@@ -11,6 +11,7 @@ ja:
     message:
       registered: '%{item}を登録しました' 
       not_registered: '%{item}を登録できませんでした'
+      please_register: '%{item}を登録してください'
       updated: '%{item}を更新しました'
       not_updated: '%{item}を更新できませんでした'
       deleted: '%{item}を削除しました'
@@ -58,8 +59,9 @@ ja:
   rates:
     new:
       title: '評価の入力'
-    edit:
-      title: '評価の編集'
+      delete_name: 'お名前を削除する'
+      fortune_telling_site: '引用元: いい名前ネット'
+      notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
   first_names:
     index:
       title: '名前一覧'
@@ -84,8 +86,6 @@ ja:
       title: '名前の詳細'
       delete_name: 'お名前を削除する'
       fortune_telling_site: '引用元: いい名前ネット'
-      average: '平均'
-      you: 'あなた'
       notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
     likes:
       title: 'ハート一覧'

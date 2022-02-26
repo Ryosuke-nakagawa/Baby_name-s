@@ -6,21 +6,21 @@
       = link_to group_first_names_path(@group),class: "position-absolute"
         i.fas.fa-angle-left.back-button
       .display-3.text-center = @first_name.name
-  .row.pb-2.pt-3
-    .col-6.d-flex.justify-content-center
+  .row.py-3
+    .col-5.d-flex.justify-content-center
       h4. = Rate.human_attribute_name(:sound_rate)
-    .col-6.text-left.d-flex.flex-wrap
+    .col-7.d-flex.flex-wrap
       - if @group.two_or_more_user?
-        span.star-show data-rate = sound_average(@rates)
-        .flex-fill.text-center
-          = t('.average')
-        span.star-show-users data-rate = @rate.sound_rate.to_f
-        .flex-fill.text-center
-          = t('.you')
-      - else
-        #js-show-sound-rate
+        div.px-1-5
+          i.fas.fa-users.change
+        span#js-star-sound-rate-ave.star-show.change data-rate = Rate.sound_average(@rates)
+      div.col.d-flex
+        - if @group.two_or_more_user?
+          div
+            i.fas.fa-user.px-2
+        #js-show-sound-rate 
           span#js-star-sound-rate.star-show data-rate = @rate.sound_rate.to_f
-          = link_to '#', id: 'js-edit-rate', class: 'text-center px-3', data: { rate_type: 'sound' } do
+          = link_to '#', id: 'js-edit-rate', class: 'px-2', data: { rate_type: 'sound' } do
             i.fas.fa-edit
         #js-edit-sound-rate style= 'display:none'
           #raty-sound-rate
@@ -31,16 +31,20 @@
               i.fas.fa-times.brown.fa-lg
 
 
-    .col-6.py-2.d-flex.justify-content-center
+    .col-5.py-2.d-flex.justify-content-center
       h4. = Rate.human_attribute_name(:character_rate)
-    .col-6.text-left.py-2.d-flex.flex-wrap
+    .col-7.d-flex.flex-wrap.py-2
       - if @group.two_or_more_user?
-        span.star-show data-rate = character_average(@rates)
-        span.star-show-users data-rate = @rate.character_rate.to_f
-      - else
-        #js-show-character-rate
+        div.px-1-5
+          i.fas.fa-users.change
+        span#js-star-character-rate-ave.star-show.change data-rate = Rate.character_average(@rates)
+      div.col.d-flex
+        - if @group.two_or_more_user?
+          div
+            i.fas.fa-user.px-2
+        #js-show-character-rate 
           span#js-star-character-rate.star-show data-rate = @rate.character_rate.to_f
-          = link_to '#', id: 'js-edit-rate', class: 'text-center px-3', data: { rate_type: 'character' } do
+          = link_to '#', id: 'js-edit-rate', class: 'px-2', data: { rate_type: 'character' } do
             i.fas.fa-edit
         #js-edit-character-rate style= 'display:none'
           #raty-character-rate
@@ -49,15 +53,12 @@
               i.fas.fa-check-circle.brown.fa-lg
             = link_to '#', id: 'js-cancel-rate', data: { rate_type: 'character' }, class: 'px-2' do
               i.fas.fa-times.brown.fa-lg
-    .col-6.text-center
+
+    .col-5.text-center
       h4. = FirstName.human_attribute_name(:fortune_telling_rate)
-    .col-6.text-left
+    .col-7.text-left
       span.star-show data-rate = @first_name.fortune_telling_rate.to_f
-    .d-flex.flex-row-reverse
-      - if @rate.nil?
-          = link_to t('defaults.rating'),new_first_name_rate_path(@first_name),class: "btn btn-dark float-end py-2"
-      - else
-        = link_to t('defaults.change'),edit_first_name_rate_path(@first_name,@rate),class: "btn btn-dark py-2"
+
   .container.py-1.d-flex.flex-column.align-items-center
     =link_to @first_name.fortune_telling_url
       img src = @fortune_telling_image_url  width="320" height="300"
