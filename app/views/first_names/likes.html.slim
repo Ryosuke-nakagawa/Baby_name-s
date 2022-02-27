@@ -17,10 +17,10 @@
     .col-2.heart-change-button.d-flex.justify-content-center
       = link_to group_first_names_path(@group),class: 'd-flex align-items-center brown' do
         i.fas.fa-heart.brown.fa-2x
-  - if @like_first_names.empty?
+  - if @like_first_names.nil?
     .container.pt-5.mt-5.text-center
       = t('.no_hearted_name')
-  else
+  - else
     - @like_first_names.each do |first_name|
       .row.text-center.pt-3
         .col-1

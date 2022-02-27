@@ -42,16 +42,26 @@ RSpec.describe "Rates", type: :system do
   end
   describe '評価の編集' do
     context '正常系' do
-      it '評価が変更されること' do
-        visit edit_first_name_rate_path(first_name,rate)
-        all('label.btn')[0].click
-        all('label.btn')[9].click
-        click_button '決定'
+      it '「音の響き」の評価が変更されること', js: true do
+        visit first_name_path(first_name)
+        page.first("#js-edit-rate").click
+        find("img[alt='2']").click
+        page.first("#js-update-rate").click
+        sleep 1
         sound_rate = all('.star-show')[0]
-        character_rate = all('.star-show')[1]
-        expect(sound_rate['data-rate']).to eq '1.0'
-        expect(character_rate['data-rate']).to eq '5.0'
-        expect(page).to have_content('評価を更新しました')
+        expect(sound_rate['data-rate']).to eq '2.0'
+        expect(current_path).to eq first_name_path(first_name)
+      end
+      it '「漢字」の評価が変更されること', js: true do
+        visit first_name_path(first_name)
+        edit = page.all("#js-edit-rate")[1]
+        edit.click
+        find("img[alt='3']").click
+        update = page.all("#js-update-rate")[0]
+        update.click
+        sleep 1
+        sound_rate = all('.star-show')[1]
+        expect(sound_rate['data-rate']).to eq '3.0'
         expect(current_path).to eq first_name_path(first_name)
       end
     end
