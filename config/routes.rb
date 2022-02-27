@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   end
 
   resources :first_names, only: %i[new show destroy] do
-    resources :rates, only: %i[new create edit]
+    resources :rates, only: %i[new create]
     collection do
       get :likes
     end

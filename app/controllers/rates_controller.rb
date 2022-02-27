@@ -27,10 +27,6 @@ class RatesController < ApplicationController
     end
   end
 
-  def edit
-    @first_name = current_user.group.first_names.find(params[:first_name_id])
-  end
-
   private
 
   def rate_params
