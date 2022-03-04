@@ -8,11 +8,12 @@ nav.navbar.navbar-dark.fixed-top
     .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
       ul.navbar-nav.me-2
         li.nav-item
-          = link_to root_path(anchor: 'how_to_use'), class: 'nav-link d-flex justify-content-end m-1' do
+          = link_to '#', data: { target: 1 }, class: 'nav-link d-flex justify-content-end m-1 js-modal-open' do
             .p-2
               icon.fas.fa-question.drop-down-icon
             .drop-down-text
               = t('static_pages.top.how_to_use')
+         
         li.nav-item
           = link_to group_first_names_path(current_user.group), class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
@@ -31,3 +32,5 @@ nav.navbar.navbar-dark.fixed-top
               icon.far.fa-comment.drop-down-icon
             .drop-down-text
               = t('static_pages.infomation.title')
+
+
