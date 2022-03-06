@@ -3,17 +3,14 @@ nav.navbar.navbar-dark.fixed-top
     = link_to root_path, class: 'navbar-brand header-title'
       = image_tag 'baby_img_face.png', class: 'd-inline-block header-icon me-2'
       | BabyNames
+    navbar-toggler
+      = link_to '#', data: { target: 1 }, class: 'js-modal-open' do
+        .p-2
+          icon.fas.fa-question.drop-down-icon.title-detail-text
     button.navbar-toggler.me-3 data-bs-toggle='collapse' data-bs-target="#navbarSupportedContent" aria-label="Toggle navigation"
       span.navbar-toggler-icon
     .collapse.navbar-collapse.justify-content-end id='navbarSupportedContent'
       ul.navbar-nav.me-2
-        li.nav-item
-          = link_to '#', data: { target: 1 }, class: 'nav-link d-flex justify-content-end m-1 js-modal-open' do
-            .p-2
-              icon.fas.fa-question.drop-down-icon
-            .drop-down-text
-              = t('static_pages.top.how_to_use')
-         
         li.nav-item
           = link_to group_first_names_path(current_user.group), class: 'nav-link d-flex justify-content-end m-1' do
             .p-2
