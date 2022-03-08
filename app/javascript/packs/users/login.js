@@ -15,8 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const idToken = liff.getIDToken();
     if(!param){
       var body = `idToken=${idToken}`
+      var introduction = false
     }else{
       var body = `idToken=${idToken}&uuid=${param}`
+      var introduction = true
     }
     const request = new Request('/users', {
       headers: {
@@ -31,7 +33,11 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!response.ok) {
         console.error('Login failed');
       }
-      window.location = '/groups/new'
+      if (introduction){
+      window.location = '/groups/new?introduction=true'
+      }else{
+      window.location = '/groups/new?introduction=false'
+      }
     })
     .catch(function(response) {
       console.log('Network error');

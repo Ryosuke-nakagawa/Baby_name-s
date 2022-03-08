@@ -1,5 +1,6 @@
-
 - set_meta_tags title: t('.title')
+- if @introduction == 'true'
+  = render 'introduction_modal'
 .container-xs
   .col-lg-8.px-5.py-3.under-line-dot
     h1.title.text-center.fw-bold = t('.title')
@@ -67,3 +68,5 @@
       | 名前一覧の情報がリセットされます。<br>アカウント共有している場合、共有が解除されます。
   .col.py-4.text-center
     = link_to 'ユーザーリセット', user_path(@user), method: :delete, class: 'btn btn-danger fs-4', data: {confirm: "リセットしてよろしいですか？"}
+
+= javascript_pack_tag 'groups/introduction'

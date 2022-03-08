@@ -3,6 +3,7 @@ class GroupsController < ApplicationController
 
   def new
     @group = @user.group
+    @introduction = params[:introduction]
   end
 
   def update

@@ -1,4 +1,4 @@
-window.addEventListener("turbolinks:load",function() {
+window.addEventListener("load",function() {
 
   var selected = document.getElementById("select_box_js");
   selected.onchange = function() {

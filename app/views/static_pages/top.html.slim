@@ -18,19 +18,18 @@
       img.mx-auto.d-block src="https://qr-official.line.me/sid/M/815ptfns.png" /
 .container
   .row.mt-5
-    .col.text-center.fs-2 id='how_to_use'
-      = t('.how_to_use')
+    .col.text-center id='how_to_use'
+      h1 できることは3つ!
   .row.text-center
-    .col-12.col-sm-4.mt-2.d-flex.flex-column.align-items-center
-      = image_tag 'usage_1.png' ,class: 'mt-2',size: '350x350'
-    .col-12.col-sm-4.mt-2.d-flex.flex-column.align-items-center
-      = image_tag 'usage_2.png' ,class: 'mt-2',size: '350x350'
-    .col-12.col-sm-4.mt-2.d-flex.flex-column.align-items-center
-      = image_tag 'usage_3.png' ,class: 'mt-2',size: '350x350'
-    .col-12.col-sm-4.offset-sm-2.mt-2.d-flex.flex-column.align-items-center
-      = image_tag 'usage_4.png' ,class: 'mt-2',size: '350x350'
-    .col-12.col-sm-4.mt-2.d-flex.flex-column.align-items-center
-      = image_tag 'usage_5.png' ,class: 'mt-2',size: '350x350'
+    .col-12.col-sm-6.mt-2.d-flex.flex-column.align-items-center
+      h2.mt-2 1.名前と評価の登録
+      = image_tag 'usage_name_registration.gif' ,class: 'mt-2 rounded-circle',size: '350x350'
+    .col-12.col-sm-6.mt-2.d-flex.flex-column.align-items-center
+      h2.mt-2 2.評価を元に並び替えて比較
+      = image_tag 'usage_index.gif' ,class: 'mt-2 rounded-circle',size: '350x350'
+    .col-12.col-sm-6.offset-sm-3.mt-2.d-flex.flex-column.align-items-center
+      h2.mt-2 3.夫婦・友達で名前を共有
+      = image_tag 'usage_share.png' ,class: 'mt-2 rounded-circle',size: '350x350'
   .row.mt-3
     .col-12.text-center.fs-6
       = simple_format(t('.add_line_friends'),{},wrapper_tag: "div")

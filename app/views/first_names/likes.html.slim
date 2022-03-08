@@ -34,9 +34,9 @@
         .col-3.d-flex.align-items-center.justify-content-center
           h4. = first_name.name
         .col-2.d-inline-flex
-          span.star-index data-rate = sound_average(Rate.ratings_within_group(first_name,first_name.group))
+          span.star-index data-rate = Rate.sound_average(first_name.rates)
         .col-2.d-inline-flex
-          span.star-index data-rate = character_average(Rate.ratings_within_group(first_name,first_name.group))
+          span.star-index data-rate = Rate.character_average(first_name.rates)
         .col-2.d-inline-flex
           span.star-index data-rate = first_name.fortune_telling_rate.to_f
         .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)

@@ -19,3 +19,4 @@ window.$ = window.jQuery = require('jquery');
 
 // Ratyを読み込む
 require('./jquery.raty')
+require('./header/modal')

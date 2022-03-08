@@ -27,6 +27,7 @@ html
     = render 'shared/flash_message'
     - if session[:user_id]
       = render 'shared/header'
+      = render 'shared/modal'
     - else
       = render 'shared/before_login_header'  
     = yield
