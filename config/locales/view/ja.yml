@@ -8,6 +8,25 @@ ja:
     high: '高い'
     usual: '普通'
     row: '低い'
+    next: '次へ'
+    close: '閉じる'
+    modal:
+      usage_name_registration: '使い方[新規登録]'
+      usage_name_index: '使い方[名前一覧]'
+      usage_share: '使い方[シェア]'
+      usage_user_setting: '使い方[ﾕｰｻﾞｰ設定]'
+      what_baby_names: 'Baby Namesとは'
+      what_baby_names_detail: |-
+        Lineアカウントを使って
+        赤ちゃんの名前の候補を保存したり、
+        夫婦で名前候補を共有するアプリです。
+      three_things_can_do: 'できることは3つ!'
+      can_do_second: 'できること②'
+      can_do_third: 'できること③'
+      explanation_end: '説明は以上になります!'
+      next_user_setting: |-
+        ユーザー登録をして
+        赤ちゃんの名前を考えましょう!
     message:
       registered: '%{item}を登録しました' 
       not_registered: '%{item}を登録できませんでした'

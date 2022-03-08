@@ -3,12 +3,12 @@
   .modal-content
     .row
       .col
-        h2.text-center Baby Names とは
-        h6.text-center.mt-2 Lineアカウントを使って<br>赤ちゃんの名前の候補を保存したり、<br>夫婦で名前候補を共有するアプリです。
+        h2.text-center = t('defaults.modal.what_baby_names')
+        h6.text-center.mt-2 = t('defaults.modal.what_baby_names_detail')
       .col.d-flex.justify-content-center
         = image_tag('account_share.png', size: '300x300' )
       .col-12.text-center.py-2
-        = link_to '次へ', '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 2 }
+        = link_to t('defaults.next'), '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 2 }
       .col-12
         .progress
           .progress-bar.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="25" role="progressbar" style=("width: 25%")
@@ -18,11 +18,11 @@
   .modal-content
     .row
       .col
-        h2.text-center できるのことは3つ!
+        h2.text-center = t('defaults.modal.three_things_can_do')
       .col.d-flex.justify-content-center
         = image_tag('usage_name_registration.gif', size: '300x300' )
       .col.text-center.py-2
-        = link_to '次へ', '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 3 }
+        = link_to t('defaults.next'), '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 3 }
       .col-12
         .progress
           .progress-bar.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar" style=("width: 50%")
@@ -32,11 +32,11 @@
   .modal-content
     .row
       .col
-        h2.text-center できること②
+        h2.text-center = t('defaults.modal.can_do_second')
       .col.d-flex.justify-content-center
         = image_tag('usage_index.gif', size: '300x300' )
       .col.text-center.py-2
-        = link_to '次へ', '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 4 }
+        = link_to t('defaults.next'), '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 4 }
       .col-12
         .progress
           .progress-bar.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="75" role="progressbar" style=("width: 75%")
@@ -46,11 +46,11 @@
   .modal-content
     .row
       .col
-        h2.text-center できること③
+        h2.text-center = t('defaults.modal.can_do_third')
       .col.d-flex.justify-content-center
         = image_tag('usage_share.png', size: '300x300' )
       .col.text-center.py-2
-        = link_to '次へ', '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 5 }
+        = link_to t('defaults.next'), '#', class: 'js-introduction-modal-open btn btn-dark', data: { target: 5 }
       .col-12
         .progress
           .progress-bar.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" style=("width: 100%")
@@ -60,10 +60,10 @@
   .modal-content
     .row
       .col-12
-        h2.text-center 説明は以上になります!
-        h6.text-center ユーザー登録をして<br>赤ちゃんの名前を考えましょう!
+        h2.text-center = t('defaults.modal.explanation_end')
+        h6.text-center = t('defaults.modal.next_user_setting')
       .col.text-center.py-2
-        = link_to '閉じる', '#', class: 'js-modal-close btn btn-dark'
+        = link_to t('defaults.close'), '#', class: 'js-modal-close btn btn-dark'
       .col-12
         .progress
           .progress-bar.bg-info aria-valuemax="100" aria-valuemin="0" aria-valuenow="100" role="progressbar" style=("width: 100%")
