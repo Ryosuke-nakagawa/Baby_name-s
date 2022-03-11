@@ -10,15 +10,27 @@ class FortuneTelling
     "https://enamae.net/m/#{search_param}#result"
   end
 
-  def rate
+  def rates
     html = URI.open(search_url).read
     doc = Nokogiri::HTML.parse(html)
+
+    res = doc.css('.res')
+    result = {}
+    result[:heaven] = res[0].text
+    result[:person] = res[1].text
+    result[:land] = res[2].text
+    result[:outside] = res[3].text
+    result[:all] = res[4].text
+    result[:talent] = res[5].text
+
     daikiti = doc.css('.daikiti').count
     kiti = doc.css('.kiti').count
     kikkyou = doc.css('.kikkyou').count
     kyou = doc.css('.kyou').count
     tokusyu = doc.css('.tokusyu').count
-    (daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 1) / 6
+    result[:rate] = (daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 1) / 6
+
+    return result
   end
 
   def save_image_to_s3(image_name)
