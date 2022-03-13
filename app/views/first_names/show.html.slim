@@ -58,11 +58,17 @@
       h4. = FirstName.human_attribute_name(:fortune_telling_rate)
     .col-7.text-left
       span.star-show data-rate = @first_name.fortune_telling_rate.to_f
-
   .container.py-1.d-flex.flex-column.align-items-center
-    =link_to @first_name.fortune_telling_url
-      img src = @fortune_telling_image_url  width="320" height="300"
-    = link_to t('.fortune_telling_site'), 'https://enamae.net/'
+    = link_to @first_name.fortune_telling_url
+      canvas#chart.bg-light width='320' height='320'
+    .col.pt-2
+      h6.under-line-dot 天格 :	苗字に関わる運勢 宿命や晩年の運
+      h6.under-line-dot 人格 :	家庭・仕事・結婚運 中年期の運
+      h6.under-line-dot 地格 :	性格、才能、金運、適職、性的傾向
+      h6.under-line-dot 外格 :	対人関係などの外的要因の運
+      h6.under-line-dot 総格 :	人生全体においての強さ 生命力
+      h6.under-line-dot 三才配置 :	上記五格の配置の占い
+    = link_to t('.fortune_telling_site'), 'https://enamae.net/', class: 'pt-2'
 
   .container.text-center.pt-3
     = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
@@ -86,3 +92,4 @@ javascript:
   });
 
 = javascript_pack_tag 'first_names/edit_rates'
+= javascript_pack_tag 'first_names/chart'

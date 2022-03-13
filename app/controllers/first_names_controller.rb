@@ -46,6 +46,8 @@ class FirstNamesController < ApplicationController
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = @first_name.rates
+    gon.first_name = @first_name
+    gon.full_name = @first_name.decorate.full_name
   end
 
   private
