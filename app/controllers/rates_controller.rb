@@ -4,8 +4,8 @@ class RatesController < ApplicationController
   def new
     @rate = Rate.new
     @first_name = current_user.group.first_names.find(params[:first_name_id])
-    s3_access = S3Access.new
-    @fortune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fortune_telling_image)
+    gon.first_name = @first_name
+    gon.full_name = @first_name.decorate.full_name
     flash.now[:warning] = t('defaults.message.please_register', item: Rate.model_name.human)
   end
 

@@ -81,6 +81,12 @@ ja:
       delete_name: 'お名前を削除する'
       fortune_telling_site: '引用元: いい名前ネット'
       notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
+      fortune_telling_heaven: '天格 :	苗字に関わる運勢 宿命や晩年の運'
+      fortune_telling_person: '人格 :	家庭・仕事・結婚運 中年期の運'
+      fortune_telling_land: '地格 :	性格、才能、金運、適職、性的傾向'
+      fortune_telling_outside: '外格 :	対人関係などの外的要因の運'
+      fortune_telling_all: '総格 :	人生全体においての強さ 生命力'
+      fortune_telling_talent: '三才配置 :	上記五格の配置の占い'
   first_names:
     index:
       title: '名前一覧'
@@ -106,6 +112,12 @@ ja:
       delete_name: 'お名前を削除する'
       fortune_telling_site: '引用元: いい名前ネット'
       notes_on_deleting: '※アカウントを共有しているユーザーからも名前が削除されます'
+      fortune_telling_heaven: '天格 :	苗字に関わる運勢 宿命や晩年の運'
+      fortune_telling_person: '人格 :	家庭・仕事・結婚運 中年期の運'
+      fortune_telling_land: '地格 :	性格、才能、金運、適職、性的傾向'
+      fortune_telling_outside: '外格 :	対人関係などの外的要因の運'
+      fortune_telling_all: '総格 :	人生全体においての強さ 生命力'
+      fortune_telling_talent: '三才配置 :	上記五格の配置の占い'
     likes:
       title: 'ハート一覧'
       no_hearted_name: 'ハートされた名前がありません'
