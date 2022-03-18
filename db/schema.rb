@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_10_201455) do
+ActiveRecord::Schema.define(version: 2022_03_18_054606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 2022_03_10_201455) do
     t.string "reading"
     t.string "fortune_telling_url"
     t.integer "fortune_telling_rate"
-    t.string "fortune_telling_image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "fortune_telling_heaven"

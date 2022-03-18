@@ -55,11 +55,9 @@ class Linebot
 
             fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
 
-            image_name = "img_#{Random.uuid}.jpg"
-            fortune_telling.save_image_to_s3(image_name)
             result = fortune_telling.rates
             new_first_name.update(fortune_telling_url: fortune_telling.search_url,
-                                  fortune_telling_rate: result[:rate], fortune_telling_image: image_name, fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
+                                  fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
             @user.reading_add!
