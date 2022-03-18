@@ -76,7 +76,7 @@ class Linebot
           when 'character_rate_add'
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
-            @message.registration_is_complete(@user.editing_name)
+            @message.registration_is_complete(@user.editing_name, Rate.find_by(user: @user, first_name: @user.editing_name))
             client.reply_message(event['replyToken'], @message.object)
 
             group_users = @user.group.users

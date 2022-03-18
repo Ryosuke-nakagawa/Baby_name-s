@@ -143,116 +143,208 @@ class Message
     }
   end
 
-  def registration_is_complete(first_name)
-    s3_access = S3Access.new
-    fortune_telling_image_url = s3_access.get_presigned_image_url(first_name.fortune_telling_image)
-
+  def registration_is_complete(first_name, rate)
+    rate_column = make_rate_column(first_name.fortune_telling_rate)
     @object = {
       type: 'flex',
-      altText: '名前の登録が完了しました。',
+      altText: 'お名前の登録が完了しました!',
       contents:
-        {
-          type: 'bubble',
-          header:
-            {
-              type: 'box',
-              layout: 'vertical',
-              contents:
-                [
+        { 
+          type: "bubble",
+          header: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: "お名前の登録が完了しました!",
+                weight: "regular",
+                size: "md"
+              }
+            ]
+          },
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: first_name.decorate.full_name,
+                weight: "bold",
+                size: "xl"
+              },
+              {
+                type: "box",
+                layout: "vertical",
+                margin: "lg",
+                spacing: "sm",
+                contents: [
                   {
-                    type: 'text',
-                    text: 'お名前の登録が完了しました!',
-                    weight: 'bold',
-                    size: 'md'
+                    type: "box",
+                    layout: "baseline",
+                    spacing: "sm",
+                    contents: [
+                      {
+                        type: "text",
+                        text: "姓名判断の結果は...",
+                        wrap: true,
+                        color: "#666666",
+                        size: "sm",
+                        flex: 5
+                      }
+                    ]
                   }
                 ]
-            },
-          hero:
-            {
-              type: 'image',
-              url: fortune_telling_image_url,
-              size: 'full',
-              aspectRatio: '15:13',
-              aspectMode: 'cover',
-              action:
-                {
-                  type: 'uri',
+              },
+              {
+                type: "box",
+                layout: "baseline",
+                margin: "md",
+                contents: rate_column
+              }
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            spacing: "sm",
+            contents: [
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "姓名判断の結果を詳しく見てみる",
                   uri: first_name.fortune_telling_url
                 }
-            },
-          footer:
-            {
-              type: 'box',
-              layout: 'vertical',
-              spacing: 'sm',
-              contents:
-                [
-                  {
-                    type: 'button',
-                    style: 'link',
-                    height: 'sm',
-                    action:
-                      {
-                        type: 'uri',
-                        label: '引用元: いい名前ネット',
-                        uri: 'https://enamae.net/'
-                      }
-                  },
-                  {
-                    type: 'spacer',
-                    size: 'sm'
-                  }
-                ],
-              flex: 0
-            }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "名前一覧ページを確認する",
+                  uri: "https://liff.line.me/1656693818-8gP0Y6jP"
+                }
+              },
+              {
+                type: "box",
+                layout: "vertical",
+                contents: [],
+                margin: "sm"
+              }
+            ],
+            flex: 0
+          }
         }
     }
   end
 
   def fortune_telling(first_name)
-    s3_access = S3Access.new
-    fortune_telling_image_url = s3_access.get_presigned_image_url(first_name.fortune_telling_image)
-
+    rate_column = make_rate_column(first_name.fortune_telling_rate)
     @object = {
       type: 'flex',
-      altText: '姓名判断の結果です。',
-      contents: {
-        type: 'bubble',
-        hero: {
-          type: 'image',
-          url: fortune_telling_image_url,
-          size: 'full',
-          aspectRatio: '10:9',
-          aspectMode: 'cover',
-          action:
-            {
-              type: 'uri',
-              uri: first_name.fortune_telling_url
-            }
-          },
-        footer: {
-          type: 'box',
-          layout: 'vertical',
-          spacing: 'sm',
-          contents: [
-            {
-              type: 'button',
-              style: 'link',
-              height: 'sm',
-              action: {
-                type: 'uri',
-                label: '引用元: いい名前ネット',
-                uri: 'https://enamae.net'
+      altText: 'お名前が登録されています。',
+      contents:
+        { 
+          type: "bubble",
+          body: {
+            type: "box",
+            layout: "vertical",
+            contents: [
+              {
+                type: "text",
+                text: first_name.decorate.full_name,
+                weight: "bold",
+                size: "xl"
+              },
+              {
+                type: "box",
+                layout: "vertical",
+                margin: "lg",
+                spacing: "sm",
+                contents: [
+                  {
+                    type: "box",
+                    layout: "baseline",
+                    spacing: "sm",
+                    contents: [
+                      {
+                        type: "text",
+                        text: "姓名判断の結果は...",
+                        wrap: true,
+                        color: "#666666",
+                        size: "sm",
+                        flex: 5
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                type: "box",
+                layout: "baseline",
+                margin: "md",
+                contents: rate_column
               }
-            },
-            {
-              type: 'spacer',
-              size: 'sm'
-            }
-          ],
-          flex: 0
+            ]
+          },
+          footer: {
+            type: "box",
+            layout: "vertical",
+            spacing: "sm",
+            contents: [
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "姓名判断の結果を詳しく見てみる",
+                  uri: first_name.fortune_telling_url
+                }
+              },
+              {
+                type: "button",
+                style: "link",
+                height: "sm",
+                action: {
+                  type: "uri",
+                  label: "名前一覧ページを確認する",
+                  uri: "https://liff.line.me/1656693818-8gP0Y6jP"
+                }
+              },
+              {
+                type: "box",
+                layout: "vertical",
+                contents: [],
+                margin: "sm"
+              }
+            ],
+            flex: 0
+          }
         }
-      }
     }
+  end
+
+  def make_rate_column(rate)
+    str = []
+    star_on_icon = { type: 'icon', size: 'lg', url: 'https://www.baby-names-app.com/assets/star-on-95de31432e40ba75764bce2ab31dcd90df5815ad58d64e4cc8a2c9399f78f572.png' }
+    star_off_icon = { type: 'icon', size: 'lg', url: 'https://www.baby-names-app.com/assets/star-off-545623b9692f7e1a13280ea370b31bd9dd324abb4181f98497134795d012d472.png' }
+
+    rate.times do
+      str << star_on_icon
+    end
+    if rate != 5
+      ( 5 - rate ).times do
+        str << star_off_icon
+      end
+    end
+
+    str << { type: 'text', text: rate.to_s, size: 'lg', color: '#999999', margin: 'md', flex: 0 }
+
+    return str
   end
 end
