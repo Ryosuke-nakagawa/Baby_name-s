@@ -143,53 +143,53 @@ class Message
     }
   end
 
-  def registration_is_complete(first_name, rate)
+  def registration_is_complete(first_name, _rate)
     rate_column = make_rate_column(first_name.fortune_telling_rate)
     @object = {
       type: 'flex',
       altText: 'お名前の登録が完了しました!',
       contents:
-        { 
-          type: "bubble",
+        {
+          type: 'bubble',
           header: {
-            type: "box",
-            layout: "vertical",
+            type: 'box',
+            layout: 'vertical',
             contents: [
               {
-                type: "text",
-                text: "お名前の登録が完了しました!",
-                weight: "regular",
-                size: "md"
+                type: 'text',
+                text: 'お名前の登録が完了しました!',
+                weight: 'regular',
+                size: 'md'
               }
             ]
           },
           body: {
-            type: "box",
-            layout: "vertical",
+            type: 'box',
+            layout: 'vertical',
             contents: [
               {
-                type: "text",
+                type: 'text',
                 text: first_name.decorate.full_name,
-                weight: "bold",
-                size: "xl"
+                weight: 'bold',
+                size: 'xl'
               },
               {
-                type: "box",
-                layout: "vertical",
-                margin: "lg",
-                spacing: "sm",
+                type: 'box',
+                layout: 'vertical',
+                margin: 'lg',
+                spacing: 'sm',
                 contents: [
                   {
-                    type: "box",
-                    layout: "baseline",
-                    spacing: "sm",
+                    type: 'box',
+                    layout: 'baseline',
+                    spacing: 'sm',
                     contents: [
                       {
-                        type: "text",
-                        text: "姓名判断の結果は...",
+                        type: 'text',
+                        text: '姓名判断の結果は...',
                         wrap: true,
-                        color: "#666666",
-                        size: "sm",
+                        color: '#666666',
+                        size: 'sm',
                         flex: 5
                       }
                     ]
@@ -197,43 +197,43 @@ class Message
                 ]
               },
               {
-                type: "box",
-                layout: "baseline",
-                margin: "md",
+                type: 'box',
+                layout: 'baseline',
+                margin: 'md',
                 contents: rate_column
               }
             ]
           },
           footer: {
-            type: "box",
-            layout: "vertical",
-            spacing: "sm",
+            type: 'box',
+            layout: 'vertical',
+            spacing: 'sm',
             contents: [
               {
-                type: "button",
-                style: "link",
-                height: "sm",
+                type: 'button',
+                style: 'link',
+                height: 'sm',
                 action: {
-                  type: "uri",
-                  label: "姓名判断の結果を詳しく見てみる",
+                  type: 'uri',
+                  label: '姓名判断の結果を詳しく見てみる',
                   uri: first_name.fortune_telling_url
                 }
               },
               {
-                type: "button",
-                style: "link",
-                height: "sm",
+                type: 'button',
+                style: 'link',
+                height: 'sm',
                 action: {
-                  type: "uri",
-                  label: "名前一覧ページを確認する",
-                  uri: "https://liff.line.me/1656693818-8gP0Y6jP"
+                  type: 'uri',
+                  label: '名前一覧ページを確認する',
+                  uri: 'https://liff.line.me/1656693818-8gP0Y6jP'
                 }
               },
               {
-                type: "box",
-                layout: "vertical",
+                type: 'box',
+                layout: 'vertical',
                 contents: [],
-                margin: "sm"
+                margin: 'sm'
               }
             ],
             flex: 0
@@ -248,35 +248,35 @@ class Message
       type: 'flex',
       altText: 'お名前が登録されています。',
       contents:
-        { 
-          type: "bubble",
+        {
+          type: 'bubble',
           body: {
-            type: "box",
-            layout: "vertical",
+            type: 'box',
+            layout: 'vertical',
             contents: [
               {
-                type: "text",
+                type: 'text',
                 text: first_name.decorate.full_name,
-                weight: "bold",
-                size: "xl"
+                weight: 'bold',
+                size: 'xl'
               },
               {
-                type: "box",
-                layout: "vertical",
-                margin: "lg",
-                spacing: "sm",
+                type: 'box',
+                layout: 'vertical',
+                margin: 'lg',
+                spacing: 'sm',
                 contents: [
                   {
-                    type: "box",
-                    layout: "baseline",
-                    spacing: "sm",
+                    type: 'box',
+                    layout: 'baseline',
+                    spacing: 'sm',
                     contents: [
                       {
-                        type: "text",
-                        text: "姓名判断の結果は...",
+                        type: 'text',
+                        text: '姓名判断の結果は...',
                         wrap: true,
-                        color: "#666666",
-                        size: "sm",
+                        color: '#666666',
+                        size: 'sm',
                         flex: 5
                       }
                     ]
@@ -284,43 +284,43 @@ class Message
                 ]
               },
               {
-                type: "box",
-                layout: "baseline",
-                margin: "md",
+                type: 'box',
+                layout: 'baseline',
+                margin: 'md',
                 contents: rate_column
               }
             ]
           },
           footer: {
-            type: "box",
-            layout: "vertical",
-            spacing: "sm",
+            type: 'box',
+            layout: 'vertical',
+            spacing: 'sm',
             contents: [
               {
-                type: "button",
-                style: "link",
-                height: "sm",
+                type: 'button',
+                style: 'link',
+                height: 'sm',
                 action: {
-                  type: "uri",
-                  label: "姓名判断の結果を詳しく見てみる",
+                  type: 'uri',
+                  label: '姓名判断の結果を詳しく見てみる',
                   uri: first_name.fortune_telling_url
                 }
               },
               {
-                type: "button",
-                style: "link",
-                height: "sm",
+                type: 'button',
+                style: 'link',
+                height: 'sm',
                 action: {
-                  type: "uri",
-                  label: "名前一覧ページを確認する",
-                  uri: "https://liff.line.me/1656693818-8gP0Y6jP"
+                  type: 'uri',
+                  label: '名前一覧ページを確認する',
+                  uri: 'https://liff.line.me/1656693818-8gP0Y6jP'
                 }
               },
               {
-                type: "box",
-                layout: "vertical",
+                type: 'box',
+                layout: 'vertical',
                 contents: [],
-                margin: "sm"
+                margin: 'sm'
               }
             ],
             flex: 0
@@ -331,20 +331,22 @@ class Message
 
   def make_rate_column(rate)
     str = []
-    star_on_icon = { type: 'icon', size: 'lg', url: 'https://www.baby-names-app.com/assets/star-on-95de31432e40ba75764bce2ab31dcd90df5815ad58d64e4cc8a2c9399f78f572.png' }
-    star_off_icon = { type: 'icon', size: 'lg', url: 'https://www.baby-names-app.com/assets/star-off-545623b9692f7e1a13280ea370b31bd9dd324abb4181f98497134795d012d472.png' }
+    star_on_icon = { type: 'icon', size: 'lg',
+                     url: 'https://www.baby-names-app.com/assets/star-on-95de31432e40ba75764bce2ab31dcd90df5815ad58d64e4cc8a2c9399f78f572.png' }
+    star_off_icon = { type: 'icon', size: 'lg',
+                      url: 'https://www.baby-names-app.com/assets/star-off-545623b9692f7e1a13280ea370b31bd9dd324abb4181f98497134795d012d472.png' }
 
     rate.times do
       str << star_on_icon
     end
     if rate != 5
-      ( 5 - rate ).times do
+      (5 - rate).times do
         str << star_off_icon
       end
     end
 
     str << { type: 'text', text: rate.to_s, size: 'lg', color: '#999999', margin: 'md', flex: 0 }
 
-    return str
+    str
   end
 end

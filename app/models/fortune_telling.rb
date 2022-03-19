@@ -30,7 +30,7 @@ class FortuneTelling
     tokusyu = doc.css('.tokusyu').count
     result[:rate] = (daikiti * 5 + kiti * 4 + kikkyou * 3 + tokusyu * 3 + kyou * 1) / 6
 
-    return result
+    result
   end
 
   def search_param
@@ -41,15 +41,15 @@ class FortuneTelling
   def change_result_to_numerical(result)
     case result
     when '大吉'
-      return 50
+      50
     when '吉'
-      return 40
+      40
     when '特殊格'
-      return 30
+      30
     when '吉凶混合'
-      return 20
+      20
     when '凶'
-      return 10
+      10
     end
   end
 end
