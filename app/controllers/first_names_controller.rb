@@ -40,12 +40,11 @@ class FirstNamesController < ApplicationController
   end
 
   def show
-    s3_access = S3Access.new
-    @fortune_telling_image_url = s3_access.get_presigned_image_url(@first_name.fortune_telling_image)
-
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = @first_name.rates
+    gon.first_name = @first_name
+    gon.full_name = @first_name.decorate.full_name
   end
 
   private

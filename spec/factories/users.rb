@@ -15,5 +15,9 @@ FactoryBot.define do
       name { 'general_user' }
       role{ 0 }
     end
+
+    trait :real_account do
+      line_id { ENV['MY_LINE_ID'] }
+    end
   end
 end

@@ -5,9 +5,7 @@ class Admin::FirstNamesController < Admin::BaseController
     @first_names = FirstName.all
   end
 
-  def show
-    @fortune_telling_image_url = S3Access.new.get_presigned_image_url(@first_name.fortune_telling_image)
-  end
+  def show; end
 
   def edit; end
 

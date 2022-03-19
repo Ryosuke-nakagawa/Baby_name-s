@@ -1,9 +1,8 @@
 require 'open-uri'
 
-
 namespace :name_ranking do
   desc '「赤ちゃん名づけ」から名前ランキングを取得'
-  task :get, ['year'] => :environment do |task,args|
+  task :get, ['year'] => :environment do |_task, args|
     article_number = args[:year].to_i - 2013
     search_url = "https://namae-yurai.net/oneYearNamaeTrendBoysGirls.htm?rankingId=#{article_number}"
 

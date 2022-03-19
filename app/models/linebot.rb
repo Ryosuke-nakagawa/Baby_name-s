@@ -52,13 +52,12 @@ class Linebot
           when 'name_add'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
+
             fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
 
-            image_name = "img_#{Random.uuid}.jpg"
-            fortune_telling.save_image_to_s3(image_name)
-
+            result = fortune_telling.rates
             new_first_name.update(fortune_telling_url: fortune_telling.search_url,
-                                  fortune_telling_rate: fortune_telling.rate, fortune_telling_image: image_name)
+                                  fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
             @user.reading_add!
@@ -75,23 +74,24 @@ class Linebot
           when 'character_rate_add'
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)
-            @message.registration_is_complete(@user.editing_name)
+            @message.registration_is_complete(@user.editing_name,
+                                              Rate.find_by(user: @user, first_name: @user.editing_name))
             client.reply_message(event['replyToken'], @message.object)
 
             group_users = @user.group.users
             group_users.each do |user|
-              if @user != user
-                if @user.name
-                  text = "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。"
-                else
-                  text = '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
-                end
-                message = {
-                  type: 'text',
-                  text: text
-                }
-                response = client.push_message(user.line_id, message)
-              end
+              next unless @user != user
+
+              text = if @user.name
+                       "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。"
+                     else
+                       '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
+                     end
+              message = {
+                type: 'text',
+                text: text
+              }
+              response = client.push_message(user.line_id, message)
             end
 
             @user.update(editing_name_id: nil)
