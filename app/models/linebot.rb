@@ -23,8 +23,8 @@ class Linebot
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          @user = User.find_by(line_id: event['source']['userId'])
           replied_message = event.message['text']
+          @user = User.find_by(line_id: event['source']['userId'])
           if @user.nil?
             @message.guide_to_initial_registration
             client.reply_message(event['replyToken'], @message.object)
@@ -34,21 +34,15 @@ class Linebot
             if replied_message == '名前を新規登録'
               if @user.group.last_name.nil?
                 @message.registration_last_name
-                client.reply_message(event['replyToken'], @message.object)
               else
                 @message.send_message_in_characters
-                client.reply_message(event['replyToken'], @message.object)
                 @user.name_add!
               end
             else
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
-              if search_name.nil?
-                @message.how_to_use
-              else
-                @message.fortune_telling(search_name)
-              end
-              client.reply_message(event['replyToken'], @message.object)
+              search_name.nil? ? @message.how_to_use : @message.fortune_telling(search_name)
             end
+            client.reply_message(event['replyToken'], @message.object)
           when 'name_add'
             new_first_name = FirstName.create(name: replied_message, group: @user.group)
             @user.update(editing_name: new_first_name)
