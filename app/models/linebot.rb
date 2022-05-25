@@ -56,8 +56,7 @@ class Linebot
             @message.send_rate_for_character
             client.reply_message(event['replyToken'], @message.object)
           when 'character_rate_add'
-            rate = Rate.find_by(user: @user, first_name: @user.editing_name)
-            rate.update!(character_rate: replied_message.to_i)
+            @user.character_rate_add(replied_message)
             @message.registration_is_complete(@user.editing_name,
                                               Rate.find_by(user: @user, first_name: @user.editing_name))
             client.reply_message(event['replyToken'], @message.object)
@@ -66,20 +65,15 @@ class Linebot
             group_users.each do |user|
               next unless @user != user
 
-              text = if @user.name
-                       "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。"
-                     else
-                       '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
-                     end
+              text = @user.name ? "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。" : '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
+
               message = {
                 type: 'text',
                 text: text
               }
-              response = client.push_message(user.line_id, message)
+              client.push_message(user.line_id, message)
             end
-
-            @user.update(editing_name_id: nil)
-            @user.normal!
+            @user.update(editing_name_id: nil, status: normal)
           end
         end
       end

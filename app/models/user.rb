@@ -47,4 +47,9 @@ class User < ApplicationRecord
     Rate.create!(user: self, first_name: editing_name, sound_rate: replied_message.to_i)
     character_rate_add!
   end
+
+  def character_rate_add(replied_message)
+    rate = Rate.find_by(user: self, first_name: editing_name)
+    rate.update!(character_rate: replied_message.to_i)
+  end
 end
