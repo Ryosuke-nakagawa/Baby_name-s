@@ -38,4 +38,9 @@ class User < ApplicationRecord
 
     reading_add!
   end
+
+  def reading_add(replied_message)
+    editing_name.update!(reading: replied_message)
+    sound_rate_add!
+  end
 end
