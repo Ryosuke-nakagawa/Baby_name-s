@@ -27,7 +27,6 @@ class Linebot
           @user = User.find_by(line_id: event['source']['userId'])
           if @user.nil?
             @message.guide_to_initial_registration
-            client.reply_message(event['replyToken'], @message.object)
           end
           case @user.status
           when 'normal'
@@ -42,24 +41,19 @@ class Linebot
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
               search_name.nil? ? @message.how_to_use : @message.fortune_telling(search_name)
             end
-            client.reply_message(event['replyToken'], @message.object)
           when 'name_add'
             @user.name_add(replied_message)
             @message.send_message_in_reading
-            client.reply_message(event['replyToken'], @message.object)
           when 'reading_add'
             @user.reading_add(replied_message)
             @message.send_rate_for_sound
-            client.reply_message(event['replyToken'], @message.object)
           when 'sound_rate_add'
             @user.sound_rate_add(replied_message)
             @message.send_rate_for_character
-            client.reply_message(event['replyToken'], @message.object)
           when 'character_rate_add'
             @user.character_rate_add(replied_message)
             @message.registration_is_complete(@user.editing_name,
                                               Rate.find_by(user: @user, first_name: @user.editing_name))
-            client.reply_message(event['replyToken'], @message.object)
 
             group_users = @user.group.users
             group_users.each do |user|
@@ -73,9 +67,10 @@ class Linebot
               }
               client.push_message(user.line_id, message)
             end
-            @user.update(editing_name_id: nil, status: normal)
+            @user.update(editing_name_id: nil, status: 'normal')
           end
         end
+        client.reply_message(event['replyToken'], @message.object)
       end
     end
   end
