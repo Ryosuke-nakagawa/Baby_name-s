@@ -44,17 +44,9 @@ class Linebot
             end
             client.reply_message(event['replyToken'], @message.object)
           when 'name_add'
-            new_first_name = FirstName.create(name: replied_message, group: @user.group)
-            @user.update(editing_name: new_first_name)
-
-            fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-
-            result = fortune_telling.rates
-            new_first_name.update(fortune_telling_url: fortune_telling.search_url,
-                                  fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
+            @user.name_add(replied_message)
             @message.send_message_in_reading
             client.reply_message(event['replyToken'], @message.object)
-            @user.reading_add!
           when 'reading_add'
             @user.editing_name.update!(reading: replied_message)
             @message.send_rate_for_sound
