@@ -52,10 +52,9 @@ class Linebot
             @message.send_rate_for_sound
             client.reply_message(event['replyToken'], @message.object)
           when 'sound_rate_add'
-            Rate.create!(user: @user, first_name: @user.editing_name, sound_rate: replied_message.to_i)
+            @user.sound_rate_add(replied_message)
             @message.send_rate_for_character
             client.reply_message(event['replyToken'], @message.object)
-            @user.character_rate_add!
           when 'character_rate_add'
             rate = Rate.find_by(user: @user, first_name: @user.editing_name)
             rate.update!(character_rate: replied_message.to_i)

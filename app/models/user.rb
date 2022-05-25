@@ -35,12 +35,16 @@ class User < ApplicationRecord
     result = fortune_telling.rates
     new_first_name.update(fortune_telling_url: fortune_telling.search_url,
                           fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
-
     reading_add!
   end
 
   def reading_add(replied_message)
     editing_name.update!(reading: replied_message)
     sound_rate_add!
+  end
+
+  def sound_rate_add(replied_message)
+    Rate.create!(user: self, first_name: editing_name, sound_rate: replied_message.to_i)
+    character_rate_add!
   end
 end
