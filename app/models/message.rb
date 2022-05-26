@@ -349,4 +349,13 @@ class Message
 
     str
   end
+
+  def notify_group_member(user_name)
+    text = user_name ? "#{user_name}さんが名前を登録しました。「名前一覧」から評価を行って下さい。" : '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
+
+    @object = {
+      type: 'text',
+      text: text
+    }
+  end
 end

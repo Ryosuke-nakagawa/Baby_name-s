@@ -59,13 +59,7 @@ class Linebot
             group_users.each do |user|
               next unless @user != user
 
-              text = @user.name ? "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。" : '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
-
-              message = {
-                type: 'text',
-                text: text
-              }
-              client.push_message(user.line_id, message)
+              client.push_message(user.line_id, Message.new.notify_group_member(user.name))
             end
             @user.update(editing_name_id: nil, status: 'normal')
           end
