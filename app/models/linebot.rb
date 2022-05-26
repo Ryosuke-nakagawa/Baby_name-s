@@ -23,81 +23,48 @@ class Linebot
       when Line::Bot::Event::Message
         case event.type
         when Line::Bot::Event::MessageType::Text
-          @user = User.find_by(line_id: event['source']['userId'])
           replied_message = event.message['text']
+          @user = User.find_by(line_id: event['source']['userId'])
           if @user.nil?
             @message.guide_to_initial_registration
-            client.reply_message(event['replyToken'], @message.object)
           end
           case @user.status
           when 'normal'
             if replied_message == '名前を新規登録'
               if @user.group.last_name.nil?
                 @message.registration_last_name
-                client.reply_message(event['replyToken'], @message.object)
               else
                 @message.send_message_in_characters
-                client.reply_message(event['replyToken'], @message.object)
                 @user.name_add!
               end
             else
               search_name = FirstName.find_by(group_id: @user.group.id, name: replied_message)
-              if search_name.nil?
-                @message.how_to_use
-              else
-                @message.fortune_telling(search_name)
-              end
-              client.reply_message(event['replyToken'], @message.object)
+              search_name.nil? ? @message.how_to_use : @message.fortune_telling(search_name)
             end
           when 'name_add'
-            new_first_name = FirstName.create(name: replied_message, group: @user.group)
-            @user.update(editing_name: new_first_name)
-
-            fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: @user.group.last_name)
-
-            result = fortune_telling.rates
-            new_first_name.update(fortune_telling_url: fortune_telling.search_url,
-                                  fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
+            @user.name_add(replied_message)
             @message.send_message_in_reading
-            client.reply_message(event['replyToken'], @message.object)
-            @user.reading_add!
           when 'reading_add'
-            @user.editing_name.update!(reading: replied_message)
+            @user.reading_add(replied_message)
             @message.send_rate_for_sound
-            client.reply_message(event['replyToken'], @message.object)
-            @user.sound_rate_add!
           when 'sound_rate_add'
-            Rate.create!(user: @user, first_name: @user.editing_name, sound_rate: replied_message.to_i)
+            @user.sound_rate_add(replied_message)
             @message.send_rate_for_character
-            client.reply_message(event['replyToken'], @message.object)
-            @user.character_rate_add!
           when 'character_rate_add'
-            rate = Rate.find_by(user: @user, first_name: @user.editing_name)
-            rate.update!(character_rate: replied_message.to_i)
+            @user.character_rate_add(replied_message)
             @message.registration_is_complete(@user.editing_name,
                                               Rate.find_by(user: @user, first_name: @user.editing_name))
-            client.reply_message(event['replyToken'], @message.object)
 
             group_users = @user.group.users
             group_users.each do |user|
               next unless @user != user
 
-              text = if @user.name
-                       "#{@user.name} さんが名前を登録しました。「名前一覧」から評価を行って下さい。"
-                     else
-                       '同じグループメンバーが名前を登録しました。「名前一覧」から評価を行なって下さい。'
-                     end
-              message = {
-                type: 'text',
-                text: text
-              }
-              response = client.push_message(user.line_id, message)
+              client.push_message(user.line_id, Message.new.notify_group_member(user.name))
             end
-
-            @user.update(editing_name_id: nil)
-            @user.normal!
+            @user.update(editing_name_id: nil, status: 'normal')
           end
         end
+        client.reply_message(event['replyToken'], @message.object)
       end
     end
   end
