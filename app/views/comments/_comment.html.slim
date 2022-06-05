@@ -1,0 +1,10 @@
+.row.under-line-dot
+  .col-12.py-1
+    = comment.body
+  .col.text-end
+    - if comment.user.avatar
+      = image_tag("#{comment.user.avatar}", size: '30x30', class: 'rounded-circle')
+    - else
+      = image_tag('no_image.png', size: '50x50', class: 'rounded-circle')
+    = comment.user.name
+              

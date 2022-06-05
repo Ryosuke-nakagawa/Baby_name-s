@@ -1,0 +1,5 @@
+.row.mb-3
+  = form_with model: comment, url: [first_name, comment], local: true do |f|
+    = f.text_field :body, class: 'form-control'
+    = f.hidden_field :first_name_id, value: @first_name.id
+    = f.submit 'コメントする', class: 'btn my-2 float-end'

@@ -70,6 +70,10 @@
       h6.under-line-dot = t('.fortune_telling_talent')
     = link_to t('.fortune_telling_site'), 'https://enamae.net/', class: 'pt-2'
 
+  h1.text-center.pt-3 コメント
+  = render 'comments/comments', { comments: @comments }
+  = render 'comments/form', { first_name: @first_name, comment: @comment }
+
   .container.text-center.pt-3
     = link_to t('.delete_name'),first_name_path(@first_name),method: :delete,class: "btn btn-dark btn-lg"
     p.detail-text = t('.notes_on_deleting')

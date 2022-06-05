@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :rates, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :like_first_names, through: :likes, source: :first_name
+  has_many :comments, dependent: :destroy
 
   validates :line_id, presence: true, uniqueness: true
   validates :sound_rate_setting, numericality: { in: 1..3 }, allow_nil: true
