@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
   def create
-    comment = current_user.comments.build(comment_params)
-    if comment.save
-      redirect_to first_name_path(comment.first_name)
-    else
-      redirect_to first_name_path(comment.first_name)
-    end
+    @comment = current_user.comments.build(comment_params)
+    @comment.save
+  end
 
+  def destroy
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy!
   end
 
   private

@@ -43,7 +43,7 @@ class FirstNamesController < ApplicationController
     @group = Group.find(@first_name.group_id)
     @rate = Rate.find_by(user: current_user, first_name: @first_name)
     @rates = @first_name.rates
-    @comments = @first_name.comments
+    @comments = @first_name.comments.includes(:user).order(created_at: :desc)
     @comment = Comment.new
     gon.first_name = @first_name
     gon.full_name = @first_name.decorate.full_name

@@ -53,4 +53,8 @@ class User < ApplicationRecord
     rate = Rate.find_by(user: self, first_name: editing_name)
     rate.update!(character_rate: replied_message.to_i)
   end
+
+  def own?(object)
+    id == object.user_id
+  end
 end
