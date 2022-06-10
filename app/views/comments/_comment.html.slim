@@ -1,9 +1,13 @@
 .row.under-line-dot id="comment-#{comment.id}"
-  .col-12.py-1
+  .col-12.py-1 id="js-comment-#{comment.id}"
     = comment.body
+  div id="js-textarea-comment-box-#{comment.id}" style='display: none;'
+    textarea.form-control id="js-textarea-comment-#{comment.id}" = comment.body
+    button.btn.comment-btn.m-1.js-button-edit-comment-cancel data-comment-id="#{comment.id}" キャンセル
+    button.btn.comment-btn.m-1.js-button-comment-update data-comment-id="#{comment.id}" 更新
   .col.d-flex.align-items-center.justify-content-end
     - if current_user.own?(comment)
-      a href='#' class='js-edit-comment-button' data-comment-id="<%= comment.id %>"
+      a href='#' class='js-edit-comment-button' data-comment-id="#{comment.id}"
         i.fas.fa-pen.mx-2
       = link_to comment_path(comment), class: 'js-delete-comment-button', method: :delete, data: { confirm: '削除してよろしいですか?' }, remote: true do
         i.fas.fa-trash.mx-2
@@ -12,4 +16,3 @@
     - else
       = image_tag('no_image.png', size: '50x50', class: 'rounded-circle')
     = comment.user.name
-              
