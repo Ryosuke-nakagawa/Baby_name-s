@@ -30,29 +30,31 @@ RSpec.describe "Comments", type: :system do
       end
     end
   end
-  describe 'コメントの編集' do
+  describe 'コメントの編集・削除' do
     context 'コメントしたユーザー' do
+      let!(:comment) { create(:comment, first_name: first_name, user: user) }
       context 'フォームの入力値が正常' do
         it 'コメント編集が成功する' do
+          visit first_name_path(first_name)
+          find('.js-edit-comment-button').click
+
+          fill_in "js-textarea-comment-#{comment.id}", with: 'edit_comment'
+          click_button '更新'
+          expect(page).to have_content 'edit_comment'
+          expect(current_path).to eq first_name_path(first_name)
         end
       end
       context 'コメントが空欄' do
         it 'コメント編集が失敗する' do
         end
       end
-    end
-    context 'コメントしたユーザー以外' do
-      it '編集ボタンが表示されない' do
-      end
-    end
-  end
-  describe 'コメントの削除' do
-    context 'コメントしたユーザー' do
-      it '削除が成功する' do
+      it 'コメント削除に成功する' do
       end
     end
     context 'コメントしたユーザー以外' do
-      it '削除ボタンが表示されない' do
+      let!(:another_user) { create(:user, group: user.group) }
+      let!(:another_users_comment) { create(:comment, first_name: first_name, user: another_user) }
+      it '編集・削除ボタンが表示されない' do
       end
     end
   end

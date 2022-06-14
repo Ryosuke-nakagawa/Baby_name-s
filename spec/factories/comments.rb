@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :comment do
-    user { nil }
-    first_name { nil }
-    body { "MyString" }
+    sequence(:body) { |n| "comment_#{n}"}
   end
 end
