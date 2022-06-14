@@ -55,7 +55,14 @@ RSpec.describe "Comments", type: :system do
           expect(current_path).to eq first_name_path(first_name)
         end
       end
-      it 'コメント削除に成功する' do
+      fit 'コメント削除に成功する' do
+        visit first_name_path(first_name)
+        find('.js-delete-comment-button').click
+        expect{
+        expect(page.accept_confirm).to eq "削除してよろしいですか?"
+        expect(page).to have_content "コメントを削除しました"
+        }. to change(Comment.all, :count).by(-1)
+        expect(current_path).to eq first_name_path(first_name)
       end
     end
     context 'コメントしたユーザー以外' do
