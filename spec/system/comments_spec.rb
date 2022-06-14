@@ -46,6 +46,13 @@ RSpec.describe "Comments", type: :system do
       end
       context 'コメントが空欄' do
         it 'コメント編集が失敗する' do
+          visit first_name_path(first_name)
+          find('.js-edit-comment-button').click
+
+          fill_in "js-textarea-comment-#{comment.id}", with: ''
+          click_button '更新'
+          expect(page).to have_content 'コメントを入力してください'
+          expect(current_path).to eq first_name_path(first_name)
         end
       end
       it 'コメント削除に成功する' do
