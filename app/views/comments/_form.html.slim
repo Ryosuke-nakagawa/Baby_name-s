@@ -1,5 +1,5 @@
 .row.mb-3
   = form_with model: comment, url: [first_name, comment], id: 'new_comment', local: false do |f|
-    = f.text_field :body, class: 'form-control',  id: 'js-new-comment-body', placeholder: '名前についてのコメントを残そう!'
+    = f.text_field :body, class: 'form-control',  id: 'js-new-comment-body', placeholder: t('.comment_form')
     = f.hidden_field :first_name_id, value: @first_name.id
-    = f.submit 'コメントする', class: 'btn btn-dark my-2 float-end'
+    = f.submit t('.comment_button'), class: 'btn btn-dark my-2 float-end'

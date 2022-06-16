@@ -4,6 +4,8 @@ ja:
     user_setting: 'ユーザー設定'
     register: '決定'
     change: '変更'
+    update: '更新'
+    cancel: 'キャンセル'
     rating: '評価する'
     high: '高い'
     usual: '普通'
@@ -37,6 +39,7 @@ ja:
       delete_confirm: '削除しますか?'
       no_authorization: '権限がありません'
       logout_confirm: 'ログアウトしますか?'
+      posted: '%{item}を投稿しました'
   static_pages:
     top:
       title: 'トップページ'
@@ -144,7 +147,6 @@ ja:
         招待する側の名前一覧に上書きされるのでご注意ください
       social_share: 'アプリをシェアする'
       social_share_detail: '(アカウント共有しない)'
-
   likes:
     create:
       success: 'ハートしました'
@@ -158,3 +160,7 @@ ja:
       girl: '女の子'
       source: '出典元: 赤ちゃん名づけ'
       back_to_index_page: 'お名前一覧に戻る'
+  comments:
+    form:
+      comment_form: '名前についてのコメントを残そう!'
+      comment_button: 'コメントする'

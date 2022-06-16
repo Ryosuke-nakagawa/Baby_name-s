@@ -2,13 +2,13 @@ class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
     @comment.save
-    flash.now[:success] = 'コメントを投稿しました'
+    flash.now[:success] = t('defaults.message.posted', item: Comment.model_name.human)
   end
 
   def destroy
     @comment = current_user.comments.find(params[:id])
     @comment.destroy!
-    flash.now[:alert] = 'コメントを削除しました'
+    flash.now[:alert] = t('defaults.message.deleted', item: Comment.model_name.human)
   end
 
   def update
