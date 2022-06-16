@@ -55,7 +55,7 @@ RSpec.describe "Comments", type: :system do
           expect(current_path).to eq first_name_path(first_name)
         end
       end
-      fit 'コメント削除に成功する' do
+      it 'コメント削除に成功する' do
         visit first_name_path(first_name)
         find('.js-delete-comment-button').click
         expect{
@@ -69,6 +69,10 @@ RSpec.describe "Comments", type: :system do
       let!(:another_user) { create(:user, group: user.group) }
       let!(:another_users_comment) { create(:comment, first_name: first_name, user: another_user) }
       it '編集・削除ボタンが表示されない' do
+        visit first_name_path(first_name)
+        expect(page).to have_content another_users_comment.body
+        expect(page).to have_no_css 'js-edit-comment-button'
+        expect(page).to have_no_css 'js-delete-comment-button'
       end
     end
   end
