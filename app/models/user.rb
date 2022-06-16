@@ -32,7 +32,7 @@ class User < ApplicationRecord
     new_first_name = FirstName.create(name: replied_message, group: group)
     update(editing_name: new_first_name)
 
-    fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: self.group.last_name)
+    fortune_telling = FortuneTelling.new(first_name: new_first_name.name, last_name: group.last_name)
     result = fortune_telling.rates
     new_first_name.update(fortune_telling_url: fortune_telling.search_url,
                           fortune_telling_rate: result[:rate], fortune_telling_heaven: result[:heaven], fortune_telling_person: result[:person], fortune_telling_land: result[:land], fortune_telling_outside: result[:outside], fortune_telling_all: result[:all], fortune_telling_talent: result[:talent])
