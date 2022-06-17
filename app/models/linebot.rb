@@ -25,9 +25,7 @@ class Linebot
         when Line::Bot::Event::MessageType::Text
           replied_message = event.message['text']
           @user = User.find_by(line_id: event['source']['userId'])
-          if @user.nil?
-            @message.guide_to_initial_registration
-          end
+          @message.guide_to_initial_registration if @user.nil?
           case @user.status
           when 'normal'
             if replied_message == '名前を新規登録'

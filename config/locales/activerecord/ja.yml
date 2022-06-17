@@ -5,6 +5,7 @@ ja:
       group: 'グループ'
       rate: '評価'
       first_name: 'お名前'
+      comment: 'コメント'
     attributes:
       user:
         sound_rate_setting: '音の響き'
@@ -17,4 +18,6 @@ ja:
         character_rate: '漢字'
       first_name:
         fortune_telling_rate: '姓名判断'
+      comment:
+        body: 'コメント'
 

@@ -1,2 +1,3 @@
-- flash.each do |message_type, message|
+div#flash-message
+  - flash.each do |message_type, message|
     div.fs-6 class=("alert alert-#{message_type}") = message
