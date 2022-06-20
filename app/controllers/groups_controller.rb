@@ -7,7 +7,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    @group = Group.find(params[:id])
+    @group = @user.group
     if @group.update(group_params) && @user.update(user_params)
       # LINERICHメニューの切り替え
       uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
