@@ -3,9 +3,6 @@ class FirstNamesController < ApplicationController
   skip_before_action :login_required, only: %i[new login]
   before_action :first_name_set, only: %i[show destroy]
 
-  require 'net/http'
-  require 'uri'
-
   def new; end
 
   def login

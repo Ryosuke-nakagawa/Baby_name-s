@@ -2,9 +2,6 @@ class UsersController < ApplicationController
   before_action :set_login_liffid, only: %i[new]
   skip_before_action :login_required, only: %i[new create]
 
-  require 'net/http'
-  require 'uri'
-
   def new; end
 
   def create
