@@ -2,19 +2,17 @@ class UsersController < ApplicationController
   before_action :set_login_liffid, only: %i[new]
   skip_before_action :login_required, only: %i[new create]
 
-  require 'net/http'
-  require 'uri'
-
   def new; end
 
   def create
-    result = LineAuthenticateService.new(params[:idToken]).call
-    user = User.find_by(line_id: result[:line_id])
+    lineauthenticate = LineAuthenticateService.new(params[:idToken])
+    lineauthenticate.call
+    user = lineauthenticate.search_user
 
     if params[:uuid] # 人からの紹介urlの場合
       link_user = User.find_by(uuid: params[:uuid])
       if user.nil?
-        user = User.create!(user_params(result, link_user.group))
+        user = User.create!(user_params(lineauthenticate, link_user.group))
       else
         user.update!(user_params(result, link_user.group))
       end
@@ -23,7 +21,7 @@ class UsersController < ApplicationController
       group = Group.create!
       user = User.create!(user_params(result, group))
     else
-      user.update!(name: result[:name], avatar: result[:avatar])
+      user.update!(name: lineauthenticate.name, avatar: lineauthenticate.avatar)
     end
     session[:user_id] = user.id
   end
@@ -41,7 +39,7 @@ class UsersController < ApplicationController
 
   private
 
-  def user_params(result, group)
-    { group: group, line_id: result[:line_id], name: result[:name], avatar: result[:avatar] }
+  def user_params(lineauthenticate, group)
+    { group: group, line_id: lineauthenticate.line_id, name: lineauthenticate.name, avatar: lineauthenticate.avatar }
   end
 end

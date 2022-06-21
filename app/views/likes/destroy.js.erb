@@ -1,1 +1,2 @@
 $("#js-like-button-for-first_name-<%= @first_name.id %>").replaceWith("<%= j(render('first_names/like', first_name: @first_name)) %>");
+$("#js-first-name-<%= @first_name.id %>").remove();

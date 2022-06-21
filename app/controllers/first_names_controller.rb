@@ -3,26 +3,19 @@ class FirstNamesController < ApplicationController
   skip_before_action :login_required, only: %i[new login]
   before_action :first_name_set, only: %i[show destroy]
 
-  require 'net/http'
-  require 'uri'
-
   def new; end
 
   def login
-    result = LineAuthenticateService.new(params[:idToken]).call
-    user = User.find_by(line_id: result[:line_id])
+    lineauthenticate = LineAuthenticateService.new(params[:idToken])
+    lineauthenticate.call
+    user = lineauthenticate.search_user
     session[:user_id] = user.id
     group_id = { id: user.group_id }
     render json: group_id
   end
 
   def index
-    if current_user.group.id == params[:group_id].to_i
-      @group = current_user.group
-    else
-      redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
-      return
-    end
+    @group = current_user.group
     @first_names = FirstName.order_by(params[:sort_type], @group.first_names)
     @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
