@@ -22,24 +22,25 @@
       = t('.no_hearted_name')
   - else
     - @like_first_names.each do |first_name|
-      .row.text-center.pt-3
-        .col-1
-        .col-3.index-reading-text = first_name.reading
-      .row.text-center.under-line-dot
-        .col-1.d-flex.align-items-center.justify-content-center
-          - if current_user.like?(first_name)
-            = render 'unlike', first_name: first_name
-          - else
-            = render 'like', first_name: first_name
-        .col-3.d-flex.align-items-center.justify-content-center
-          h4. = first_name.name
-        .col-2.d-inline-flex
-          span.star-index data-rate = Rate.sound_average(first_name.rates)
-        .col-2.d-inline-flex
-          span.star-index data-rate = Rate.character_average(first_name.rates)
-        .col-2.d-inline-flex
-          span.star-index data-rate = first_name.fortune_telling_rate.to_f
-        .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
-          i.fas.fa-edit
+      div id="js-first-name-#{first_name.id}"
+        .row.text-center.pt-3
+          .col-1
+          .col-3.index-reading-text = first_name.reading
+        .row.text-center.under-line-dot
+          .col-1.d-flex.align-items-center.justify-content-center
+            - if current_user.like?(first_name)
+              = render 'unlike', first_name: first_name
+            - else
+              = render 'like', first_name: first_name
+          .col-3.d-flex.align-items-center.justify-content-center
+            h4. = first_name.name
+          .col-2.d-inline-flex
+            span.star-index data-rate = Rate.sound_average(first_name.rates)
+          .col-2.d-inline-flex
+            span.star-index data-rate = Rate.character_average(first_name.rates)
+          .col-2.d-inline-flex
+            span.star-index data-rate = first_name.fortune_telling_rate.to_f
+          .col-2.d-flex.align-items-center.justify-content-center = link_to first_name_path(first_name)
+            i.fas.fa-edit
 
 = javascript_pack_tag 'share/for_select_box'
