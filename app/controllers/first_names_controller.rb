@@ -15,12 +15,7 @@ class FirstNamesController < ApplicationController
   end
 
   def index
-    if current_user.group.id == params[:group_id].to_i
-      @group = current_user.group
-    else
-      redirect_to group_first_names_path(current_user.group), danger: t('defaults.message.no_authorization')
-      return
-    end
+    @group = current_user.group
     @first_names = FirstName.order_by(params[:sort_type], @group.first_names)
     @sort_type = params[:sort_type].nil? ? 'overall_rating' : params[:sort_type]
   end
