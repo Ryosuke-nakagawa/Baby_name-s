@@ -13,13 +13,7 @@ class GroupsController < ApplicationController
       @user.update!(user_params)
     end
     # LINERICHメニューの切り替え
-    uri = URI.parse("https://api.line.me/v2/bot/user/#{@user.line_id}/richmenu/#{ENV['RICH_MENU_ID_LOGGED_IN']}")
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.use_ssl = true
-    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-    req = Net::HTTP::Post.new(uri.request_uri)
-    req['Authorization'] = "Bearer {#{ENV['LINEBOT_CHANNEL_TOKEN']}}"
-    res = http.request(req)
+    client.link_user_rich_menu(@user.line_id, ENV['RICH_MENU_ID_LOGGED_IN'])
     redirect_to group_first_names_path(@group), success: t('defaults.message.updated', item: User.model_name.human)
 
     rescue => e
@@ -41,5 +35,12 @@ class GroupsController < ApplicationController
 
   def set_user
     @user = current_user
+  end
+
+  def client
+    @client ||= Line::Bot::Client.new do |config|
+      config.channel_secret = ENV['LINEBOT_CHANNEL_SECRET']
+      config.channel_token = ENV['LINEBOT_CHANNEL_TOKEN']
+    end
   end
 end
