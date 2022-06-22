@@ -17,10 +17,6 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
-  def set_first_names_liffid
-    gon.liff_id = ENV['LIFF_ID_FIRST_NAMES']
-  end
-
   def render404
     render file: Rails.root.join('public/404.html'), layout: false, status: :not_found
   end

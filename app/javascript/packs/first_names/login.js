@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   
   liff.init({
-    liffId: gon.liff_id
+    liffId: process.env.LIFF_ID_FIRST_NAMES
   })
   .then(() => {
     if (!liff.isLoggedIn()) {

@@ -1,5 +1,4 @@
 class FirstNamesController < ApplicationController
-  before_action :set_first_names_liffid, only: %i[new]
   skip_before_action :login_required, only: %i[new login]
   before_action :first_name_set, only: %i[show destroy]
 
