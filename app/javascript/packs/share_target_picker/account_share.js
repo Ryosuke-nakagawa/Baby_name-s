@@ -2,7 +2,7 @@ $('#js-account-share-button').on('click', function() {
   const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
   liff.init({
-    liffId: gon.liff_id
+    liffId: process.env.LIFF_ID_SHARE_TARGET_PICKER
   })
   .then(() => {
     if (!liff.isLoggedIn()) {
