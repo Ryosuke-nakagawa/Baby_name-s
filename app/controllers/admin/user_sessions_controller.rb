@@ -1,7 +1,6 @@
 class Admin::UserSessionsController < Admin::BaseController
   skip_before_action :check_admin, only: %i[new login]
   skip_before_action :login_required, only: %i[new login]
-  before_action :set_admin_liffid, only: %i[new]
   layout 'layouts/application.html.slim'
 
   def new; end
