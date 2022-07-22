@@ -26,7 +26,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    leave_group = current_user.group
+    user = current_user
+    leave_group = user.group
     new_group = Group.create!
     user.likes.delete_all
     user.rates.delete_all
