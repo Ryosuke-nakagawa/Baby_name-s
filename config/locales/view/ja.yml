@@ -40,6 +40,7 @@ ja:
       no_authorization: '権限がありません'
       logout_confirm: 'ログアウトしますか?'
       posted: '%{item}を投稿しました'
+      reset_user: 'ユーザー情報のリセットに成功しました'
   static_pages:
     top:
       title: 'トップページ'

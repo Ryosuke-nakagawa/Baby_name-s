@@ -34,7 +34,7 @@ class UsersController < ApplicationController
     user.update!(group: new_group, status: 'normal', editing_name_id: nil, sound_rate_setting: nil,
                  character_rate_setting: nil, fortune_telling_rate_setting: nil)
     leave_group.destroy if leave_group.users.empty?
-    redirect_to new_user_path, success: 'ユーザー情報のリセットに成功しました'
+    redirect_to new_user_path, success: t('defaults.message.reset_user')
   end
 
   private
